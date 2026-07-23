@@ -167,7 +167,7 @@ The joint distribution describes how student-teacher ratios and test scores vary
 - [Expectation](expectation.md)
 - [Conditional expectation](conditional-expectation.md)
 - [Joint distributions, independence and iid sampling](joint-distributions-independence-and-iid.md)
-- [Finite moments](finite-moments.md)
+- [Variance, covariance and moments](variance-covariance-and-moments.md)
 
 ## Sources
 
