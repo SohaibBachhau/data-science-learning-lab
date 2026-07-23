@@ -10,6 +10,7 @@ prerequisites:
   - probability distributions
 sources:
   - Blasques, Advanced Econometric Methods
+  - course discussions and personal derivations
 tags:
   - expectation
   - mean
@@ -21,31 +22,17 @@ tags:
 
 ## Central question
 
-How can we summarize the average value of a random variable while
-taking the probabilities of its possible outcomes into account?
+How can we summarize the average value of a random variable while taking the probabilities of its possible outcomes into account?
 
 ## Short answer
 
-The expectation of a random variable is its probability-weighted
-average.
-
-It describes the centre of the distribution in an average sense.
-It does not necessarily describe an outcome that must occur, or even
-an outcome that is possible.
+The expectation of a random variable is its probability-weighted average. It describes the center of the distribution in an average sense. It does not have to be the most likely value, a value that must occur or even a possible realization.
 
 ## Intuition
 
-Suppose we could repeat the same random experiment many times.
+Suppose we could repeat the same random experiment many times. Under suitable conditions, the average of the observed outcomes would approach the expected value.
 
-The average of the observed outcomes would tend to approach the
-expected value, provided the relevant conditions for a law of large
-numbers are satisfied.
-
-The expectation therefore represents the long-run average associated
-with the probability distribution.
-
-It is a property of the random variable and its distribution, not of
-one particular realized observation.
+Expectation is therefore a population property of a random variable and its distribution. It is not the same as the sample average calculated from one finite dataset.
 
 ## Formal definition
 
@@ -59,7 +46,7 @@ E[X]
 \sum_x xP(X=x),
 $$
 
-provided that
+provided
 
 $$
 E[|X|]
@@ -76,20 +63,26 @@ For a continuous random variable $X$ with density $f_X(x)$,
 $$
 E[X]
 =
-\int_{-\infty}^{\infty} x f_X(x)\,dx,
+\int_{-\infty}^{\infty}xf_X(x)\,dx,
 $$
 
-provided that
+provided
 
 $$
 E[|X|]
 =
-\int_{-\infty}^{\infty} |x|f_X(x)\,dx
+\int_{-\infty}^{\infty}|x|f_X(x)\,dx
 <
 \infty.
 $$
 
-The condition $E[|X|] < \infty$ is called a finite first moment.
+The condition
+
+$$
+E[|X|]<\infty
+$$
+
+is called a finite first absolute moment.
 
 ## Notation
 
@@ -106,17 +99,13 @@ The condition $E[|X|] < \infty$ is called a finite first moment.
 For constants $a$ and $b$,
 
 $$
-E[aX+b]
-=
-aE[X]+b.
+E[aX+b]=aE[X]+b.
 $$
 
 More generally,
 
 $$
-E[aX+bY]
-=
-aE[X]+bE[Y].
+E[aX+bY]=aE[X]+bE[Y].
 $$
 
 Independence is not required for linearity of expectation.
@@ -131,27 +120,63 @@ $$
 
 ### Expectation of a function
 
-For a function $g$,
+For a suitable function $g$, the discrete formula is
 
 $$
 E[g(X)]
 =
-\sum_x g(x)P(X=x)
+\sum_x g(x)P(X=x),
 $$
 
-in the discrete case, and
+and the continuous formula is
 
 $$
 E[g(X)]
 =
-\int_{-\infty}^{\infty} g(x)f_X(x)\,dx
+\int_{-\infty}^{\infty}g(x)f_X(x)\,dx,
 $$
 
-in the continuous case, provided the expectation exists.
+provided the expectation exists.
+
+### Nonnegative random variables
+
+If
+
+$$
+Z\geq 0
+$$
+
+almost surely and
+
+$$
+E[Z]=0,
+$$
+
+then
+
+$$
+Z=0
+$$
+
+almost surely.
+
+This property explains why
+
+$$
+E[X^2]=0
+$$
+
+can hold only when
+
+$$
+X=0
+$$
+
+almost surely.
 
 ## Example: fair die
 
-Let $X$ represent the result of a fair six-sided die.
+Let $X$ be the result of a fair six-sided die. Then
 
 $$
 E[X]
@@ -163,20 +188,17 @@ E[X]
 3.5.
 $$
 
-The value $3.5$ cannot occur in one roll.
-
-This shows that the expected value does not need to be a possible
-realization. It describes an average across repeated realizations.
+The value $3.5$ cannot occur in one roll. It describes an average across repeated realizations.
 
 ## Example: Bernoulli random variable
 
 Let
 
 $$
-X =
+X=
 \begin{cases}
-1 & \text{with probability } p,\\
-0 & \text{with probability } 1-p.
+1 & \text{with probability }p,\\
+0 & \text{with probability }1-p.
 \end{cases}
 $$
 
@@ -190,12 +212,9 @@ E[X]
 p.
 $$
 
-The expectation of a Bernoulli random variable equals its probability
-of success.
+The expectation equals the probability of success.
 
 ## Failure case: Cauchy distribution
-
-Not every random variable has a finite expectation.
 
 For a standard Cauchy random variable,
 
@@ -211,22 +230,16 @@ $$
 E[|X|]
 =
 \int_{-\infty}^{\infty}
-|x|
-\frac{1}{\pi(1+x^2)}
-\,dx
+|x|\frac{1}{\pi(1+x^2)}\,dx
 =
 \infty.
 $$
 
-Therefore, the standard Cauchy distribution does not have a finite
-expected value.
-
-Its symmetry around zero does not make its expectation equal to zero.
+Therefore, the standard Cauchy distribution has no finite expected value. Its symmetry around zero does not make its expectation equal to zero because the positive and negative parts do not converge absolutely.
 
 ## Connection to econometrics
 
-Expectation is fundamental in regression because the regression
-function often models a conditional expectation:
+Regression often models a conditional expectation:
 
 $$
 E[Y\mid X].
@@ -235,59 +248,59 @@ $$
 For the linear model
 
 $$
-Y=X\beta+\varepsilon,
+Y=X'\beta+u,
 $$
 
 the exogeneity condition
 
 $$
-E[\varepsilon\mid X]=0
+E[u\mid X]=0
 $$
 
 implies
 
 $$
-E[Y\mid X]=X\beta.
+E[Y\mid X]=X'\beta.
 $$
 
-Expectation also appears in consistency proofs. Laws of large numbers
-allow sample averages to converge to population expectations when
-their assumptions are satisfied.
+Expectation also appears in consistency arguments. Laws of large numbers allow sample averages to converge to population expectations when their assumptions are satisfied.
 
 ## Common mistakes
 
-- Treating the expectation as the most likely outcome.
+- Treating expectation as the most likely outcome.
 - Assuming the expected value must be a possible realization.
-- Assuming every random variable has an expectation.
+- Assuming every random variable has a finite expectation.
 - Confusing a sample average with a population expectation.
 - Thinking independence is required for linearity of expectation.
 - Concluding that symmetry automatically guarantees a finite mean.
+- Using $E[X]$ without checking the required moment condition.
 
 ## Retrieval questions
 
 1. What is the intuitive meaning of $E[X]$?
-2. Why can the expectation be a value that is impossible to observe?
+2. Why can an expectation be impossible to observe as one realization?
 3. What is the difference between $E[X]$ and a sample average?
-4. Why do we require $E[|X|] < \infty$?
+4. Why do we require $E[|X|]<\infty$ in the standard definition?
 5. Does linearity of expectation require independence?
 6. Why does the Cauchy distribution not have a finite expectation?
-7. How is expectation used in the regression model?
+7. When can $E[X^2]=0$?
+8. How is expectation used in the regression model?
 
 ## Connections
 
+- [Random variables and probability distributions](random-variables-and-distributions.md)
 - [Conditional expectation](conditional-expectation.md)
-- [Variance](variance.md)
+- [Variance, covariance and moments](variance-covariance-and-moments.md)
 - [Law of large numbers](law-of-large-numbers.md)
-- [Random variables](random-variables.md)
+- [Central limit theorem](central-limit-theorem.md)
 
 ## Sources
 
-- Francisco Blasques, *Advanced Econometric Methods*, Chapter 1 and
-  Appendix A.
+- Francisco Blasques, *Advanced Econometric Methods*, Chapter 1 and Appendix A.
 - Course discussions and personal derivations.
 
 ## Review log
 
 | Date | Result | Next action |
 |---|---|---|
-| 2026-07-23 | Initial note created | Explain the concept without notes |
+| 2026-07-23 | Initial note created and connected | Explain the concept without notes |
