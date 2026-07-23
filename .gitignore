@@ -1,0 +1,7 @@
+# Copyrighted course and book PDFs kept locally
+references/books/*.pdf
+courses/**/slides/*.pdf
+
+# Windows system files
+desktop.ini
+Thumbs.db
