@@ -3,7 +3,7 @@ title: Random Variables and Probability Distributions
 subject: probability
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-08-01
 last_reviewed:
 prerequisites:
   - sample spaces
@@ -112,6 +112,300 @@ $$
 
 for every single value $x$. This does not mean that the value cannot occur. It means that a single point has zero area under a continuous density.
 
+## Linear transformations of a normal random variable
+
+A particularly useful property of the normal distribution is that a linear transformation of a normal random variable is still normal.
+
+Suppose
+
+$$
+A\sim N(\mu,\sigma^2)
+$$
+
+and define
+
+$$
+B=aA+c,
+$$
+
+where $a$ and $c$ are constants. Then
+
+$$
+B\sim N(a\mu+c,a^2\sigma^2).
+$$
+
+This formula combines two simpler transformation rules.
+
+### Adding a constant
+
+If
+
+$$
+B=A+c,
+$$
+
+then
+
+$$
+B\sim N(\mu+c,\sigma^2).
+$$
+
+Adding a constant shifts every possible value by the same amount. Therefore, the center of the distribution moves, but its spread does not change.
+
+The expectation changes because
+
+$$
+E[A+c]=E[A]+c=\mu+c.
+$$
+
+The variance does not change because
+
+$$
+\operatorname{Var}(A+c)=\operatorname{Var}(A)=\sigma^2.
+$$
+
+#### Numerical example
+
+Let
+
+$$
+A\sim N(10,4).
+$$
+
+Here the mean is $10$, the variance is $4$ and the standard deviation is $2$.
+
+If
+
+$$
+B=A+3,
+$$
+
+then
+
+$$
+B\sim N(13,4).
+$$
+
+Every value has moved three units to the right. The standard deviation remains $2$.
+
+### Multiplying by a constant
+
+If
+
+$$
+B=aA,
+$$
+
+then
+
+$$
+B\sim N(a\mu,a^2\sigma^2).
+$$
+
+The mean is multiplied by $a$:
+
+$$
+E[aA]=aE[A]=a\mu.
+$$
+
+The variance is multiplied by $a^2$:
+
+$$
+\operatorname{Var}(aA)=a^2\operatorname{Var}(A)=a^2\sigma^2.
+$$
+
+The standard deviation is therefore multiplied by $|a|$:
+
+$$
+\operatorname{SD}(aA)=|a|\sigma.
+$$
+
+The square on $a$ is important. Variance measures squared deviations from the mean, so multiplying all deviations by $a$ multiplies their squared values by $a^2$.
+
+#### Numerical example
+
+Again let
+
+$$
+A\sim N(10,4).
+$$
+
+If
+
+$$
+B=2A,
+$$
+
+then
+
+$$
+E[B]=2(10)=20
+$$
+
+and
+
+$$
+\operatorname{Var}(B)=2^2(4)=16.
+$$
+
+Therefore,
+
+$$
+B\sim N(20,16).
+$$
+
+The original standard deviation was $2$. After multiplying the random variable by $2$, the new standard deviation is $4$.
+
+### Multiplying and then adding
+
+For the general transformation
+
+$$
+B=aA+c,
+$$
+
+combine both rules:
+
+$$
+E[B]=a\mu+c
+$$
+
+and
+
+$$
+\operatorname{Var}(B)=a^2\sigma^2.
+$$
+
+The constant $c$ changes the location but not the variance.
+
+#### Numerical example with a negative multiplier
+
+Let
+
+$$
+A\sim N(10,4)
+$$
+
+and define
+
+$$
+B=-2A+5.
+$$
+
+The new mean is
+
+$$
+E[B]=-2(10)+5=-15.
+$$
+
+The new variance is
+
+$$
+\operatorname{Var}(B)=(-2)^2(4)=16.
+$$
+
+Therefore,
+
+$$
+B\sim N(-15,16).
+$$
+
+The negative multiplier reflects the distribution around zero before the shift is applied. It does not make the variance negative because the multiplier is squared.
+
+#### Numerical example with division
+
+Let
+
+$$
+A\sim N(10,4)
+$$
+
+and define
+
+$$
+B=\frac{1}{2}A-1.
+$$
+
+Then
+
+$$
+E[B]=\frac{1}{2}(10)-1=4
+$$
+
+and
+
+$$
+\operatorname{Var}(B)=\left(\frac{1}{2}\right)^2(4)=1.
+$$
+
+Therefore,
+
+$$
+B\sim N(4,1).
+$$
+
+### Standardization as an important special case
+
+If
+
+$$
+A\sim N(\mu,\sigma^2),
+$$
+
+then subtracting the mean and dividing by the standard deviation gives
+
+$$
+Z=\frac{A-\mu}{\sigma}.
+$$
+
+This is a linear transformation with
+
+$$
+a=\frac{1}{\sigma}
+$$
+
+and
+
+$$
+c=-\frac{\mu}{\sigma}.
+$$
+
+The transformed mean is
+
+$$
+E[Z]=0
+$$
+
+and the transformed variance is
+
+$$
+\operatorname{Var}(Z)=1.
+$$
+
+Therefore,
+
+$$
+Z\sim N(0,1).
+$$
+
+This is the standard normal distribution.
+
+### Rule to remember
+
+If
+
+$$
+A\sim N(\mu,\sigma^2),
+$$
+
+then
+
+$$
+\boxed{aA+c\sim N(a\mu+c,a^2\sigma^2)}.
+$$
+
+The location rule is linear, while the variance rule contains a square.
+
 ## Random variable, realization and observation
 
 These terms must be separated carefully:
@@ -152,6 +446,9 @@ The joint distribution describes how student-teacher ratios and test scores vary
 - Thinking $P(X=x)=0$ means a continuous value is impossible.
 - Speaking about the distribution of one variable when the argument actually depends on the joint distribution of several variables.
 - Assuming a model specifies the entire distribution when it may specify only a conditional mean.
+- Forgetting that multiplying a random variable by $a$ multiplies its variance by $a^2$, not by $a$.
+- Confusing variance $\sigma^2$ with standard deviation $\sigma$ when transforming a normal random variable.
+- Thinking that adding a constant changes the variance.
 
 ## Retrieval questions
 
@@ -159,8 +456,13 @@ The joint distribution describes how student-teacher ratios and test scores vary
 2. What is the difference between $X$ and $x$?
 3. What information does $F_X(x)$ provide?
 4. Why is $P(X=x)=0$ for a continuous random variable?
-5. What is the difference between a marginal and conditional distribution?
-6. Why does regression depend on the joint distribution of $X$ and $Y$?
+5. If $A\sim N(\mu,\sigma^2)$, what is the distribution of $aA+c$?
+6. Why does adding a constant change the mean but not the variance?
+7. Why does multiplying by $a$ multiply the variance by $a^2$?
+8. If $A\sim N(10,4)$, what is the distribution of $2A+3$?
+9. How does the linear-transformation rule produce the standard normal distribution?
+10. What is the difference between a marginal and conditional distribution?
+11. Why does regression depend on the joint distribution of $X$ and $Y$?
 
 ## Connections
 
@@ -173,9 +475,11 @@ The joint distribution describes how student-teacher ratios and test scores vary
 
 - Francisco Blasques, *Advanced Econometric Methods*, Chapter 1 and Appendix A.
 - *Introductory Econometrics for Business and Economics*, Week 1 and Week 2 slides.
+- Standard probability result for affine transformations of normally distributed random variables.
 
 ## Review log
 
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Explain the distinction between $X$ and $x$ without notes |
+| 2026-08-01 | Added linear transformations of normal variables | Reproduce the transformation rule and numerical examples without notes |
