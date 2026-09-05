@@ -2,6 +2,10 @@
 
 This directory contains permanent notes on econometric methods for data observed over time.
 
+## Current notes
+
+1. [Basic properties of time series](basic-properties.md)
+
 ## Scope
 
 The time-series branch will develop around:
@@ -24,4 +28,4 @@ Build the intuition first, then state the formal definitions and derive the key 
 
 ## Status
 
-`seed`
+`developing`
