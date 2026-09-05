@@ -16,6 +16,10 @@ This directory contains permanent notes on statistical models and estimation met
 
 1. [Maximum likelihood](maximum-likelihood/maximum-likelihood.md)
 
+### Time series
+
+1. [Time series econometrics](time-series/README.md)
+
 ## Main learning chain
 
 ```text
@@ -40,8 +44,8 @@ population relationship
 
 ## Relationship with other subjects
 
-The probability notes explain random variables, conditional expectations, moments and limit theorems. The statistics notes explain estimators, sampling distributions and asymptotic properties. The econometrics notes combine these ideas in regression and likelihood models.
+The probability notes explain random variables, conditional expectations, moments and limit theorems. The statistics notes explain estimators, sampling distributions and asymptotic properties. The econometrics notes combine these ideas in regression, likelihood and time-series models.
 
 ## Status
 
-The current notes are marked `developing`. Future additions should extend this foundation toward multiple regression, testing, nonlinear regression, panel data and dynamic models without duplicating existing explanations.
+The linear-regression and maximum-likelihood notes are marked `developing`. The time-series section is currently `seed`. Future additions should extend this foundation toward multiple regression, testing, nonlinear regression, panel data and dynamic models without duplicating existing explanations.
