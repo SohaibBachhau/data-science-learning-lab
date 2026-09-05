@@ -2,7 +2,7 @@
 title: Foundations Map
 status: developing
 created: 2026-08-09
-updated: 2026-08-09
+updated: 2026-09-05
 tags:
   - roadmap
   - intuition
@@ -25,7 +25,7 @@ Use this page as a navigation hub. Click a topic to open the corresponding perma
 
 ## The main story in one sentence
 
-We begin with random variables because data are uncertain, use expectations and distributions to describe their behavior, use sampling theory to understand how estimators behave across samples, and then use those tools to build and evaluate regression estimators.
+We begin with random variables because data are uncertain, use expectations and distributions to describe their behavior, use sampling theory to understand estimators, and then use those tools to build regression and time-series models.
 
 ---
 
@@ -834,7 +834,104 @@ See [Ordinary Least Squares](econometrics/linear-regression/ordinary-least-squar
 
 ---
 
-# 14. The current trunk
+
+# 14. Branch: time series and dependence over time
+
+Cross-sectional econometrics often starts from observations indexed by individuals, firms or other units. Time-series econometrics instead studies variables indexed by time:
+
+$
+X_1,X_2,\ldots,X_T.
+$
+
+The ordering matters because observations at different dates may be statistically related.
+
+## [Basic properties of time series](econometrics/time-series/basic-properties.md)
+
+A time series is modeled as a stochastic process `{X_t}`. The observed values `{x_t}` form one realization of that process.
+
+The first objects we use to describe the process are:
+
+$
+E(X_t)
+$
+
+for its mean and
+
+$
+\operatorname{Cov}(X_t,X_{t-h})
+$
+
+for dependence between observations `h` periods apart.
+
+This leads to the autocovariance function.
+
+### Why stationarity enters
+
+With only one observed historical path, we need some stability over time if observations from different periods are to teach us about the same underlying relationships.
+
+Weak stationarity requires:
+
+$
+E(X_t)=\mu
+$
+
+and
+
+$
+\operatorname{Cov}(X_t,X_{t-h})=\gamma(h).
+$
+
+The second condition says that dependence may vary with the lag `h`, but not with the calendar date `t`.
+
+Because variance is the lag-zero autocovariance,
+
+$
+\operatorname{Var}(X_t)=\gamma(0),
+$
+
+weak stationarity also implies constant variance.
+
+### From autocovariance to autocorrelation
+
+The autocorrelation function standardizes the autocovariance:
+
+$
+\rho(h)=\frac{\gamma(h)}{\gamma(0)}.
+$
+
+It tells us how strongly values separated by `h` periods are linearly related on a scale from -1 to 1.
+
+This creates a new econometric branch:
+
+```text
+[Random variables and covariance]
+        |
+        v
+[Stochastic process {X_t}]
+        |
+        v
+[Mean and autocovariance over time]
+        |
+        v
+[Weak stationarity]
+        |
+        +--> [Autocorrelation / ACF]
+        |
+        +--> [White noise]
+        |
+        +--> [Random walk and non-stationarity]
+        |
+        +--> [Differencing and transformations]
+        |
+        v
+[ARMA and later time-series models]
+```
+
+This branch will be expanded only as those topics are actually studied.
+
+---
+
+# 15. The current trunk
 
 At the current stage, the main conceptual chain is:
 
@@ -887,13 +984,27 @@ At the current stage, the main conceptual chain is:
                 |
                 +--> exact normal inference
                 +--> [Maximum likelihood]
+
+[Variance / covariance / moments]
+        |
+        +--> [Stochastic process over time]
+                |
+                +--> [Weak stationarity]
+                |       |
+                |       +--> [Autocorrelation / ACF]
+                |
+                +--> [White noise / random walk]
+                |
+                +--> [Differencing]
+                        |
+                        +--> later ARMA and non-stationary models
 ```
 
 The labels above correspond to the linked sections in this document.
 
 ---
 
-# 15. Assumption map
+# 16. Assumption map
 
 A useful way to study econometrics is to ask what each assumption actually buys us.
 
@@ -908,10 +1019,11 @@ A useful way to study econometrics is to ask what each assumption actually buys 
 | homoskedasticity | classical OLS variance formula | need robust variance estimation |
 | normality | exact finite-sample normal likelihood/inference | often use asymptotic theory instead |
 | large $n$ plus regularity conditions | LLN and CLT approximations become useful | asymptotic approximations may be poor |
+| weak stationarity in a time-series setting | stable mean, variance and lag-based dependence structure | historical periods may not describe one stable probabilistic relationship |
 
 ---
 
-# 16. How to use this map
+# 17. How to use this map
 
 When learning a new result, do not only ask:
 
@@ -930,7 +1042,7 @@ The goal is to turn econometrics into a connected story rather than a collection
 
 ---
 
-# 17. Current linked notes
+# 18. Current linked notes
 
 ## Probability
 
@@ -961,6 +1073,8 @@ The goal is to turn econometrics into a connected story rather than a collection
 - [Sampling distribution of OLS](econometrics/linear-regression/sampling-distribution-of-ols.md)
 - [Maximum likelihood index](econometrics/maximum-likelihood/README.md)
 - [Maximum likelihood](econometrics/maximum-likelihood/maximum-likelihood.md)
+- [Time series index](econometrics/time-series/README.md)
+- [Basic properties of time series](econometrics/time-series/basic-properties.md)
 
 ## Course connection
 
@@ -973,3 +1087,4 @@ The goal is to turn econometrics into a connected story rather than a collection
 | Date | Result | Next action |
 |---|---|---|
 | 2026-08-09 | Initial intuitive foundations map created | Extend branches only when new material is actually studied |
+| 2026-09-05 | Added the time-series branch through stochastic processes, autocovariance and weak stationarity | Extend toward white noise, random walks and differencing as Week 1 is completed |
