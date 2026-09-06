@@ -3,8 +3,8 @@ title: Random Variables and Probability Distributions
 subject: probability
 status: developing
 created: 2026-07-23
-updated: 2026-08-01
-last_reviewed:
+updated: 2026-09-06
+last_reviewed: 2026-09-06
 prerequisites:
   - sample spaces
   - events
@@ -12,6 +12,8 @@ prerequisites:
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 1 and Week 2 slides
+  - VU Knowledge Clip Series: Probability Theory, Random Variables and Probability Distributions (2026)
+  - KCS Probability Theory exercises (2026)
 tags:
   - random variables
   - distributions
@@ -34,6 +36,34 @@ The randomness is not in the mathematical rule itself. Once an outcome occurs, t
 
 For example, when a die is rolled, the sample outcome may be one of six faces. The random variable $X$ can record the number shown. Before the roll, $X$ is uncertain. After the roll, we observe one realization, such as $x=4$.
 
+## Outcomes and events
+
+Before defining a random variable, separate the underlying probability objects:
+
+- an **outcome** is one possible result of the random experiment;
+- a **realized outcome** is the particular outcome that actually occurs;
+- an **event** is a set of outcomes.
+
+For two coin tosses, the sample space is
+
+$
+\Omega=\{HH,HT,TH,TT\}.
+$
+
+Each element is an outcome. The event "both tosses show the same face" is
+
+$
+A=\{HH,TT\}.
+$
+
+A random variable then assigns numerical values to individual outcomes. For example,
+
+$
+X(HH)=-1,\qquad X(HT)=0,\qquad X(TH)=0,\qquad X(TT)=1.
+$
+
+This distinction is useful because an event is not an "outcome that has not happened yet." It is a collection of outcomes defined independently of whether the experiment has already been performed.
+
 ## Formal definition
 
 Let $\Omega$ be a sample space. A random variable is a measurable function
@@ -51,6 +81,28 @@ F_X(x)=P(X\leq x).
 $$
 
 It gives the probability that the random variable takes a value no greater than $x$.
+
+For a continuous random variable with density $f_X$,
+
+$
+F_X(x)=\int_{-\infty}^{x}f_X(t)\,dt.
+$
+
+If the support has a lower bound $L$ and $f_X(t)=0$ for $t<L$, then the same CDF can be computed as
+
+$
+F_X(x)=\int_L^x f_X(t)\,dt
+$
+
+for values of $x$ inside the support. The definition still starts at $-\infty$; the shorter integral works because there is zero density below $L$.
+
+The probability to the right of $x$ is a tail probability,
+
+$
+P(X>x)=1-F_X(x),
+$
+
+not the CDF itself.
 
 ## Discrete random variables
 
@@ -97,6 +149,8 @@ and
 $$
 \int_{-\infty}^{\infty}f_X(x)\,dx=1.
 $$
+
+The height $f_X(x)$ is a **density**, not the probability $P(X=x)$. A higher density means probability is more concentrated locally, but actual interval probabilities depend on area, so both density and interval width matter.
 
 Probabilities are obtained from areas under the density:
 
@@ -483,3 +537,4 @@ The joint distribution describes how student-teacher ratios and test scores vary
 |---|---|---|
 | 2026-07-23 | Initial note created | Explain the distinction between $X$ and $x$ without notes |
 | 2026-08-01 | Added linear transformations of normal variables | Reproduce the transformation rule and numerical examples without notes |
+| 2026-09-06 | Reviewed VU Probability Theory clip 1 and exercises; clarified outcomes versus events, PDF height versus probability, and practical CDF limits | Continue with Normal Distribution and Moments I |
