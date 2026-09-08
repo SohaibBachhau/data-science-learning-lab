@@ -2,6 +2,10 @@
 
 This directory contains permanent notes on econometric methods for data observed over time.
 
+## Start here
+
+For a quick narrative review before the formal mathematics, read [The Story of Time Series Econometrics](story.md).
+
 ## Current notes
 
 1. [Basic properties of time series](basic-properties.md)
@@ -24,7 +28,7 @@ The time-series branch will develop around:
 
 ## Learning approach
 
-Build the intuition first, then state the formal definitions and derive the key results step by step. Keep permanent concept explanations here and keep course-specific material under `courses/`.
+Use the story page for orientation and recall. Use the permanent concept notes for definitions, derivations, assumptions and exercises. Keep course-specific material under `courses/`.
 
 ## Status
 
