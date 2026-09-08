@@ -2,7 +2,7 @@
 title: Foundations Map
 status: developing
 created: 2026-08-09
-updated: 2026-09-05
+updated: 2026-09-08
 tags:
   - roadmap
   - intuition
@@ -927,7 +927,47 @@ This creates a new econometric branch:
 [ARMA and later time-series models]
 ```
 
-This branch will be expanded only as those topics are actually studied.
+We have now developed the first two benchmark processes in that branch.
+
+### White noise
+
+White noise has constant mean and variance and zero autocovariance at every nonzero lag. It is weakly stationary.
+
+IID noise is stronger: independent observations are fresh draws from the same distribution, while white noise only requires zero linear dependence across time.
+
+See [White noise and IID noise](econometrics/time-series/white-noise-and-iid.md).
+
+### Random walk
+
+A random walk accumulates shocks:
+
+$
+X_t=X_{t-1}+\varepsilon_t.
+$
+
+Its variance grows with time,
+
+$
+\operatorname{Var}(X_t)=t\sigma_\varepsilon^2,
+$
+
+and its autocovariance depends on calendar time,
+
+$
+\operatorname{Cov}(X_t,X_{t-h})=(t-h)\sigma_\varepsilon^2.
+$
+
+It is therefore non-stationary.
+
+Its first difference is white noise:
+
+$
+\Delta X_t=\varepsilon_t.
+$
+
+See [Random walk](econometrics/time-series/random-walk.md).
+
+This branch will continue to expand only as those topics are actually studied.
 
 ---
 
@@ -1075,6 +1115,8 @@ The goal is to turn econometrics into a connected story rather than a collection
 - [Maximum likelihood](econometrics/maximum-likelihood/maximum-likelihood.md)
 - [Time series index](econometrics/time-series/README.md)
 - [Basic properties of time series](econometrics/time-series/basic-properties.md)
+- [White noise and IID noise](econometrics/time-series/white-noise-and-iid.md)
+- [Random walk](econometrics/time-series/random-walk.md)
 
 ## Course connection
 
@@ -1088,3 +1130,4 @@ The goal is to turn econometrics into a connected story rather than a collection
 |---|---|---|
 | 2026-08-09 | Initial intuitive foundations map created | Extend branches only when new material is actually studied |
 | 2026-09-05 | Added the time-series branch through stochastic processes, autocovariance and weak stationarity | Extend toward white noise, random walks and differencing as Week 1 is completed |
+| 2026-09-08 | Added white noise, IID versus uncorrelated noise, random walks and the first differencing link | Extend toward components, sources of non-stationarity and lag-operator differencing |
