@@ -9,6 +9,8 @@ For a quick narrative review before the formal mathematics, read [The Story of T
 ## Current notes
 
 1. [Basic properties of time series](basic-properties.md)
+2. [White noise and IID noise](white-noise-and-iid.md)
+3. [Random walk](random-walk.md)
 
 ## Scope
 
