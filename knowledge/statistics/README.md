@@ -2,6 +2,10 @@
 
 This directory contains permanent notes on learning population quantities from random samples and quantifying sampling uncertainty.
 
+## Start here
+
+For a quick narrative review before the formal notes, read [The Story of Statistics](story.md).
+
 ## Current foundation
 
 Recommended reading order:
