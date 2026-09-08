@@ -2,6 +2,10 @@
 
 This directory develops the population model, assumptions, estimation method and sampling properties of ordinary least squares.
 
+## Start here
+
+For a quick conceptual review, read [The Story of Linear Regression](story.md).
+
 Recommended reading order:
 
 1. [Linear regression model](linear-regression-model.md)
