@@ -42,7 +42,92 @@ The autocorrelation function, or ACF, collects that relationship across many lag
 
 A correlogram is simply a plot of the estimated sample autocorrelations across those lags.
 
-So the story currently looks like this:
+## White noise: the benchmark shock process
+
+White noise is the simplest stationary benchmark.
+
+It has zero mean, constant variance and zero autocovariance at every nonzero lag. In other words, past shocks do not have a linear relationship with current shocks.
+
+Its theoretical ACF is therefore 1 at lag 0 and 0 at every nonzero lag.
+
+IID noise is stronger than white noise.
+
+IID means the observations are independent and identically distributed. A useful way to remember it is:
+
+> Every observation is a fresh draw from the same distribution.
+
+White noise only rules out linear dependence through covariance. Independence rules out all dependence.
+
+## Random walk: accumulated shocks
+
+A random walk is built from white-noise shocks:
+
+$$
+X_t=X_{t-1}+\varepsilon_t.
+$$
+
+So white noise is the sequence of shocks, while the random walk is the accumulated total of those shocks.
+
+A shock today changes the level today and remains embedded in future levels. This creates persistence and a stochastic trend.
+
+The mean of the basic random walk can stay constant, but the variance grows over time:
+
+$$
+\operatorname{Var}(X_t)=t\sigma_\varepsilon^2.
+$$
+
+Its autocovariance also depends on calendar time:
+
+$$
+\operatorname{Cov}(X_t,X_{t-h})
+=
+(t-h)\sigma_\varepsilon^2.
+$$
+
+That violates weak stationarity.
+
+So the contrast is:
+
+```text
+white noise
+→ stationary
+→ no autocorrelation at nonzero lags
+
+random walk
+→ accumulated white-noise shocks
+→ variance grows over time
+→ non-stationary
+```
+
+## The first differencing idea
+
+The random walk also gives us our first important transformation.
+
+From
+
+$$
+X_t=X_{t-1}+\varepsilon_t,
+$$
+
+we get
+
+$$
+X_t-X_{t-1}=\varepsilon_t.
+$$
+
+Therefore,
+
+$$
+\Delta X_t=\varepsilon_t.
+$$
+
+The random walk itself is non-stationary, but its first difference is white noise and stationary.
+
+This is the first example of a central time-series strategy:
+
+> If the level of a series is non-stationary, a transformation such as differencing may produce a stationary series that is easier to model.
+
+## The story in one chain
 
 ```text
 observations through time
@@ -50,22 +135,19 @@ observations through time
 → mean and variance
 → autocovariance
 → weak stationarity
-→ autocorrelation
-→ ACF
-→ correlogram
+→ autocorrelation / ACF
+→ white noise
+→ IID as a stronger dependence assumption
+→ random walk
+→ non-stationarity
+→ first differencing
 ```
 
 ## What comes next
 
-The next step is to study two very simple processes that give us useful reference points.
+The next Week 1 topics are time-series components and broader sources of non-stationarity: trend, seasonality, cycles and level-dependent variability.
 
-White noise represents a stationary process with no autocorrelation at nonzero lags.
-
-A random walk accumulates random shocks over time and is non-stationary.
-
-That contrast will make the ideas of persistence, trends and differencing much more concrete.
-
-Later Week 1 will connect these ideas to time-series components, non-stationarity, lag operators, differencing, seasonal differencing and log differences.
+After that come lag operators, ordinary differencing, seasonal differencing and log differences.
 
 ## What to remember right now
 
@@ -73,19 +155,28 @@ Stationarity does not mean the series is constant.
 
 Stationarity does not mean autocorrelation must be zero.
 
-It means the basic first- and second-moment structure is stable over time.
+White noise is stationary and has zero autocorrelation at nonzero lags.
 
-Autocovariance measures raw linear dependence across time. Autocorrelation standardizes that dependence.
+IID is stronger than white noise because independence is stronger than zero covariance.
 
-The theoretical ACF belongs to the underlying stochastic process. The sample ACF is what we estimate from the one realization we observe.
+A random walk accumulates shocks, so shocks have persistent effects on the level.
+
+A random walk has increasing variance and is therefore non-stationary.
+
+Differencing a random walk gives white noise.
 
 ## When you forget the mathematics
 
-Start with this page. Once the story is back in your head, open [Basic properties of time series](basic-properties.md) for the formal definitions and derivations.
+Start with this page. Once the story is back in your head, use the detailed notes:
+
+- [Basic properties of time series](basic-properties.md)
+- [White noise and IID noise](white-noise-and-iid.md)
+- [Random walk](random-walk.md)
 
 ## Sources
 
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1, part 2: Deterministic and Stochastic Processes.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1, part 3: Basic Properties of Time Series.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1, part 4: Simple Time Series Models.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1 lecture.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1 exercise book.
