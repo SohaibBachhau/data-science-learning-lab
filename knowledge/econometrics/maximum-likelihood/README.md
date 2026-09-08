@@ -2,6 +2,10 @@
 
 This directory develops estimation based on fully specified probability models.
 
+## Start here
+
+For a quick conceptual review, read [The Story of Maximum Likelihood](story.md).
+
 Current note:
 
 1. [Maximum likelihood](maximum-likelihood.md)
