@@ -2,6 +2,10 @@
 
 This directory contains permanent notes on random variables, probability distributions, moments, dependence and limit theorems used throughout statistics, econometrics and machine learning.
 
+## Start here
+
+For a quick narrative review before the formal notes, read [The Story of Probability](story.md).
+
 ## Current foundation
 
 Recommended reading order:
