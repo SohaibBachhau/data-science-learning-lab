@@ -11,6 +11,8 @@ For a quick narrative review before the formal mathematics, read [The Story of T
 1. [Basic properties of time series](basic-properties.md)
 2. [White noise and IID noise](white-noise-and-iid.md)
 3. [Random walk](random-walk.md)
+4. [Time-series components and sources of non-stationarity](components-and-nonstationarity.md)
+5. [Lag operator and differencing](lag-operator-and-differencing.md)
 
 ## Scope
 
