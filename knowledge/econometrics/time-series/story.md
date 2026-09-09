@@ -86,46 +86,108 @@ $$
 
 That violates weak stationarity.
 
-So the contrast is:
+## Components in observed time series
 
-```text
-white noise
-→ stationary
-→ no autocorrelation at nonzero lags
+Real time series often contain several visually different components.
 
-random walk
-→ accumulated white-noise shocks
-→ variance grows over time
-→ non-stationary
-```
+A common additive representation is
 
-## The first differencing idea
+$$
+X_t=T_t+S_t+R_t,
+$$
 
-The random walk also gives us our first important transformation.
+where `T_t` is trend, `S_t` is seasonality and `R_t` is the remainder.
 
-From
+Trend is a long-run increase or decrease.
+
+Seasonality is a repeating pattern with a fixed known period, such as 12 months or 4 quarters.
+
+Cycles are also repeated up-and-down movements, but unlike seasonality they do not have a fixed period. Cyclic behavior can still be compatible with stationarity.
+
+A multiplicative representation,
+
+$$
+X_t=T_tS_tR_t,
+$$
+
+is useful when fluctuations grow with the level of the series. Taking logs converts this into an additive form.
+
+## Where non-stationarity can come from
+
+Week 1 highlights several common sources of non-stationarity:
+
+- deterministic trend;
+- stochastic trend;
+- seasonality;
+- level-dependent variability.
+
+A deterministic trend changes predictably with time.
+
+A stochastic trend, such as a random walk, is driven by accumulated shocks.
+
+Seasonality makes the expected level depend on where we are in the seasonal cycle.
+
+Level-dependent variability can make the variance change as the series level changes.
+
+These are the kinds of patterns we look for before applying stationary time-series models.
+
+## Lag operator and differencing
+
+The lag operator is compact notation for moving backward in time:
+
+$$
+LX_t=X_{t-1}.
+$$
+
+More generally,
+
+$$
+L^jX_t=X_{t-j}.
+$$
+
+The first difference is
+
+$$
+\Delta X_t=X_t-X_{t-1}.
+$$
+
+Using the lag operator,
+
+$$
+\Delta X_t=(1-L)X_t.
+$$
+
+The key conceptual move is that differencing changes the object we model.
+
+Instead of modeling the level `X_t`, we model how much it changed from the previous period.
+
+For a random walk,
 
 $$
 X_t=X_{t-1}+\varepsilon_t,
 $$
 
-we get
-
-$$
-X_t-X_{t-1}=\varepsilon_t.
-$$
-
-Therefore,
+so
 
 $$
 \Delta X_t=\varepsilon_t.
 $$
 
-The random walk itself is non-stationary, but its first difference is white noise and stationary.
+The level is non-stationary, while the first difference is stationary white noise.
 
-This is the first example of a central time-series strategy:
+Differencing also removes a deterministic linear trend in the sense that
 
-> If the level of a series is non-stationary, a transformation such as differencing may produce a stationary series that is easier to model.
+$$
+X_t=\beta_0+\beta_1t+\varepsilon_t
+$$
+
+becomes
+
+$$
+\Delta X_t=\beta_1+\Delta\varepsilon_t.
+$$
+
+The growing level is replaced by a constant increment.
 
 ## The story in one chain
 
@@ -139,15 +201,17 @@ observations through time
 → white noise
 → IID as a stronger dependence assumption
 → random walk
-→ non-stationarity
+→ trend / seasonality / cycles / changing variability
+→ sources of non-stationarity
+→ lag operator
 → first differencing
 ```
 
 ## What comes next
 
-The next Week 1 topics are time-series components and broader sources of non-stationarity: trend, seasonality, cycles and level-dependent variability.
+The next Week 1 topics are higher-order differencing, seasonal differencing and the combination of ordinary and seasonal differences.
 
-After that come lag operators, ordinary differencing, seasonal differencing and log differences.
+After that come log differences, growth rates and returns.
 
 ## What to remember right now
 
@@ -161,9 +225,13 @@ IID is stronger than white noise because independence is stronger than zero cova
 
 A random walk accumulates shocks, so shocks have persistent effects on the level.
 
-A random walk has increasing variance and is therefore non-stationary.
+Trend and seasonality are common sources of non-stationarity.
 
-Differencing a random walk gives white noise.
+Seasonality has a fixed known period; cycles do not.
+
+The lag operator moves a variable backward in time.
+
+Differencing changes levels into changes and can remove some forms of non-stationarity.
 
 ## When you forget the mathematics
 
@@ -172,6 +240,8 @@ Start with this page. Once the story is back in your head, use the detailed note
 - [Basic properties of time series](basic-properties.md)
 - [White noise and IID noise](white-noise-and-iid.md)
 - [Random walk](random-walk.md)
+- [Time-series components and sources of non-stationarity](components-and-nonstationarity.md)
+- [Lag operator and differencing](lag-operator-and-differencing.md)
 
 ## Sources
 
