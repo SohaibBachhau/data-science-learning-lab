@@ -2,7 +2,7 @@
 title: Foundations Map
 status: developing
 created: 2026-08-09
-updated: 2026-09-08
+updated: 2026-09-09
 tags:
   - roadmap
   - intuition
@@ -967,6 +967,56 @@ $
 
 See [Random walk](econometrics/time-series/random-walk.md).
 
+### Components and practical sources of non-stationarity
+
+Observed time series can contain trend, seasonality, cycles and a remainder.
+
+A deterministic trend changes predictably with time. A stochastic trend, such as a random walk, is driven by accumulated shocks.
+
+Seasonality repeats at a fixed known period, while cycles do not have a fixed period and can still be compatible with stationarity.
+
+Level-dependent variability can make the variance change as the series level changes.
+
+See [Time-series components and sources of non-stationarity](econometrics/time-series/components-and-nonstationarity.md).
+
+### Lag operator and differencing
+
+The lag operator moves a variable backward in time:
+
+$
+LX_t=X_{t-1}.
+$
+
+First differencing is
+
+$
+\Delta X_t=X_t-X_{t-1}=(1-L)X_t.
+$
+
+This changes the modeling object from the level to the period-to-period change.
+
+For a random walk,
+
+$
+\Delta X_t=\varepsilon_t,
+$
+
+so a non-stationary level becomes stationary white noise after first differencing.
+
+For a deterministic linear trend,
+
+$
+X_t=\beta_0+\beta_1t+\varepsilon_t,
+$
+
+first differencing gives
+
+$
+\Delta X_t=\beta_1+\Delta\varepsilon_t.
+$
+
+See [Lag operator and differencing](econometrics/time-series/lag-operator-and-differencing.md).
+
 This branch will continue to expand only as those topics are actually studied.
 
 ---
@@ -1117,6 +1167,8 @@ The goal is to turn econometrics into a connected story rather than a collection
 - [Basic properties of time series](econometrics/time-series/basic-properties.md)
 - [White noise and IID noise](econometrics/time-series/white-noise-and-iid.md)
 - [Random walk](econometrics/time-series/random-walk.md)
+- [Time-series components and sources of non-stationarity](econometrics/time-series/components-and-nonstationarity.md)
+- [Lag operator and differencing](econometrics/time-series/lag-operator-and-differencing.md)
 
 ## Course connection
 
@@ -1131,3 +1183,4 @@ The goal is to turn econometrics into a connected story rather than a collection
 | 2026-08-09 | Initial intuitive foundations map created | Extend branches only when new material is actually studied |
 | 2026-09-05 | Added the time-series branch through stochastic processes, autocovariance and weak stationarity | Extend toward white noise, random walks and differencing as Week 1 is completed |
 | 2026-09-08 | Added white noise, IID versus uncorrelated noise, random walks and the first differencing link | Extend toward components, sources of non-stationarity and lag-operator differencing |
+| 2026-09-09 | Added trend, seasonality, cycles, level-dependent variability, lag-operator notation and first differencing | Extend toward higher-order differences, seasonal differencing and log differences |
