@@ -107,13 +107,38 @@ For example, if seasonal movements are proportional to the level, a multiplicati
 
 Taking logs converts multiplication into addition:
 
-$$
+$
 \log X_t
 =
 \log T_t+\log S_t+\log R_t.
-$$
+$
 
 This is one reason logarithms are useful in time-series analysis.
+
+## Classical decomposition and moving averages
+
+The components `T_t`, `S_t` and `R_t` are not directly observed. Decomposition methods estimate them from the observed series.
+
+The Week 1 lecture introduces classical decomposition, X-11 and STL. At this stage, the important intuition is the classical method.
+
+A moving average smooths short-run fluctuations so that the underlying trend-cycle becomes easier to see.
+
+For example, a simple centered 3-period moving average is
+
+$
+MA_t
+=
+\frac{X_{t-1}+X_t+X_{t+1}}{3}.
+$
+
+Classical decomposition roughly proceeds as follows:
+
+1. estimate the trend-cycle with moving averages;
+2. remove the estimated trend-cycle from the observed series;
+3. estimate the seasonal component by averaging deviations for the same season;
+4. treat what remains as the remainder.
+
+X-11 and STL are alternative decomposition methods mentioned in the lecture, but Week 1 does not develop their algorithms in detail.
 
 ## Main sources of non-stationarity
 
@@ -179,12 +204,15 @@ The first three are common warning signs of non-stationarity. Cyclic movement al
 5. When is multiplicative decomposition more natural than additive decomposition?
 6. Why can taking logs help with multiplicative structure or changing variability?
 7. Which visual features should make you suspect non-stationarity?
+8. What is the purpose of a moving average in classical decomposition?
+9. What are the rough steps of classical decomposition?
 
 ## Related notes
 
 - [Basic properties of time series](basic-properties.md)
 - [Random walk](random-walk.md)
 - [Lag operator and differencing](lag-operator-and-differencing.md)
+- [Log differences, growth rates and returns](log-differences-growth-and-returns.md)
 - [The Story of Time Series Econometrics](story.md)
 
 ## Sources
