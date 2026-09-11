@@ -189,6 +189,42 @@ $$
 
 The growing level is replaced by a constant increment.
 
+## Week 2 begins: modeling stationary dynamics
+
+Once a series is stationary, the next question is not just whether it is stable, but how values depend on the past.
+
+This is where AR, MA and ARMA models enter.
+
+An autoregressive model, or AR model, says that the current value depends on earlier values of the same series.
+
+The simplest example is
+
+$$
+X_t=\phi X_{t-1}+\varepsilon_t.
+$$
+
+The previous value carries forward through `phi`, while `epsilon_t` is the new shock arriving today.
+
+Because `X_{t-1}` itself contains older shocks, an AR model can carry the influence of a shock far into the future. The effect may shrink over time, but it does not have to disappear after a fixed number of periods.
+
+A moving-average model, or MA model, works differently. It models the current value directly using current and past shocks.
+
+For example,
+
+$$
+X_t=\varepsilon_t+\theta\varepsilon_{t-1}.
+$$
+
+This MA(1) remembers today's shock and yesterday's shock directly, but no shock further back.
+
+So the easiest distinction to remember is:
+
+> AR remembers past values. MA remembers past shocks.
+
+An ARMA model combines the two ideas. In ARMA(p,q), `p` counts the number of AR lags and `q` counts the number of MA shock lags.
+
+The mathematics used later to decide whether an ARMA model is stationary involves polynomials, roots and the unit circle. Those are general mathematical ideas, so their detailed explanation is kept in the mathematics branch and linked from the time-series notes.
+
 ## The story in one chain
 
 ```text
@@ -204,14 +240,16 @@ observations through time
 → trend / seasonality / cycles / changing variability
 → sources of non-stationarity
 → lag operator
-→ first differencing
+→ differencing and transformations
+→ stationary dynamics
+→ AR: past values
+→ MA: past shocks
+→ ARMA: both mechanisms together
 ```
 
 ## What comes next
 
-The next Week 1 topics are higher-order differencing, seasonal differencing and the combination of ordinary and seasonal differences.
-
-After that come log differences, growth rates and returns.
+For Week 2, the next steps are lag-polynomial notation, stationarity and causality, statistical properties of ARMA models, invertibility and parameter estimation.
 
 ## What to remember right now
 
@@ -233,6 +271,12 @@ The lag operator moves a variable backward in time.
 
 Differencing changes levels into changes and can remove some forms of non-stationarity.
 
+AR models use past values of the series.
+
+MA models use current and past shocks.
+
+ARMA models combine both mechanisms.
+
 ## When you forget the mathematics
 
 Start with this page. Once the story is back in your head, use the detailed notes:
@@ -242,6 +286,8 @@ Start with this page. Once the story is back in your head, use the detailed note
 - [Random walk](random-walk.md)
 - [Time-series components and sources of non-stationarity](components-and-nonstationarity.md)
 - [Lag operator and differencing](lag-operator-and-differencing.md)
+- [AR, MA and ARMA models](arma-models.md)
+- [Complex numbers, polynomials and roots](../../mathematics/complex-numbers-and-polynomials.md)
 
 ## Sources
 
@@ -250,3 +296,4 @@ Start with this page. Once the story is back in your head, use the detailed note
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1, part 4: Simple Time Series Models.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1 lecture.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1 exercise book.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 2: Autoregressive Moving Average (ARMA) Models.
