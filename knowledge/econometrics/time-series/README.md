@@ -15,6 +15,13 @@ For a quick narrative review before the formal mathematics, read [The Story of T
 5. [Lag operator and differencing](lag-operator-and-differencing.md)
 6. [Higher-order and seasonal differencing](higher-order-and-seasonal-differencing.md)
 7. [Log differences, growth rates and returns](log-differences-growth-and-returns.md)
+8. [AR, MA and ARMA models](arma-models.md)
+
+## Mathematical foundations
+
+General mathematics is kept in `knowledge/mathematics/` rather than duplicated here.
+
+For Week 2, see [Complex numbers, polynomials and roots](../../mathematics/complex-numbers-and-polynomials.md) for the background needed to work with characteristic roots and the unit circle.
 
 ## Scope
 
