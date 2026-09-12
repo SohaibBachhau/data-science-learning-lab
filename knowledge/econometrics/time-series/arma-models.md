@@ -101,8 +101,6 @@ An MA(1) does not include `epsilon_{t-2}` or earlier shocks in the equation for 
 
 ### How long does a shock survive in an MA(1)?
 
-This point is important.
-
 Suppose a shock `epsilon_t` occurs today.
 
 It affects today's value because
@@ -117,7 +115,7 @@ $$
 X_{t+1}=\varepsilon_{t+1}+\theta\varepsilon_t,
 $$
 
-so the same shock `epsilon_t` still affects `X_{t+1}` through the coefficient `theta`.
+so the same shock `epsilon_t` still affects `X_{t+1}` through `theta`.
 
 Two periods later,
 
@@ -125,7 +123,7 @@ $$
 X_{t+2}=\varepsilon_{t+2}+\theta\varepsilon_{t+1}.
 $$
 
-Now `epsilon_t` is no longer present at all.
+Now `epsilon_t` is no longer present.
 
 So in an MA(1), one particular shock affects exactly two observations:
 
@@ -135,10 +133,6 @@ shock epsilon_t
 → affects X_{t+1} through theta
 → has no effect on X_{t+2}, X_{t+3}, ...
 ```
-
-This is stronger than merely saying that an MA(1) does not directly use older shocks. There is no indirect chain through past `X` values, because past `X` values do not appear in a pure MA model.
-
-That is why an MA(1) has genuinely short memory.
 
 More generally, in an MA(q), a shock can affect the current observation and the next `q` observations. After that, its effect is exactly zero.
 
@@ -194,12 +188,199 @@ $$
 
 is an ARMA(2,1).
 
+## Lag-polynomial notation
+
+Lag-polynomial notation is a compact way of writing ARMA models.
+
+The lag operator is defined by
+
+$$
+LX_t=X_{t-1}.
+$$
+
+Applying it repeatedly gives
+
+$$
+L^2X_t=X_{t-2},
+$$
+
+and more generally
+
+$$
+L^kX_t=X_{t-k}.
+$$
+
+### AR(1)
+
+Start with
+
+$$
+X_t=\phi X_{t-1}+\varepsilon_t.
+$$
+
+Move the lagged `X` term to the left:
+
+$$
+X_t-\phi X_{t-1}=\varepsilon_t.
+$$
+
+Using `X_{t-1}=LX_t`:
+
+$$
+X_t-\phi LX_t=\varepsilon_t.
+$$
+
+Factor out `X_t`:
+
+$$
+(1-\phi L)X_t=\varepsilon_t.
+$$
+
+So the AR lag polynomial is
+
+$$
+\phi(L)=1-\phi L.
+$$
+
+### AR(2)
+
+For
+
+$$
+X_t=\phi_1X_{t-1}+\phi_2X_{t-2}+\varepsilon_t,
+$$
+
+move the AR terms to the left:
+
+$$
+X_t-\phi_1X_{t-1}-\phi_2X_{t-2}=\varepsilon_t.
+$$
+
+Then
+
+$$
+(1-\phi_1L-\phi_2L^2)X_t=\varepsilon_t.
+$$
+
+The general AR polynomial is therefore
+
+$$
+\phi(L)=1-\phi_1L-\cdots-\phi_pL^p.
+$$
+
+### MA(1)
+
+For
+
+$$
+X_t=\varepsilon_t+\theta\varepsilon_{t-1},
+$$
+
+use
+
+$$
+\varepsilon_{t-1}=L\varepsilon_t
+$$
+
+to get
+
+$$
+X_t=(1+\theta L)\varepsilon_t.
+$$
+
+So the MA lag polynomial is
+
+$$
+\theta(L)=1+\theta L.
+$$
+
+More generally,
+
+$$
+\theta(L)=1+\theta_1L+\cdots+\theta_qL^q.
+$$
+
+### General ARMA notation
+
+The general ARMA(p,q) model can therefore be written as
+
+$$
+\boxed{\phi(L)X_t=\theta(L)\varepsilon_t}.
+$$
+
+This notation is important because stationarity and invertibility are studied using the roots of these lag polynomials.
+
+### Sign rule for the AR side
+
+Do not memorize an alternating sign pattern.
+
+Instead, always begin with the actual model and move all `X` terms to the left.
+
+For example,
+
+$$
+X_t=0.7X_{t-1}-0.2X_{t-2}+\varepsilon_t+0.4\varepsilon_{t-1}
+$$
+
+becomes
+
+$$
+X_t-0.7X_{t-1}+0.2X_{t-2}
+=
+\varepsilon_t+0.4\varepsilon_{t-1}.
+$$
+
+Hence
+
+$$
+(1-0.7L+0.2L^2)X_t
+=
+(1+0.4L)\varepsilon_t.
+$$
+
+The `+0.2L^2` appears because the original AR coefficient was `-0.2`, and moving that term to the left changes its sign.
+
+A useful rule is:
+
+```text
+use the actual coefficient first
+→ move all AR terms to the left
+→ replace X_{t-k} by L^k X_t
+→ factor out X_t
+```
+
+### Quick examples
+
+If
+
+$$
+X_t=0.6X_{t-1}+\varepsilon_t-0.4\varepsilon_{t-1},
+$$
+
+then
+
+$$
+(1-0.6L)X_t=(1-0.4L)\varepsilon_t.
+$$
+
+If
+
+$$
+X_t=0.5X_{t-1}-0.3X_{t-2}+\varepsilon_t,
+$$
+
+then
+
+$$
+(1-0.5L+0.3L^2)X_t=\varepsilon_t.
+$$
+
 ## What comes next
 
 The next steps are:
 
-1. write ARMA models using lag-polynomial notation;
-2. use characteristic roots to determine stationarity;
+1. use characteristic roots to determine stationarity;
+2. connect AR roots to causality;
 3. derive statistical properties such as the mean and ACF;
 4. study invertibility of the MA part.
 
@@ -212,6 +393,9 @@ The next steps are:
 - An AR model can indirectly contain the effects of very old shocks.
 - In an MA(1), a shock affects `X_t` and `X_{t+1}`, then disappears completely.
 - More generally, a shock in an MA(q) affects the current value and at most the next `q` values.
+- `LX_t=X_{t-1}` and `L^kX_t=X_{t-k}`.
+- The compact ARMA form is `phi(L)X_t = theta(L)epsilon_t`.
+- On the AR side, move all `X` terms to the left before forming the lag polynomial.
 
 ## Sources
 
