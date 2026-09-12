@@ -97,13 +97,52 @@ Today therefore depends on:
 - today's shock `epsilon_t`;
 - yesterday's shock `epsilon_{t-1}`.
 
-An MA(1) does not directly include `epsilon_{t-2}` or earlier shocks.
+An MA(1) does not include `epsilon_{t-2}` or earlier shocks in the equation for `X_t`.
 
-That means the direct memory of the shock is limited.
+### How long does a shock survive in an MA(1)?
+
+This point is important.
+
+Suppose a shock `epsilon_t` occurs today.
+
+It affects today's value because
+
+$$
+X_t=\varepsilon_t+\theta\varepsilon_{t-1}.
+$$
+
+One period later,
+
+$$
+X_{t+1}=\varepsilon_{t+1}+\theta\varepsilon_t,
+$$
+
+so the same shock `epsilon_t` still affects `X_{t+1}` through the coefficient `theta`.
+
+Two periods later,
+
+$$
+X_{t+2}=\varepsilon_{t+2}+\theta\varepsilon_{t+1}.
+$$
+
+Now `epsilon_t` is no longer present at all.
+
+So in an MA(1), one particular shock affects exactly two observations:
+
+```text
+shock epsilon_t
+→ affects X_t directly
+→ affects X_{t+1} through theta
+→ has no effect on X_{t+2}, X_{t+3}, ...
+```
+
+This is stronger than merely saying that an MA(1) does not directly use older shocks. There is no indirect chain through past `X` values, because past `X` values do not appear in a pure MA model.
+
+That is why an MA(1) has genuinely short memory.
+
+More generally, in an MA(q), a shock can affect the current observation and the next `q` observations. After that, its effect is exactly zero.
 
 This is why the MA dependency structure is called local.
-
-More generally, an MA(q) contains shocks up to `q` periods back.
 
 ## AR versus MA
 
@@ -116,7 +155,7 @@ MA: remembers past shocks
 
 AR dependence can stretch arbitrarily far into the past through repeated dependence on previous `X` values.
 
-MA dependence is directly limited to the specified number of shock lags.
+MA dependence is limited to the specified number of shock lags. A shock in an MA(q) disappears completely after `q` future periods.
 
 ## ARMA models
 
@@ -171,7 +210,8 @@ The next steps are:
 - ARMA models combine both.
 - `p` counts AR lags and `q` counts MA lags.
 - An AR model can indirectly contain the effects of very old shocks.
-- An MA(q) has direct shock dependence only up to `q` periods back.
+- In an MA(1), a shock affects `X_t` and `X_{t+1}`, then disappears completely.
+- More generally, a shock in an MA(q) affects the current value and at most the next `q` values.
 
 ## Sources
 
