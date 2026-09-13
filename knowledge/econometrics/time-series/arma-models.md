@@ -4,7 +4,7 @@ Status: `developing`
 
 This note starts Week 2: stationary time-series models.
 
-For the mathematical background on polynomial roots, complex numbers and the unit circle, see [Complex numbers, polynomials and roots](../../mathematics/complex-numbers-and-polynomials.md).
+For the mathematical background on polynomial roots, complex numbers and the unit circle, see [Complex numbers, polynomials and roots](../../mathematics/complex-numbers-and-polynomials.md). For the geometric-series rule used to invert lag polynomials, see [Geometric series](../../mathematics/geometric-series.md).
 
 ## Why ARMA models?
 
@@ -375,14 +375,198 @@ $$
 (1-0.5L+0.3L^2)X_t=\varepsilon_t.
 $$
 
+## Stationarity from characteristic roots
+
+For an ARMA model, stationarity is determined by the AR polynomial.
+
+Replace `L` by a normal variable such as `z`, set the AR polynomial equal to zero, and solve for its roots.
+
+The rule is
+
+$$
+\boxed{\text{all AR roots must satisfy }|z|>1.}
+$$
+
+All roots must lie outside the unit circle. A root exactly on the unit circle, such as `z=1`, fails the condition.
+
+For AR(1),
+
+$$
+X_t=\phi X_{t-1}+\varepsilon_t
+$$
+
+has characteristic equation
+
+$$
+1-\phi z=0,
+$$
+
+so
+
+$$
+z=\frac{1}{\phi}.
+$$
+
+Therefore the familiar AR(1) shortcut is
+
+$$
+\boxed{|\phi|<1.}
+$$
+
+This shortcut is only for AR(1). For AR(2), AR(3), and higher-order models, individual AR coefficients may be larger than 1 while the process is still stationary. Use the roots of the full AR polynomial.
+
+Example:
+
+$$
+X_t=1.3X_{t-1}-0.4X_{t-2}+\varepsilon_t
+$$
+
+has AR polynomial
+
+$$
+1-1.3z+0.4z^2.
+$$
+
+Its roots are
+
+$$
+z_1=2,\qquad z_2=1.25,
+$$
+
+so both roots are outside the unit circle even though `phi_1=1.3>1`.
+
+### Complex roots
+
+If a characteristic root is complex,
+
+$$
+z=a+bi,
+$$
+
+use its modulus
+
+$$
+|z|=\sqrt{a^2+b^2}
+$$
+
+to determine whether it lies outside the unit circle.
+
+For example,
+
+$$
+z=1.2\pm1.6i
+$$
+
+has
+
+$$
+|z|=\sqrt{1.2^2+1.6^2}=2>1.
+$$
+
+The modulus is used only to measure the root's distance from zero. It is not substituted back into the characteristic equation in place of the actual root.
+
+## Causality and the MA(infinity) representation
+
+Causality asks whether today's value can be written using only the current shock and shocks that have already occurred:
+
+$$
+X_t
+=
+\psi_0\varepsilon_t
++\psi_1\varepsilon_{t-1}
++\psi_2\varepsilon_{t-2}
++\cdots.
+$$
+
+No future shocks such as `epsilon_{t+1}` are needed.
+
+For an AR(1),
+
+$$
+(1-\phi L)X_t=\varepsilon_t.
+$$
+
+Solving for `X_t` gives
+
+$$
+X_t=\frac{1}{1-\phi L}\varepsilon_t.
+$$
+
+When `|phi|<1`, the geometric-series rule gives
+
+$$
+\frac{1}{1-\phi L}
+=
+1+\phi L+\phi^2L^2+\phi^3L^3+\cdots.
+$$
+
+Therefore
+
+$$
+X_t
+=
+\varepsilon_t
++\phi\varepsilon_{t-1}
++\phi^2\varepsilon_{t-2}
++\phi^3\varepsilon_{t-3}
++\cdots.
+$$
+
+This is an MA(infinity) representation: it has the form of an MA process, but it contains infinitely many past shocks whose weights decay when the process is well behaved.
+
+The powers have different meanings:
+
+- `phi^2`, `phi^3`, etc. are ordinary powers of the coefficient;
+- `L^2`, `L^3`, etc. indicate two-period, three-period, and further lags.
+
+In the course framework, the same AR-root condition gives stationarity and causality:
+
+$$
+\boxed{\text{all AR roots outside the unit circle}}
+$$
+
+implies that the AR polynomial can be inverted into a current-and-past-shock representation. Thus stationary ARMA models are also causal in this setup.
+
+### Factoring higher-order AR polynomials
+
+For higher-order AR models, a lag polynomial may be factored before using geometric expansions.
+
+For example,
+
+$$
+1-1.1L+0.18L^2
+=
+(1-0.9L)(1-0.2L).
+$$
+
+Then
+
+$$
+\frac{1}{1-1.1L+0.18L^2}
+=
+\frac{1}{1-0.9L}\frac{1}{1-0.2L}.
+$$
+
+Each factor has its own geometric expansion because `|0.9|<1` and `|0.2|<1`.
+
+When multiplying the two power series, collect every pair of terms whose lag powers add to the required power. For example, an `L^2` coefficient receives contributions from exponent pairs `0+2`, `1+1`, and `2+0`.
+
+## Which side matters for which property?
+
+For stationarity and causality, inspect the AR polynomial `phi(L)`.
+
+The MA polynomial `theta(L)` does not determine those two properties. It becomes central in the separate topic of invertibility.
+
+This distinction is useful in mixed ARMA questions: a large-looking MA coefficient may be irrelevant when the question asks only about stationarity or causality.
+
 ## What comes next
 
 The next steps are:
 
-1. use characteristic roots to determine stationarity;
-2. connect AR roots to causality;
-3. derive statistical properties such as the mean and ACF;
-4. study invertibility of the MA part.
+1. study invertibility of the MA part;
+2. derive statistical properties such as the mean, autocovariance and ACF;
+3. connect ACF/PACF patterns to model order;
+4. study parameter estimation.
 
 ## What to remember
 
@@ -396,7 +580,16 @@ The next steps are:
 - `LX_t=X_{t-1}` and `L^kX_t=X_{t-k}`.
 - The compact ARMA form is `phi(L)X_t = theta(L)epsilon_t`.
 - On the AR side, move all `X` terms to the left before forming the lag polynomial.
+- Stationarity requires every AR characteristic root to lie outside the unit circle.
+- For AR(1), this is equivalent to `|phi|<1`.
+- For higher-order AR models, do not judge stationarity by checking each coefficient separately.
+- Complex roots are checked with their modulus.
+- A causal representation uses only current and past shocks.
+- A stationary AR process can be rewritten as an MA(infinity) process.
+- For stationarity and causality, inspect the AR side. The MA side will matter for invertibility.
 
 ## Sources
 
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 1: Math recap.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 2: Autoregressive Moving Average (ARMA) Models.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 3: Stationarity.
