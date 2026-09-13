@@ -5,6 +5,7 @@ This directory contains reusable mathematical foundations that support econometr
 ## Current notes
 
 1. [Complex numbers, polynomials and roots](complex-numbers-and-polynomials.md)
+2. [Geometric series](geometric-series.md)
 
 ## Learning approach
 
