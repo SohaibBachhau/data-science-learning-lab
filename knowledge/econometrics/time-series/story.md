@@ -223,7 +223,83 @@ So the easiest distinction to remember is:
 
 An ARMA model combines the two ideas. In ARMA(p,q), `p` counts the number of AR lags and `q` counts the number of MA shock lags.
 
-The mathematics used later to decide whether an ARMA model is stationary involves polynomials, roots and the unit circle. Those are general mathematical ideas, so their detailed explanation is kept in the mathematics branch and linked from the time-series notes.
+## Lag polynomials, roots and stationarity
+
+Lag-polynomial notation compresses an ARMA equation into
+
+$$
+\phi(L)X_t=\theta(L)\varepsilon_t.
+$$
+
+The AR polynomial `phi(L)` is the part that determines stationarity.
+
+To test stationarity, replace `L` by a normal variable such as `z`, solve
+
+$$
+\phi(z)=0,
+$$
+
+and inspect the roots.
+
+The rule is:
+
+> Every AR root must lie outside the unit circle.
+
+For an AR(1), this is equivalent to `|phi|<1`. For higher-order AR models, the individual coefficients themselves can be misleading, so the roots of the whole polynomial are what matter.
+
+Complex roots are handled by measuring their distance from zero using the modulus
+
+$$
+|a+bi|=\sqrt{a^2+b^2}.
+$$
+
+## Why causality appears
+
+Stationarity is about stable behavior over time. Causality asks a different but related question:
+
+> Can today's value be generated using only shocks that have happened now or in the past?
+
+A causal representation looks like
+
+$$
+X_t
+=
+\psi_0\varepsilon_t
++\psi_1\varepsilon_{t-1}
++\psi_2\varepsilon_{t-2}
++\cdots.
+$$
+
+There are no future shocks such as `epsilon_{t+1}`.
+
+To get this representation, we invert the AR lag polynomial. The geometric-series rule makes the simple AR(1) case transparent:
+
+$$
+\frac{1}{1-\phi L}
+=
+1+\phi L+\phi^2L^2+\cdots
+$$
+
+when `|phi|<1`.
+
+This turns the AR model into an MA(infinity) representation:
+
+$$
+X_t
+=
+\varepsilon_t
++\phi\varepsilon_{t-1}
++\phi^2\varepsilon_{t-2}
++\cdots.
+$$
+
+This reveals the old-shock story directly: an AR process can be viewed as the accumulation of infinitely many past shocks whose influence eventually dies away.
+
+In the framework used in this course, the same AR-root condition that gives stationarity also gives causality. So once all AR roots are outside the unit circle, the process is stationary and causal.
+
+The MA side is not used for this stationarity/causality test. It will become important when invertibility is introduced.
+
+The mathematics behind roots, complex numbers and geometric series is kept in the mathematics branch and linked from the detailed time-series notes.
 
 ## The story in one chain
 
@@ -245,11 +321,19 @@ observations through time
 → AR: past values
 → MA: past shocks
 → ARMA: both mechanisms together
+→ lag-polynomial notation
+→ AR characteristic roots
+→ roots outside unit circle
+→ stationarity
+→ invert the AR polynomial
+→ MA(infinity) representation
+→ current and past shocks only
+→ causality
 ```
 
 ## What comes next
 
-For Week 2, the next steps are lag-polynomial notation, stationarity and causality, statistical properties of ARMA models, invertibility and parameter estimation.
+The next major idea is invertibility. It shifts attention from the AR polynomial to the MA polynomial and asks whether the shocks can be recovered uniquely from the observed process. After that come statistical properties such as the mean, autocovariance and ACF, followed by identification and estimation.
 
 ## What to remember right now
 
@@ -277,6 +361,14 @@ MA models use current and past shocks.
 
 ARMA models combine both mechanisms.
 
+Stationarity and causality are determined by the AR roots in the Week 2 ARMA framework.
+
+All AR roots must lie outside the unit circle.
+
+A causal model can be written using only current and past shocks.
+
+A stationary AR model can be rewritten as an MA(infinity) representation by inverting the AR lag polynomial.
+
 ## When you forget the mathematics
 
 Start with this page. Once the story is back in your head, use the detailed notes:
@@ -288,6 +380,7 @@ Start with this page. Once the story is back in your head, use the detailed note
 - [Lag operator and differencing](lag-operator-and-differencing.md)
 - [AR, MA and ARMA models](arma-models.md)
 - [Complex numbers, polynomials and roots](../../mathematics/complex-numbers-and-polynomials.md)
+- [Geometric series](../../mathematics/geometric-series.md)
 
 ## Sources
 
@@ -296,4 +389,6 @@ Start with this page. Once the story is back in your head, use the detailed note
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1, part 4: Simple Time Series Models.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1 lecture.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1 exercise book.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 1: Math recap.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 2: Autoregressive Moving Average (ARMA) Models.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 3: Stationarity.
