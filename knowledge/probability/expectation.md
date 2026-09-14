@@ -3,14 +3,16 @@ title: Expectation
 subject: probability
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
+updated: 2026-09-14
+last_reviewed: 2026-09-14
 prerequisites:
   - random variables
   - probability distributions
 sources:
   - Blasques, Advanced Econometric Methods
   - course discussions and personal derivations
+  - VU Knowledge Clip Series: Probability Theory, Normal Distribution and Moments I (2026)
+  - KCS Probability Theory exercises (2026)
 tags:
   - expectation
   - mean
@@ -84,6 +86,8 @@ $$
 
 is called a finite first absolute moment.
 
+For a continuous random variable, the integral plays the same role as the weighted sum in the discrete case: values of $X$ are weighted by their probability density and accumulated over the support of the distribution.
+
 ## Notation
 
 - $X$: a random variable
@@ -137,6 +141,64 @@ E[g(X)]
 $$
 
 provided the expectation exists.
+
+The order of operations matters. For example,
+
+$$
+E[X^2]
+$$
+
+means to square the possible values first and then average them, whereas
+
+$$
+(E[X])^2
+$$
+
+means to average first and then square the resulting single number.
+
+### Jensen's inequality
+
+Jensen's inequality compares these two orders of operation.
+
+If $h$ is convex, then
+
+$$
+E[h(X)]\geq h(E[X]).
+$$
+
+If $h$ is concave, then
+
+$$
+E[h(X)]\leq h(E[X]).
+$$
+
+A useful intuition is that convex transformations amplify dispersion before averaging, while concave transformations dampen it.
+
+For example, because
+
+$$
+h(x)=x^2
+$$
+
+is convex,
+
+$$
+E[X^2]\geq (E[X])^2.
+$$
+
+Because
+
+$$
+h(x)=\sqrt{x}
+$$
+
+is concave on its domain,
+
+$$
+E[\sqrt{X}]\leq \sqrt{E[X]}.
+$$
+
+Therefore, knowing $E[X]=4$ does not in general imply that $E[\sqrt{X}]=2$.
 
 ### Nonnegative random variables
 
@@ -214,6 +276,42 @@ $$
 
 The expectation equals the probability of success.
 
+## Example: continuous uniform distribution
+
+Let
+
+$$
+X\sim U(0,2),
+$$
+
+so that
+
+$$
+f_X(x)=\frac12
+$$
+
+for $0\leq x\leq 2$. Then
+
+$$
+E[X]
+=
+\int_0^2 x\frac12\,dx
+=
+1.
+$$
+
+For the transformed variable $X^2$,
+
+$$
+E[X^2]
+=
+\int_0^2 x^2\frac12\,dx
+=
+\frac43.
+$$
+
+This example shows directly that computing $E[g(X)]$ for a continuous random variable means integrating the transformed value $g(x)$ against the density.
+
 ## Failure case: Cauchy distribution
 
 For a standard Cauchy random variable,
@@ -272,6 +370,7 @@ Expectation also appears in consistency arguments. Laws of large numbers allow s
 - Assuming every random variable has a finite expectation.
 - Confusing a sample average with a population expectation.
 - Thinking independence is required for linearity of expectation.
+- Treating $E[g(X)]$ as automatically equal to $g(E[X])$.
 - Concluding that symmetry automatically guarantees a finite mean.
 - Using $E[X]$ without checking the required moment condition.
 
@@ -282,9 +381,11 @@ Expectation also appears in consistency arguments. Laws of large numbers allow s
 3. What is the difference between $E[X]$ and a sample average?
 4. Why do we require $E[|X|]<\infty$ in the standard definition?
 5. Does linearity of expectation require independence?
-6. Why does the Cauchy distribution not have a finite expectation?
-7. When can $E[X^2]=0$?
-8. How is expectation used in the regression model?
+6. What is the difference between $E[X^2]$ and $(E[X])^2$?
+7. What does Jensen's inequality say for convex and concave transformations?
+8. Why does the Cauchy distribution not have a finite expectation?
+9. When can $E[X^2]=0$?
+10. How is expectation used in the regression model?
 
 ## Connections
 
@@ -298,9 +399,12 @@ Expectation also appears in consistency arguments. Laws of large numbers allow s
 
 - Francisco Blasques, *Advanced Econometric Methods*, Chapter 1 and Appendix A.
 - Course discussions and personal derivations.
+- VU Knowledge Clip Series: Probability Theory, *Normal Distribution and Moments I* (2026).
+- KCS Probability Theory exercises (2026).
 
 ## Review log
 
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created and connected | Explain the concept without notes |
+| 2026-09-14 | Reviewed Normal Distribution and Moments I; added Jensen's inequality, clarified transformed expectations and practiced continuous expectations with $U(0,2)$ | Continue with Normal Distribution and Moments II |
