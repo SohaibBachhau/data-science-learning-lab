@@ -301,6 +301,28 @@ The MA side is not used for this stationarity/causality test. It will become imp
 
 The mathematics behind roots, complex numbers and geometric series is kept in the mathematics branch and linked from the detailed time-series notes.
 
+## Statistical properties: what the stationary model looks like
+
+Once a stationary ARMA model has been specified, we want to know what kind of behavior it implies.
+
+The unconditional mean is the long-run center of the process. The conditional mean is different: it uses the information currently available and tells us the best expected next value.
+
+A process can therefore have a long-run mean of 5 while today's conditional mean is 7.7 because yesterday was unusually high. These statements are not contradictory. One describes the process overall; the other describes what we expect given the current situation.
+
+This leads naturally to mean reversion. In a stable AR model, deviations from the long-run mean are carried forward only partially, so an unusually high or low observation tends to move back toward the normal level over time unless new shocks keep pushing it away.
+
+The ACF then describes the memory pattern of the process.
+
+For an AR(1), autocorrelation fades gradually. With a positive coefficient it decays smoothly; with a negative coefficient it alternates sign while shrinking.
+
+For higher-order AR models, the ACF can also oscillate around zero. The key point is that it generally dies out gradually rather than stopping suddenly.
+
+MA models look different. Their ACF has a cutoff. An MA(1) can have autocorrelation at lag 1, but after lag 1 the theoretical ACF is zero. An MA(2) can have autocorrelation up to lag 2, but after lag 2 it is zero.
+
+This difference between gradual AR decay and finite MA cutoff will become very important later when we use ACF and PACF plots to identify model order.
+
+Conditional distributions also let us turn an AR model into probability statements. Once the past is observed, the model gives a conditional center for the next observation, and probabilities should be measured around that conditional center rather than around yesterday's observation alone.
+
 ## The story in one chain
 
 ```text
@@ -329,11 +351,15 @@ observations through time
 → MA(infinity) representation
 → current and past shocks only
 → causality
+→ unconditional versus conditional behavior
+→ mean reversion
+→ AR ACF decays or oscillates
+→ MA ACF cuts off
 ```
 
 ## What comes next
 
-The next major idea is invertibility. It shifts attention from the AR polynomial to the MA polynomial and asks whether the shocks can be recovered uniquely from the observed process. After that come statistical properties such as the mean, autocovariance and ACF, followed by identification and estimation.
+The next major idea is invertibility. It shifts attention from the AR polynomial to the MA polynomial and asks whether the shocks can be recovered uniquely from the observed process. After that come model identification with ACF/PACF and parameter estimation.
 
 ## What to remember right now
 
@@ -369,6 +395,12 @@ A causal model can be written using only current and past shocks.
 
 A stationary AR model can be rewritten as an MA(infinity) representation by inverting the AR lag polynomial.
 
+The unconditional mean is the long-run center; the conditional mean uses current information.
+
+Mean reversion means deviations tend to shrink back toward the long-run level in a stable process.
+
+AR ACFs decay or oscillate; MA ACFs cut off after the MA order.
+
 ## When you forget the mathematics
 
 Start with this page. Once the story is back in your head, use the detailed notes:
@@ -379,6 +411,8 @@ Start with this page. Once the story is back in your head, use the detailed note
 - [Time-series components and sources of non-stationarity](components-and-nonstationarity.md)
 - [Lag operator and differencing](lag-operator-and-differencing.md)
 - [AR, MA and ARMA models](arma-models.md)
+- [Statistical properties of stationary ARMA models](statistical-properties.md)
+- [Plain-language time-series intuition](intuition/README.md)
 - [Complex numbers, polynomials and roots](../../mathematics/complex-numbers-and-polynomials.md)
 - [Geometric series](../../mathematics/geometric-series.md)
 
@@ -392,3 +426,5 @@ Start with this page. Once the story is back in your head, use the detailed note
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 1: Math recap.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 2: Autoregressive Moving Average (ARMA) Models.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 3: Stationarity.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, Statistical Properties.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2 exercise book.
