@@ -2,7 +2,7 @@
 
 Status: `developing`
 
-This page is the low-friction narrative for time series. It will grow as the course progresses. The aim is to make it easy to remember what each topic is for before opening the detailed mathematics.
+This page is the low-friction narrative for time series. It grows with the course. The goal is to make it easy to remember what each topic is for before opening the detailed mathematics.
 
 ## The story so far
 
@@ -297,8 +297,6 @@ This reveals the old-shock story directly: an AR process can be viewed as the ac
 
 In the framework used in this course, the same AR-root condition that gives stationarity also gives causality. So once all AR roots are outside the unit circle, the process is stationary and causal.
 
-The MA side is not used for this stationarity/causality test. It will become important when invertibility is introduced.
-
 The mathematics behind roots, complex numbers and geometric series is kept in the mathematics branch and linked from the detailed time-series notes.
 
 ## Statistical properties: what the stationary model looks like
@@ -307,7 +305,7 @@ Once a stationary ARMA model has been specified, we want to know what kind of be
 
 The unconditional mean is the long-run center of the process. The conditional mean is different: it uses the information currently available and tells us the best expected next value.
 
-A process can therefore have a long-run mean of 5 while today's conditional mean is 7.7 because yesterday was unusually high. These statements are not contradictory. One describes the process overall; the other describes what we expect given the current situation.
+A process can therefore have a long-run mean of 2 while today's conditional mean is 4.4 because the latest observation was unusually high. These statements are not contradictory. One describes the process overall; the other describes what we expect given the current situation.
 
 This leads naturally to mean reversion. In a stable AR model, deviations from the long-run mean are carried forward only partially, so an unusually high or low observation tends to move back toward the normal level over time unless new shocks keep pushing it away.
 
@@ -315,51 +313,181 @@ The ACF then describes the memory pattern of the process.
 
 For an AR(1), autocorrelation fades gradually. With a positive coefficient it decays smoothly; with a negative coefficient it alternates sign while shrinking.
 
-For higher-order AR models, the ACF can also oscillate around zero. The key point is that it generally dies out gradually rather than stopping suddenly.
+For higher-order AR models, the ACF can oscillate around zero. Oscillation means that the autocorrelations can move from positive to negative and later back again while their overall magnitude becomes smaller.
 
 MA models look different. Their ACF has a cutoff. An MA(1) can have autocorrelation at lag 1, but after lag 1 the theoretical ACF is zero. An MA(2) can have autocorrelation up to lag 2, but after lag 2 it is zero.
 
-This difference between gradual AR decay and finite MA cutoff will become very important later when we use ACF and PACF plots to identify model order.
+This difference between gradual AR decay and finite MA cutoff later becomes useful for model identification.
 
 Conditional distributions also let us turn an AR model into probability statements. Once the past is observed, the model gives a conditional center for the next observation, and probabilities should be measured around that conditional center rather than around yesterday's observation alone.
+
+## Invertibility: working backwards from observations to shocks
+
+Causality focused on the AR side and asked whether current values can be built from current and past shocks.
+
+Invertibility shifts attention to the MA side and asks the reverse question:
+
+> Can the hidden shocks be recovered from current and past observed values?
+
+For an MA model, this matters because different parameter values can sometimes generate exactly the same autocorrelation behavior. For an MA(1), for example, a coefficient of 0.5 and a coefficient of 2 produce the same lag-1 autocorrelation.
+
+Without an extra restriction, we would have more than one parameterization describing the same observed dependence structure. That is an identification problem.
+
+The invertibility condition solves it by selecting one standard representation. The mathematical rule mirrors the stationarity test:
+
+> Every MA root must lie outside the unit circle.
+
+For an MA(1), this reduces to `|theta|<1`.
+
+There is a useful symmetry here:
+
+```text
+causality: shocks -> observed X values
+invertibility: observed X values -> shocks
+```
+
+A causal AR process can be rewritten as an MA(infinity) process. An invertible MA process can be rewritten as an AR(infinity) process.
+
+So Week 2 gives us two different kinds of "working backwards" with lag polynomials: invert the AR side to reveal old shocks inside the current value, and invert the MA side to recover shocks from observed values.
+
+## Parameter estimation: the coefficients are not known in real data
+
+Until now, equations have often been written as if values such as `phi=0.8` or `theta=0.5` were already given.
+
+In real applications, we observe the data but do not know those coefficients. We therefore need to estimate them.
+
+The lecture mentions Yule-Walker estimation, least squares for AR models, and maximum likelihood for ARMA models. Maximum likelihood receives most of the attention because it is the general approach.
+
+The maximum-likelihood question is:
+
+> Which parameter values make the data we actually observed most plausible under the model and the assumed error distribution?
+
+Suppose two candidate parameter values imply very different residuals. One produces residuals close to zero; another repeatedly requires much larger errors. If the assumed error distribution is normal and centered at zero, the first set of residuals is more plausible, so that candidate parameter value receives a higher likelihood.
+
+This is why maximum likelihood needs a full distributional assumption. White noise properties alone do not tell us the complete shape of the probability distribution.
+
+Because time-series observations are dependent, we build the likelihood using conditional densities. In words, at every date we ask:
+
+> Given what had already happened, how plausible is the value that happened next?
+
+The likelihood combines those conditional plausibilities across the sample.
+
+Taking the natural logarithm gives the log-likelihood. The log changes products into sums and makes the calculations easier, but it does not change which parameter values maximize the function.
+
+For realistic ARMA models, the maximum is usually found numerically by software. The course does not require manually deriving every general ARMA conditional density.
+
+## PACF: separating direct from indirect lag relationships
+
+The ACF measures the overall relationship between observations separated by a certain number of periods.
+
+The PACF asks a more focused question:
+
+> Is there still a direct relationship between today's value and the value `h` periods ago after the intermediate lags have been controlled for?
+
+This distinction is especially useful for AR models.
+
+In an AR(1), today's value directly depends only on yesterday. Yet today's value can still be correlated with the value two or three periods ago because the dependence travels through yesterday.
+
+The ACF sees those indirect relationships, so it gradually decays.
+
+The PACF removes the effect of the intermediate observations. Once yesterday is controlled for, an AR(1) has no additional direct AR lag. Therefore its PACF cuts off after lag 1.
+
+The general Week 2 pattern is:
+
+```text
+AR(p):   ACF decays or oscillates, PACF cuts off after p
+MA(q):   ACF cuts off after q, PACF decays or oscillates
+ARMA:    both ACF and PACF generally decay or oscillate
+```
+
+That gives a useful memory rule:
+
+```text
+PACF cutoff -> think AR order p
+ACF cutoff  -> think MA order q
+```
+
+For a mixed ARMA model, both functions usually tail off, so the exact values of `p` and `q` are not identified by one clean cutoff. More formal model-selection methods come later in the course.
+
+## The GDP-growth example brings Week 2 together
+
+The lecture closes Week 2 by applying the whole workflow to GDP growth.
+
+First, inspect the series.
+
+Then inspect the ACF and PACF.
+
+The PACF cuts off after lag 2, suggesting two autoregressive lags.
+
+So the model is chosen as ARMA(2,0), which is simply an AR(2).
+
+The parameters are then estimated with maximum likelihood.
+
+This gives the practical Week 2 workflow:
+
+```text
+understand the series
+-> specify stationary dynamics
+-> use AR and MA structure
+-> check stationarity / causality / invertibility
+-> study statistical properties
+-> inspect ACF and PACF
+-> choose lag orders
+-> estimate unknown parameters
+```
 
 ## The story in one chain
 
 ```text
 observations through time
-→ stochastic process
-→ mean and variance
-→ autocovariance
-→ weak stationarity
-→ autocorrelation / ACF
-→ white noise
-→ IID as a stronger dependence assumption
-→ random walk
-→ trend / seasonality / cycles / changing variability
-→ sources of non-stationarity
-→ lag operator
-→ differencing and transformations
-→ stationary dynamics
-→ AR: past values
-→ MA: past shocks
-→ ARMA: both mechanisms together
-→ lag-polynomial notation
-→ AR characteristic roots
-→ roots outside unit circle
-→ stationarity
-→ invert the AR polynomial
-→ MA(infinity) representation
-→ current and past shocks only
-→ causality
-→ unconditional versus conditional behavior
-→ mean reversion
-→ AR ACF decays or oscillates
-→ MA ACF cuts off
+-> stochastic process
+-> mean and variance
+-> autocovariance
+-> weak stationarity
+-> autocorrelation / ACF
+-> white noise
+-> IID as a stronger dependence assumption
+-> random walk
+-> trend / seasonality / cycles / changing variability
+-> sources of non-stationarity
+-> lag operator
+-> differencing and transformations
+-> stationary dynamics
+-> AR: past values
+-> MA: past shocks
+-> ARMA: both mechanisms together
+-> lag-polynomial notation
+-> AR characteristic roots
+-> roots outside unit circle
+-> stationarity
+-> invert the AR polynomial
+-> MA(infinity) representation
+-> current and past shocks only
+-> causality
+-> unconditional versus conditional behavior
+-> mean reversion
+-> AR ACF decays or oscillates
+-> MA ACF cuts off
+-> MA characteristic roots
+-> invertibility
+-> recover shocks from observed values
+-> AR(infinity) representation
+-> unknown parameters in real data
+-> maximum likelihood
+-> conditional likelihood
+-> log-likelihood
+-> ACF and PACF lag-order clues
+-> choose p and q
+-> estimate the final model
 ```
 
 ## What comes next
 
-The next major idea is invertibility. It shifts attention from the AR polynomial to the MA polynomial and asks whether the shocks can be recovered uniquely from the observed process. After that come model identification with ACF/PACF and parameter estimation.
+Week 2 has now built the stationary ARMA framework.
+
+Week 3 moves to non-stationary time series: how to test whether stationarity holds and how to model non-stationary processes using extensions of the ARMA framework.
+
+Before moving on, the Week 2 material should be consolidated with mixed exercises where the question does not tell you whether to use an AR-root test, an MA-root test, an ACF rule, a mean formula, or a likelihood idea. Recognizing which tool belongs to which question is as important as carrying out the calculation.
 
 ## What to remember right now
 
@@ -401,6 +529,18 @@ Mean reversion means deviations tend to shrink back toward the long-run level in
 
 AR ACFs decay or oscillate; MA ACFs cut off after the MA order.
 
+Invertibility is determined by the MA roots, which must also lie outside the unit circle.
+
+Invertibility provides a unique MA representation and lets shocks be recovered from observed values.
+
+Maximum likelihood chooses the parameter values that make the observed data most plausible under the assumed distribution.
+
+Time-series likelihoods are built conditionally on the past because observations are dependent.
+
+PACF isolates direct lag relationships and is especially useful for identifying AR order.
+
+ACF cutoffs suggest MA order; PACF cutoffs suggest AR order.
+
 ## When you forget the mathematics
 
 Start with this page. Once the story is back in your head, use the detailed notes:
@@ -412,19 +552,17 @@ Start with this page. Once the story is back in your head, use the detailed note
 - [Lag operator and differencing](lag-operator-and-differencing.md)
 - [AR, MA and ARMA models](arma-models.md)
 - [Statistical properties of stationary ARMA models](statistical-properties.md)
+- [Invertibility of MA models](invertibility.md)
+- [Parameter estimation](parameter-estimation.md)
+- [ACF, PACF and lag-order selection](acf-pacf-and-lag-order-selection.md)
 - [Plain-language time-series intuition](intuition/README.md)
 - [Complex numbers, polynomials and roots](../../mathematics/complex-numbers-and-polynomials.md)
 - [Geometric series](../../mathematics/geometric-series.md)
 
 ## Sources
 
-- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1, part 2: Deterministic and Stochastic Processes.
-- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1, part 3: Basic Properties of Time Series.
-- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1, part 4: Simple Time Series Models.
-- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1 lecture.
-- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1 exercise book.
-- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 1: Math recap.
-- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 2: Autoregressive Moving Average (ARMA) Models.
-- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, part 3: Stationarity.
-- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, Statistical Properties.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1, parts 2-4.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 1 lecture and exercise book.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, parts 1-5.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2 pre-lecture / lecture.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2 exercise book.
