@@ -4,9 +4,9 @@ This directory contains permanent notes on econometric methods for data observed
 
 ## Start here
 
-For a quick narrative review before the formal mathematics, read [The Story of Time Series Econometrics](story.md).
+For a narrative review before the formal mathematics, read [The Story of Time Series Econometrics](story.md).
 
-For definitions you should be able to explain in ordinary words, use the [Time-Series Intuition](intuition/README.md) folder. These pages deliberately use almost no mathematics and focus on explaining what each term means and why it matters.
+For definitions you should be able to explain in ordinary words, use the [Time-Series Intuition](intuition/README.md) folder. These pages deliberately use almost no mathematics and focus on what each idea means, why it matters, and how to explain it naturally.
 
 ## Current notes
 
@@ -19,6 +19,39 @@ For definitions you should be able to explain in ordinary words, use the [Time-S
 7. [Log differences, growth rates and returns](log-differences-growth-and-returns.md)
 8. [AR, MA and ARMA models](arma-models.md)
 9. [Statistical properties of stationary ARMA models](statistical-properties.md)
+10. [Invertibility of MA models](invertibility.md)
+11. [Parameter estimation for stationary ARMA models](parameter-estimation.md)
+12. [ACF, PACF and lag-order selection](acf-pacf-and-lag-order-selection.md)
+
+## Week 2 map
+
+The stationary-model material now follows this chain:
+
+```text
+AR / MA / ARMA intuition
+-> lag-polynomial notation
+-> AR roots
+-> stationarity and causality
+-> MA(infinity) representation
+-> statistical properties
+-> mean / conditional mean / ACF / ACVF
+-> MA roots
+-> invertibility and identification
+-> AR(infinity) representation
+-> parameter estimation
+-> likelihood and log-likelihood
+-> ACF / PACF model identification
+-> GDP-growth application
+```
+
+The main structural distinction is:
+
+```text
+AR polynomial -> stationarity and causality
+MA polynomial -> invertibility
+```
+
+After a model structure has been chosen, its unknown parameters can be estimated from data. Week 2 emphasizes maximum likelihood for general ARMA models. ACF and PACF patterns then provide simple clues for choosing AR and MA lag orders.
 
 ## Mathematical foundations
 
@@ -35,9 +68,12 @@ The `intuition/` folder is a second layer of notes for verbal understanding. It 
 - causality;
 - conditional versus unconditional quantities;
 - mean reversion;
-- autocovariance, autocorrelation and the ACF.
+- autocovariance, autocorrelation and the ACF;
+- invertibility;
+- maximum likelihood;
+- the PACF and lag-order selection.
 
-Use these pages when you want to answer a conceptual question without immediately reaching for equations.
+Use these pages when you want to answer a conceptual question without immediately reaching for equations. The goal is not just to know the formal rule, but to understand the problem each concept is solving.
 
 ## Scope
 
@@ -58,7 +94,18 @@ The time-series branch will develop around:
 
 ## Learning approach
 
-Use the story page for orientation and recall. Use the intuition folder to practice explaining concepts in ordinary language. Use the permanent concept notes for definitions, derivations, assumptions and exercises. Keep course-specific material under `courses/`.
+Use the story page for orientation and recall. Use the intuition folder to practice explaining concepts in ordinary language. Use the permanent concept notes for definitions, derivations, assumptions, notation and exercises. Keep reusable mathematics under `knowledge/mathematics/` and course-specific material under `courses/`.
+
+When learning a new topic, prefer this order:
+
+```text
+intuition and story
+-> terminology
+-> mathematical rule
+-> worked example
+-> exam-style exercise
+-> mixed practice
+```
 
 ## Status
 
