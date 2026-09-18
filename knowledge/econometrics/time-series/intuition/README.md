@@ -10,7 +10,9 @@ Use it when you want to answer questions such as:
 
 > What is invertibility?
 
-> What is maximum likelihood?
+> What is a unit root?
+
+> What is the difference between ADF and KPSS?
 
 without immediately giving formulas or technical definitions.
 
@@ -27,6 +29,8 @@ The goal is to understand what a concept is doing, why it matters, and how you w
 7. [Invertibility](invertibility.md)
 8. [Maximum likelihood](maximum-likelihood.md)
 9. [PACF and lag-order selection](pacf-and-lag-order.md)
+10. [Non-stationarity and unit roots](nonstationarity-and-unit-roots.md)
+11. [ADF and KPSS](adf-and-kpss.md)
 
 ## How to use this folder
 
@@ -38,6 +42,18 @@ A useful routine is:
 4. Only after that, open the formal note and connect the intuition to the mathematics.
 
 For example, before calculating characteristic roots for stationarity, you should first be able to say that stationarity means the underlying statistical behavior of the process stays stable over time. Before solving MA roots for invertibility, you should first understand that invertibility lets us uniquely work backwards from observed values to the underlying shocks.
+
+For Week 3, you should be able to explain the following story before doing test calculations:
+
+```text
+ARMA needs stationary data
+-> some series are non-stationary
+-> unit-root processes have persistent shocks
+-> differencing can remove a unit root
+-> I(d) counts the required number of differences
+-> ADF starts from a unit-root null
+-> KPSS starts from a stationarity null
+```
 
 If you can explain a term clearly in ordinary words, that is a strong sign that the mathematics has a conceptual foundation rather than being memorized mechanically.
 
