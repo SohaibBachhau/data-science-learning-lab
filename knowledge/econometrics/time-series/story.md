@@ -436,6 +436,259 @@ understand the series
 -> estimate unknown parameters
 ```
 
+## Week 3 begins: when the level is not stationary
+
+Week 2 gave us a framework for stationary ARMA dynamics. Week 3 starts by asking what happens when the observed level does not satisfy stationarity.
+
+A non-stationary series may have a changing mean, a changing autocovariance structure, seasonality, or variability that grows with the level.
+
+The first clues come from the time-series plot and the ACF.
+
+A stationary ACF usually falls toward zero relatively quickly. A non-stationary series often has an ACF that decays slowly because distant observations remain strongly related. Seasonality can create repeated ACF spikes at seasonal lags.
+
+If variability increases with the level of the series, a logarithmic transformation can help stabilize the variance.
+
+### Differencing changes levels into changes
+
+The first difference is
+
+$
+\Delta X_t=X_t-X_{t-1}.
+$
+
+This changes the object we model. Instead of asking about the level, we ask how much the level changed since the previous period.
+
+For a random walk,
+
+$
+X_t=X_{t-1}+\varepsilon_t,
+$
+
+so
+
+$
+\Delta X_t=\varepsilon_t.
+$
+
+The non-stationary level becomes stationary white noise after one difference.
+
+Seasonality can be treated with a seasonal difference,
+
+$
+\Delta_sX_t=X_t-X_{t-s}.
+$
+
+For monthly data, the common yearly seasonal difference is
+
+$
+\Delta_{12}X_t=X_t-X_{t-12}.
+$
+
+If both ordinary trend and seasonality are present, the two difference operators can be combined.
+
+### Integration order counts how much differencing is needed
+
+The notation `I(d)` records the minimum number of ordinary differences required to obtain a stationary series.
+
+```text
+I(0) -> already stationary
+I(1) -> first difference is stationary
+I(2) -> second difference is stationary
+```
+
+The word "minimum" matters. Differencing a series that is already stationary is not harmless. Overdifferencing can introduce unnecessary dependence and moving-average structure into the errors and can make estimation less efficient.
+
+### Unit roots explain why the random walk is non-stationary
+
+Return to the AR(1):
+
+$
+X_t=\phi X_{t-1}+\varepsilon_t.
+$
+
+When `|phi|<1`, old shocks gradually lose their influence and the process is mean-reverting.
+
+When
+
+$
+\phi=1,
+$
+
+the model becomes a random walk.
+
+The AR polynomial is
+
+$
+1-\phi L.
+$
+
+The characteristic equation is
+
+$
+1-\phi z=0,
+$
+
+so
+
+$
+z=\frac{1}{\phi}.
+$
+
+For `phi=1`, the root is
+
+$
+z=1.
+$
+
+That is the basic unit-root case.
+
+The root language gives an important distinction:
+
+```text
+|z| > 1 -> stationary
+|z| = 1 -> unit-root non-stationary
+|z| < 1 -> explosive non-stationary
+```
+
+So "does not have a unit root" is not enough to conclude stationarity. A root can lie inside the unit circle and still produce non-stationarity.
+
+### Shock persistence is the main intuition
+
+For a stationary AR(1), a shock is carried forward with powers such as
+
+$
+\phi,\phi^2,\phi^3,\ldots
+$
+
+and those effects shrink when `|phi|<1`.
+
+For a unit-root process, the shock does not get multiplied by a coefficient smaller than one. It remains embedded in the level.
+
+So the story is:
+
+```text
+stationary AR(1) -> shocks decay -> mean reversion
+unit-root process -> shocks persist -> stochastic trend
+```
+
+### Dickey-Fuller rewrites the unit-root question
+
+Starting from
+
+$
+X_t=\phi X_{t-1}+\varepsilon_t,
+$
+
+subtract `X_{t-1}`:
+
+$
+\Delta X_t
+=
+(\phi-1)X_{t-1}+\varepsilon_t.
+$
+
+The Week 3 slides define
+
+$
+\phi^*=\phi-1.
+$
+
+So
+
+$
+\Delta X_t
+=
+\phi^*X_{t-1}+\varepsilon_t.
+$
+
+A unit root means `phi=1`, therefore
+
+$
+\phi^*=0.
+$
+
+This turns the unit-root question into the null hypothesis
+
+$
+H_0:\phi^*=0.
+$
+
+The ordinary t-test distribution is not valid in the usual way under the unit-root null, so Dickey and Fuller derived a special limiting distribution for the test.
+
+### ADF and KPSS start from opposite null hypotheses
+
+The ADF test uses
+
+$
+H_0:\text{unit root}.
+$
+
+The KPSS test uses
+
+$
+H_0:\text{stationarity}.
+$
+
+That gives the memory rule:
+
+```text
+ADF:  small p-value -> reject unit root
+KPSS: small p-value -> reject stationarity
+```
+
+The tests are complementary because they start from opposite assumptions.
+
+### None, constant and trend change the stationary benchmark
+
+The unit-root tests can include different deterministic components.
+
+For ADF, the stationary alternative can be:
+
+```text
+none     -> stationary around zero
+constant -> stationary around a non-zero mean
+trend    -> stationary around a deterministic trend
+```
+
+For KPSS, those same descriptions belong to the null hypothesis.
+
+A trend-stationary process is not weakly stationary in levels. Its mean may move predictably with time, but after the deterministic trend is removed, the remaining process is stationary.
+
+That is different from a stochastic trend such as a random walk, where accumulated shocks move the level.
+
+### Testing the order of integration
+
+To determine `d`, begin with the level and then difference only when necessary.
+
+With ADF:
+
+```text
+test X_t
+-> if unit root is not rejected, test Delta X_t
+-> continue until the unit-root null is rejected
+-> number of differences = d
+```
+
+With KPSS:
+
+```text
+test X_t
+-> if stationarity is rejected, test Delta X_t
+-> continue until stationarity is not rejected
+-> number of differences = d
+```
+
+So Week 3 has now connected the visual idea of a wandering series to a formal sequence:
+
+```text
+non-stationary level
+-> unit root
+-> differencing
+-> integration order
+-> ADF / KPSS testing
+-> next: ARIMA
+```
+
 ## The story in one chain
 
 ```text
@@ -479,15 +732,26 @@ observations through time
 -> ACF and PACF lag-order clues
 -> choose p and q
 -> estimate the final model
+-> non-stationary levels
+-> differencing and seasonal differencing
+-> integration order I(d)
+-> unit-root versus explosive non-stationarity
+-> persistent versus decaying shocks
+-> Dickey-Fuller transformation
+-> phi* = phi - 1
+-> ADF: H0 = unit root
+-> KPSS: H0 = stationary
+-> determine d by repeated testing
+-> ARIMA next
 ```
 
 ## What comes next
 
 Week 2 has now built the stationary ARMA framework.
 
-Week 3 moves to non-stationary time series: how to test whether stationarity holds and how to model non-stationary processes using extensions of the ARMA framework.
+Week 3 is now underway. We have covered non-stationarity, differencing, order of integration, unit roots, overdifferencing, the Dickey-Fuller transformation, ADF specifications, KPSS, and using both tests to determine the order of integration.
 
-Before moving on, the Week 2 material should be consolidated with mixed exercises where the question does not tell you whether to use an AR-root test, an MA-root test, an ACF rule, a mean formula, or a likelihood idea. Recognizing which tool belongs to which question is as important as carrying out the calculation.
+The next major step is ARIMA, where the integration order becomes part of the model itself. After that, Week 3 continues to seasonal ARIMA and the lecture material on estimation and examples.
 
 ## What to remember right now
 
@@ -555,6 +819,8 @@ Start with this page. Once the story is back in your head, use the detailed note
 - [Invertibility of MA models](invertibility.md)
 - [Parameter estimation](parameter-estimation.md)
 - [ACF, PACF and lag-order selection](acf-pacf-and-lag-order-selection.md)
+- [Non-stationarity, unit roots and integration](nonstationarity-unit-roots-and-integration.md)
+- [Unit-root testing: ADF and KPSS](unit-root-testing.md)
 - [Plain-language time-series intuition](intuition/README.md)
 - [Complex numbers, polynomials and roots](../../mathematics/complex-numbers-and-polynomials.md)
 - [Geometric series](../../mathematics/geometric-series.md)
@@ -566,3 +832,5 @@ Start with this page. Once the story is back in your head, use the detailed note
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, parts 1-5.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2 pre-lecture / lecture.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2 exercise book.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 3, parts 1-2.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 3 exercise book.
