@@ -31,6 +31,7 @@ The goal is to understand what a concept is doing, why it matters, and how you w
 9. [PACF and lag-order selection](pacf-and-lag-order.md)
 10. [Non-stationarity and unit roots](nonstationarity-and-unit-roots.md)
 11. [ADF and KPSS](adf-and-kpss.md)
+12. [ARIMA and Seasonal ARIMA](arima-and-sarima.md)
 
 ## How to use this folder
 
@@ -53,6 +54,10 @@ ARMA needs stationary data
 -> I(d) counts the required number of differences
 -> ADF starts from a unit-root null
 -> KPSS starts from a stationarity null
+-> ARIMA models the stationary differenced series
+-> SARIMA adds a second seasonal clock
+-> seasonal ACF/PACF rules mirror ordinary AR/MA rules
+-> maximum likelihood estimates the chosen model's coefficients
 ```
 
 If you can explain a term clearly in ordinary words, that is a strong sign that the mathematics has a conceptual foundation rather than being memorized mechanically.
