@@ -24,6 +24,9 @@ For definitions you should be able to explain in ordinary words, use the [Time-S
 12. [ACF, PACF and lag-order selection](acf-pacf-and-lag-order-selection.md)
 13. [Non-stationarity, unit roots and integration](nonstationarity-unit-roots-and-integration.md)
 14. [Unit-root testing: ADF and KPSS](unit-root-testing.md)
+15. [ARIMA models](arima-models.md)
+16. [Seasonal ARIMA models](seasonal-arima-models.md)
+17. [Week 3 full review](week-3-review.md)
 
 ## Week 2 map
 
@@ -59,7 +62,7 @@ After a model structure has been chosen, its unknown parameters can be estimated
 
 Week 3 begins where Week 2 stops. ARMA models assume stationarity, so we now need a framework for time series whose level is not stationary.
 
-The material covered so far follows this chain:
+The Week 3 material now follows this chain:
 
 ```text
 non-stationary time series
@@ -75,14 +78,26 @@ non-stationary time series
 -> characteristic root z = 1
 -> distinguish unit-root from explosive non-stationarity
 -> permanent versus decaying shock effects
--> ADF unit-root test
+-> Dickey-Fuller transformation
 -> phi* = phi - 1
 -> H0: phi* = 0
 -> ADF deterministic specifications
 -> KPSS stationarity test
 -> complementary ADF / KPSS logic
 -> determine integration order d
--> next: ARIMA
+-> ARIMA(p,d,q)
+-> ARMA(p,q) applied to Delta^d X_t
+-> select d with unit-root/stationarity testing
+-> select p and q from the stationary transformed series
+-> seasonal ARIMA: (p,d,q) x (P,D,Q)_s
+-> ordinary versus seasonal lags
+-> ordinary and seasonal differencing
+-> seasonal ACF/PACF cutoff rules
+-> interaction lags such as 1+s
+-> airline model (0,1,1) x (0,1,1)_12
+-> maximum-likelihood parameter estimation
+-> NVIDIA and Airline Passengers empirical examples
+-> Week 3 exercises
 ```
 
 The central Week 3 distinctions so far are:
@@ -140,7 +155,10 @@ The `intuition/` folder is a second layer of notes for verbal understanding. It 
 - maximum likelihood;
 - the PACF and lag-order selection;
 - non-stationarity and unit roots;
-- ADF and KPSS.
+- ADF and KPSS;
+- ARIMA;
+- seasonal ARIMA;
+- the airline model and seasonal cutoff intuition.
 
 Use these pages when you want to answer a conceptual question without immediately reaching for equations. The goal is not just to know the formal rule, but to understand the problem each concept is solving.
 
