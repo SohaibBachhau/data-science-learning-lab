@@ -567,6 +567,68 @@ deterministic specification
 autoregressive lag order
 ```
 
+## Empirical example: NVIDIA stock price and returns
+
+The Week 3 lecture applies ADF and KPSS to NVIDIA stock prices and returns.
+
+### Stock-price level
+
+The stock-price series has a visible trend, so the lecture includes a trend in both the ADF and KPSS specifications.
+
+The reported p-values are
+
+$
+p_{ADF}=1.0
+$
+
+and
+
+$
+p_{KPSS}=0.01.
+$
+
+For ADF, the unit-root null is not rejected.
+
+For KPSS with trend, the trend-stationarity null is rejected.
+
+The lecture therefore treats the stock-price level as non-stationary with a unit root.
+
+### Returns
+
+The return series no longer has the same visible deterministic trend, so the lecture uses a constant specification.
+
+The reported p-values are
+
+$
+p_{ADF}=0.0
+$
+
+and
+
+$
+p_{KPSS}=0.1.
+$
+
+ADF rejects the unit-root null.
+
+KPSS does not reject stationarity at the 5% level.
+
+The return series is therefore treated as stationary.
+
+### Integration-order conclusion
+
+The level is non-stationary, while the first-difference-type return transformation is stationary.
+
+Therefore the lecture concludes that the stock-price series is integrated of order one:
+
+$
+\boxed{
+X_t\sim I(1).
+}
+$
+
+This example is useful because it shows that a visible trend alone does not tell us whether the process is deterministic-trend stationary or unit-root non-stationary. The specification and the statistical tests matter.
+
 ## Common mistakes
 
 - Using `delta` for the transformed AR coefficient when the course slides use `phi*`.
@@ -612,4 +674,5 @@ autoregressive lag order
 ## Sources
 
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 3, part 2: Unit-Root Testing.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 3 lecture: Non-Stationary Time Series Models.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 3 exercise book.
