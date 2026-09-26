@@ -689,6 +689,266 @@ non-stationary level
 -> next: ARIMA
 ```
 
+## ARIMA: ARMA after differencing
+
+Once the integration order has been determined, ARIMA follows directly from Week 2. If
+
+$
+Y_t=\Delta^dX_t
+$
+
+is stationary, then model \(Y_t\) with ARMA:
+
+$
+\phi(L)Y_t=\theta(L)\varepsilon_t.
+$
+
+Substituting back gives
+
+$
+\boxed{\phi(L)\Delta^dX_t=\theta(L)\varepsilon_t.}
+$
+
+This is ARIMA(p,d,q). The orders mean:
+
+~~~text
+p = AR order in the stationary differenced process
+d = number of ordinary differences
+q = MA order in the stationary differenced process
+~~~
+
+The key sentence is:
+
+> ARIMA(p,d,q) is ARMA(p,q) applied to the stationary series Delta^d X_t.
+
+For example,
+
+$
+\Delta X_t=0.7\Delta X_{t-1}+\varepsilon_t
+$
+
+is ARIMA(1,1,0), while
+
+$
+\Delta X_t=\varepsilon_t+0.5\varepsilon_{t-1}
+$
+
+is ARIMA(0,1,1).
+
+The integration order d is selected using the Week 3 unit-root and stationarity logic. Once the differenced series is stationary, p and q are selected from the ACF and PACF of that stationary transformed series, not from the original non-stationary level.
+
+An intercept in the stationary differenced model can also imply a deterministic trend in the level. If d=1 and the mean of \(\Delta X_t\) is a non-zero constant, then the level changes by that amount on average each period and therefore has a linear trend.
+
+## Seasonal ARIMA: two clocks at once
+
+Seasonal data can have both ordinary dependence and seasonal dependence. With monthly data, April can depend on March, but it can also depend especially strongly on the previous April.
+
+So two time scales can matter:
+
+~~~text
+ordinary lags:
+1, 2, 3, ...
+
+seasonal lags:
+12, 24, 36, ...
+~~~
+
+The course writes the seasonal ARIMA model as
+
+$
+\boxed{\text{ARIMA}(p,d,q)\times(P,D,Q)_s}
+$
+
+with
+
+$
+\boxed{
+\phi(L)\Phi(L^s)\Delta^d\Delta_s^D X_t
+=
+\theta(L)\Theta(L^s)\varepsilon_t.
+}
+$
+
+The lowercase orders describe ordinary dynamics. The uppercase orders describe seasonal dynamics. The seasonal period s tells us how often the seasonal cycle repeats. For monthly yearly data, \(s=12\); for quarterly yearly data, \(s=4\).
+
+The seasonal difference is
+
+$
+\Delta_sX_t=X_t-X_{t-s}.
+$
+
+For monthly data,
+
+$
+\Delta_{12}X_t=X_t-X_{t-12}.
+$
+
+If both one ordinary difference and one seasonal difference are used,
+
+$
+\Delta\Delta_{12}X_t
+=
+X_t-X_{t-1}-X_{t-12}+X_{t-13}.
+$
+
+The lag-13 term comes from the interaction
+
+$
+L\times L^{12}=L^{13}.
+$
+
+The same multiplicative interaction can create lag-13 AR or MA terms when ordinary and seasonal polynomials are multiplied.
+
+An ordinary AR(1) acts at lag 1, while a seasonal AR(1) with monthly data acts at lag 12. An ordinary MA(1) uses the shock at lag 1, while a seasonal MA(1) uses the shock at lag 12.
+
+### Seasonal ACF and PACF rules
+
+The Week 2 cutoff rules still apply, but now at seasonal lags.
+
+For a monthly seasonal AR(1):
+
+~~~text
+ACF  -> decays at 12, 24, 36, ...
+PACF -> one significant seasonal spike at 12
+~~~
+
+For a monthly seasonal MA(1):
+
+~~~text
+ACF  -> significant seasonal spike at 12, then seasonal cutoff
+PACF -> decays at 12, 24, 36, ...
+~~~
+
+The clean rules are easiest to see in pure seasonal AR or MA examples. A full mixed SARIMA model can look less tidy because ordinary and seasonal components interact.
+
+## The airline model brings SARIMA together
+
+The Week 3 lecture uses the Box-Jenkins airline model
+
+$
+\boxed{\text{ARIMA}(0,1,1)\times(0,1,1)_{12}.}
+$
+
+It has one ordinary difference, one seasonal difference, one ordinary MA(1), one seasonal MA(1), and no AR terms.
+
+Therefore
+
+$
+\Delta\Delta_{12}X_t
+=
+(1+\theta L)(1+\Theta L^{12})\varepsilon_t.
+$
+
+Expanding gives
+
+$
+X_t-X_{t-1}-X_{t-12}+X_{t-13}
+=
+\varepsilon_t
++\theta\varepsilon_{t-1}
++\Theta\varepsilon_{t-12}
++\theta\Theta\varepsilon_{t-13}.
+$
+
+The lecture chooses this structure because the ACF of the ordinary-and-seasonally differenced series has important behavior around lag 1 and lag 12, suggesting ordinary MA(1) and seasonal MA(1) components.
+
+## Maximum likelihood returns in Week 3
+
+After the ARIMA or seasonal ARIMA order has been selected, the unknown coefficients still have to be estimated.
+
+Week 3 uses maximum likelihood, just as Week 2 did for ARMA models. Model-order selection tells us which coefficients exist. Maximum likelihood estimates their numerical values.
+
+For the airline model, the lecture reports
+
+$
+\hat\theta=-0.4018,
+$
+
+$
+\hat\Theta=-0.5569,
+$
+
+and
+
+$
+\hat\sigma_\varepsilon^2=0.0013.
+$
+
+Using the slide sign convention,
+
+$
+\theta(L)=1+\theta L
+$
+
+and
+
+$
+\Theta(L^{12})=1+\Theta L^{12},
+$
+
+the fitted model becomes
+
+$
+\Delta\Delta_{12}X_t
+=
+(1-0.4018L)(1-0.5569L^{12})\varepsilon_t.
+$
+
+So
+
+$
+\Delta\Delta_{12}X_t
+=
+\varepsilon_t
+-0.4018\varepsilon_{t-1}
+-0.5569\varepsilon_{t-12}
++0.2238\varepsilon_{t-13}.
+$
+
+The lecture specifies maximum likelihood but does not name the numerical optimizer. In practice, software generally searches numerically for parameter values that maximize the log-likelihood.
+
+## The NVIDIA example connects testing to integration
+
+The Week 3 lecture revisits NVIDIA stock prices. The price series has a visible trend, so trend specifications are used in ADF and KPSS.
+
+For the stock-price level, the lecture reports
+
+$
+p_{ADF}=1.0
+$
+
+and
+
+$
+p_{KPSS}=0.01.
+$
+
+The unit-root null is not rejected by ADF, while trend-stationarity is rejected by KPSS. The lecture therefore treats the stock-price level as unit-root non-stationary.
+
+For NVIDIA returns, the lecture uses constant specifications and reports
+
+$
+p_{ADF}=0.0
+$
+
+and
+
+$
+p_{KPSS}=0.1.
+$
+
+ADF rejects the unit-root null and KPSS does not reject stationarity. The return series is therefore treated as stationary.
+
+The practical conclusion is
+
+$
+\boxed{\text{NVIDIA stock price is }I(1).}
+$
+
+The level is non-stationary, while its first-difference-type return transformation is stationary.
+
+This example reinforces an important point: a visible trend alone does not tell us whether the process is trend-stationary or unit-root non-stationary. The tests help distinguish the two cases.
+
 ## The story in one chain
 
 ```text
@@ -742,16 +1002,26 @@ observations through time
 -> ADF: H0 = unit root
 -> KPSS: H0 = stationary
 -> determine d by repeated testing
--> ARIMA next
+-> ARIMA(p,d,q)
+-> ARMA on Delta^d X_t
+-> choose p and q from the stationary transformed series
+-> seasonal ARIMA (p,d,q) x (P,D,Q)_s
+-> ordinary and seasonal lags
+-> seasonal ACF/PACF cutoff rules
+-> multiplicative interaction lags
+-> airline model
+-> maximum-likelihood parameter estimation
+-> NVIDIA unit-root example
+-> Week 3 exercises
 ```
 
 ## What comes next
 
-Week 2 has now built the stationary ARMA framework.
+Week 3 theory is now complete in these notes.
 
-Week 3 is now underway. We have covered non-stationarity, differencing, order of integration, unit roots, overdifferencing, the Dickey-Fuller transformation, ADF specifications, KPSS, and using both tests to determine the order of integration.
+The chapter now covers non-stationarity, ordinary and seasonal differencing, order of integration, unit roots, overdifferencing, Dickey-Fuller and ADF logic, KPSS, ARIMA, seasonal ARIMA, seasonal ACF/PACF patterns, the airline model, the NVIDIA example, and maximum-likelihood estimation.
 
-The next major step is ARIMA, where the integration order becomes part of the model itself. After that, Week 3 continues to seasonal ARIMA and the lecture material on estimation and examples.
+The next step is retrieval and problem solving: work through the Week 3 exercise-book questions, identify which ideas do not yet come out automatically, and then return to the detailed notes for targeted reinforcement.
 
 ## What to remember right now
 
@@ -821,6 +1091,9 @@ Start with this page. Once the story is back in your head, use the detailed note
 - [ACF, PACF and lag-order selection](acf-pacf-and-lag-order-selection.md)
 - [Non-stationarity, unit roots and integration](nonstationarity-unit-roots-and-integration.md)
 - [Unit-root testing: ADF and KPSS](unit-root-testing.md)
+- [ARIMA models](arima-models.md)
+- [Seasonal ARIMA models](seasonal-arima-models.md)
+- [Week 3 full review](week-3-review.md)
 - [Plain-language time-series intuition](intuition/README.md)
 - [Complex numbers, polynomials and roots](../../mathematics/complex-numbers-and-polynomials.md)
 - [Geometric series](../../mathematics/geometric-series.md)
@@ -832,5 +1105,5 @@ Start with this page. Once the story is back in your head, use the detailed note
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2, parts 1-5.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2 pre-lecture / lecture.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2 exercise book.
-- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 3, parts 1-2.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 3, parts 1-4.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 3 exercise book.
