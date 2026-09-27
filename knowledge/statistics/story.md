@@ -18,6 +18,8 @@ This leads to the main questions in statistics.
 
 Is the estimator centered on the correct value? That is the idea behind unbiasedness.
 
+How tightly does it vary around the target compared with other suitable estimators? That is efficiency.
+
 Does it get closer to the correct value as the sample becomes larger? That is consistency.
 
 Can we describe the shape of its uncertainty in large samples? That is where asymptotic normality enters.
@@ -31,7 +33,7 @@ unknown population quantity
 → random sample
 → estimator
 → sampling distribution
-→ bias and variance
+→ bias, variance and efficiency
 → consistency
 → asymptotic normality
 → standard errors and inference
@@ -47,7 +49,7 @@ An estimate is the number produced by the estimator in one observed sample.
 
 ## What to remember
 
-Unbiasedness and consistency are not the same thing. Unbiasedness is about the estimator's average over repeated samples. Consistency is about what happens as the sample size grows.
+Unbiasedness, efficiency and consistency answer different questions. Unbiasedness is about the estimator's average over repeated samples. Efficiency is about relative precision, usually through sampling variance in the course comparison. Consistency is about what happens as the sample size grows.
 
 A sampling distribution is not the distribution of the original data. It is the distribution of an estimator across hypothetical repeated samples.
 
@@ -63,5 +65,6 @@ Use this page to recover the logic first. Then open the detailed notes for the e
 - [Parameters, estimators and estimates](parameters-estimators-and-estimates.md)
 - [Sampling distributions](sampling-distributions.md)
 - [Unbiasedness](unbiasedness.md)
+- [Efficiency](efficiency.md)
 - [Consistency](consistency.md)
 - [Asymptotic normality](asymptotic-normality.md)
