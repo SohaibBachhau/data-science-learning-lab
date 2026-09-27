@@ -3,14 +3,14 @@ title: Sampling Distributions
 subject: statistics
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
-prerequisites:
+updated: 2026-09-27
+last_reviewed: 2026-09-27prerequisites:
   - parameters estimators and estimates
   - probability distributions
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 2 and Week 3 slides
+  - VU Knowledge Clip Series: Statistics, Statistics; Bias and Consistency of Estimators
 tags:
   - sampling distributions
   - sampling uncertainty
@@ -96,6 +96,18 @@ Three central features of a sampling distribution are:
 3. its shape, which determines how probabilities and critical values are calculated.
 
 An estimator can have the correct center but high variance. It can also have low variance but be systematically centered away from the target.
+
+## Sampling variance and efficiency
+
+When two unbiased estimators target the same parameter, the course compares their efficiency through their sampling variances. The estimator with the smaller variance has the tighter sampling distribution and is more efficient within that comparison.
+
+For iid observations with variance $\sigma^2$, the full sample mean has
+
+$
+\operatorname{Var}(\bar X)=\frac{\sigma^2}{n},
+$
+
+which is smaller than the variance $\sigma^2$ of the unbiased estimator $X_1$ whenever $n>1$.
 
 ## Exact versus asymptotic distributions
 
@@ -215,6 +227,7 @@ The simulation does not prove a theorem, but it can reveal bias, variance, appro
 
 ## Connections
 
+- [Efficiency of estimators](efficiency.md)
 - [Parameters, estimators and estimates](parameters-estimators-and-estimates.md)
 - [Unbiasedness](unbiasedness.md)
 - [Consistency](consistency.md)
@@ -232,3 +245,4 @@ The simulation does not prove a theorem, but it can reveal bias, variance, appro
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Describe a repeated-sampling experiment for the OLS slope |
+| 2026-09-27 | Reviewed the sample mean's sampling mean and variance and connected sampling variance to estimator efficiency | Compare the sampling variances of $\bar X$, $X_1$ and $(X_1+X_n)/2$ |
