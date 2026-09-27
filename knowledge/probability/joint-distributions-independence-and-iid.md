@@ -3,14 +3,14 @@ title: Joint Distributions, Independence and IID Sampling
 subject: probability
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
-prerequisites:
+updated: 2026-09-27
+last_reviewed: 2026-09-27prerequisites:
   - random variables
   - probability distributions
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 2 slides
+  - VU Knowledge Clip Series: Probability Theory, Conditional Distribution and Independence
 tags:
   - joint distributions
   - independence
@@ -58,6 +58,28 @@ $$
 f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dy.
 $$
 
+## Conditional probability for events
+
+For events $A$ and $B$ with $P(B)>0$,
+
+$
+P(A\mid B)=\frac{P(A\cap B)}{P(B)}.
+$
+
+Equivalently,
+
+$
+P(A\cap B)=P(A\mid B)P(B).
+$
+
+If $A$ and $B$ are independent, then $P(A\mid B)=P(A)$, so the joint probability simplifies to
+
+$
+P(A\cap B)=P(A)P(B).
+$
+
+Without independence or other information about the dependence structure, the marginal probabilities $P(A)$ and $P(B)$ alone do not determine the joint probability.
+
 ## Conditional distributions
 
 The conditional distribution of $Y$ given $X=x$ describes the behavior of $Y$ within the part of the population for which $X=x$.
@@ -69,6 +91,16 @@ P(Y=y\mid X=x)=\frac{P(X=x,Y=y)}{P(X=x)},
 $$
 
 provided $P(X=x)>0$.
+
+For continuous random variables, the conditional density is
+
+$
+f_{Y\mid X}(y\mid x)
+=
+\frac{f_{X,Y}(x,y)}{f_X(x)},
+$
+
+whenever the marginal density in the denominator is positive. Under independence, the joint density factorizes and the conditional density reduces to the marginal density of $Y$.
 
 ## Independence of random variables
 
@@ -222,3 +254,4 @@ IID is a sufficient framework used in introductory derivations. More advanced ec
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Explain iid sampling in one sentence and give a regression example |
+| 2026-09-27 | Reviewed conditional probability, conditional densities, independence and the distinction between marginal and joint information using the VU KCS clip | Explain why marginals alone do not determine a joint probability when variables are dependent |
