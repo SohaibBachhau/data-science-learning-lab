@@ -22,7 +22,11 @@ $$
 
 This idea becomes central in econometrics because regression is largely about conditional relationships.
 
-When we move from one observation to a sample, we need to understand what happens as the sample grows. The law of large numbers explains why sample averages can settle near population expectations. The central limit theorem explains why many properly standardized sample averages become approximately normal in large samples.
+When we move from one observation to a sequence or a growing sample, we need language for limits. Convergence in probability gives the idea that the probability of being meaningfully far from a target becomes negligible. The Continuous Mapping Theorem lets continuous transformations inherit that probability limit.
+
+Convergence in distribution instead tracks the limiting shape of a distribution. It is weaker than convergence in probability and is the language used by the Central Limit Theorem. Slutsky's theorem combines a distributional limit with quantities that converge in probability to constants.
+
+The law of large numbers explains why sample averages can settle near population expectations. The central limit theorem explains why many properly standardized sample averages become approximately normal in large samples.
 
 So the main story is:
 
@@ -33,6 +37,7 @@ uncertainty
 → joint behavior and dependence
 → conditional expectation
 → repeated sampling
+→ convergence in probability and distribution
 → law of large numbers
 → central limit theorem
 → statistical and econometric inference
@@ -57,5 +62,7 @@ Use this page first to recover the story. Then open the detailed note for the de
 - [Expectation](expectation.md)
 - [Conditional expectation](conditional-expectation.md)
 - [Variance, covariance and moments](variance-covariance-and-moments.md)
+- [Convergence in probability](convergence-in-probability.md)
+- [Convergence in distribution](convergence-in-distribution.md)
 - [Law of large numbers](law-of-large-numbers.md)
 - [Central limit theorem](central-limit-theorem.md)
