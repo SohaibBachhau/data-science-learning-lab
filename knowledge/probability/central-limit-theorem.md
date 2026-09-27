@@ -3,9 +3,8 @@ title: Central Limit Theorem
 subject: probability
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
-prerequisites:
+updated: 2026-09-27
+last_reviewed: 2026-09-27prerequisites:
   - expectation
   - variance
   - iid sampling
@@ -13,6 +12,7 @@ prerequisites:
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 2 slides
+  - VU Knowledge Clip Series: Statistics, Law of Large Numbers and Central Limit Theorem
 tags:
   - central limit theorem
   - asymptotic normality
@@ -64,6 +64,18 @@ $$
 \overset{d}{\longrightarrow}
 N(0,1).
 $$
+
+## Course special case
+
+If $E[X_i]=0$ and $\operatorname{Var}(X_i)=1$, the standardized CLT simplifies to
+
+$
+\sqrt{n}\,\bar X
+\overset{d}{\longrightarrow}
+N(0,1).
+$
+
+This is the form used in the course exercise with independent $N(0,1)$ observations. The LLN and CLT answer different questions: the LLN says where $\bar X$ goes, while the CLT describes the distribution of the properly rescaled fluctuation around that limit.
 
 ## Convergence in distribution
 
@@ -287,6 +299,7 @@ The standard Cauchy distribution is an important example. Its sample average rem
 
 ## Connections
 
+- [Convergence in distribution](convergence-in-distribution.md)
 - [Law of large numbers](law-of-large-numbers.md)
 - [Variance, covariance and moments](variance-covariance-and-moments.md)
 - [Joint distributions, independence and iid sampling](joint-distributions-independence-and-iid.md)
@@ -303,3 +316,4 @@ The standard Cauchy distribution is an important example. Its sample average rem
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Explain the roles of the CLT, LLN and Slutsky in one proof |
+| 2026-09-27 | Reviewed the standardized CLT, $\bar X\approx N(\mu,\sigma^2/n)$ and the LLN-versus-CLT distinction using VU KCS material | Derive the approximate distribution of $\bar X$ from the standardized CLT |
