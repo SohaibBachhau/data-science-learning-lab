@@ -3,14 +3,14 @@ title: Variance, Covariance and Moments
 subject: probability
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
-prerequisites:
+updated: 2026-09-27
+last_reviewed: 2026-09-27prerequisites:
   - expectation
   - random variables
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 2 and Week 3 slides
+  - VU Knowledge Clip Series: Probability Theory, Normal Distribution and Moments II; Covariance and Correlation
 tags:
   - variance
   - covariance
@@ -108,6 +108,28 @@ $$
 
 Adding a constant shifts every value equally and therefore does not change spread. Multiplication by $a$ scales deviations by $a$, so squared deviations scale by $a^2$.
 
+## Standardization
+
+A random variable can be shifted and rescaled to have mean zero and variance one. Define
+
+$
+Z=\frac{X-E[X]}{\sqrt{\operatorname{Var}(X)}}.
+$
+
+Provided $0<\operatorname{Var}(X)<\infty$,
+
+$
+E[Z]=0
+$
+
+and
+
+$
+\operatorname{Var}(Z)=1.
+$
+
+The key point is that $E[X]$ is a constant. Subtracting it shifts the center without adding randomness, and dividing by the standard deviation rescales the spread.
+
 ## Covariance
 
 For random variables $X$ and $Y$ with finite second moments,
@@ -170,6 +192,17 @@ $$
 $$
 
 If $X$ and $Y$ are independent and have finite second moments, then their covariance is zero.
+
+For constants $a$ and $b$,
+
+$
+\operatorname{Var}(aX+bY)
+=
+a^2\operatorname{Var}(X)+b^2\operatorname{Var}(Y)+2ab\operatorname{Cov}(X,Y).
+$
+
+This follows by centering $aX+bY$, expanding the square, and recognizing the covariance term. Independence makes the covariance term zero, but zero covariance by itself does not generally imply independence.
+
 
 ## Moments
 
@@ -353,3 +386,4 @@ describes how the spread of the error changes with the regressors. Homoskedastic
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Explain why $E[X^2]=0$ implies $X=0$ almost surely |
+| 2026-09-27 | Reviewed variance transformations, equivalent variance formulas, standardization, covariance, correlation and variance of linear combinations using VU KCS clips and exercises | Reproduce the standardization and variance-of-sum derivations without notes |
