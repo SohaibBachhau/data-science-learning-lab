@@ -3,15 +3,15 @@ title: Asymptotic Normality
 subject: statistics
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
-prerequisites:
+updated: 2026-09-27
+last_reviewed: 2026-09-27prerequisites:
   - consistency
   - central limit theorem
   - convergence in distribution
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 2 and Week 3 slides
+  - VU Knowledge Clip Series: Statistics, Law of Large Numbers and Central Limit Theorem
 tags:
   - asymptotic normality
   - limiting distributions
@@ -63,6 +63,26 @@ N\left(\theta_0,\frac{V}{n}\right).
 $$
 
 This is a finite-sample approximation derived from a limiting result.
+
+## Sample mean as the basic template
+
+For iid observations with mean $\mu$ and variance $\sigma^2<\infty$, the CLT gives
+
+$
+\frac{\sqrt{n}(\bar X-\mu)}{\sigma}
+\overset{d}{\longrightarrow}
+N(0,1).
+$
+
+For large $n$, this is commonly rewritten as the approximation
+
+$
+\bar X
+\approx
+N\left(\mu,\frac{\sigma^2}{n}\right).
+$
+
+This is the simplest example of how a limiting distribution becomes an approximate sampling distribution for an estimator.
 
 ## Why $\sqrt{n}$ scaling is common
 
@@ -247,6 +267,7 @@ Asymptotic normality can fail when:
 
 ## Connections
 
+- [Convergence in distribution](../probability/convergence-in-distribution.md)
 - [Sampling distributions](sampling-distributions.md)
 - [Consistency](consistency.md)
 - [Central limit theorem](../probability/central-limit-theorem.md)
@@ -262,3 +283,4 @@ Asymptotic normality can fail when:
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Translate a limiting distribution into an approximate standard error |
+| 2026-09-27 | Reviewed the sample-mean CLT as the basic asymptotic-normality template and its approximate $N(\mu,\sigma^2/n)$ form | Move between standardized CLT form and approximate estimator distribution |
