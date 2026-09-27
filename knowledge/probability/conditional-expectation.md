@@ -3,14 +3,14 @@ title: Conditional Expectation
 subject: probability
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
-prerequisites:
+updated: 2026-09-27
+last_reviewed: 2026-09-27prerequisites:
   - expectation
   - joint distributions
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 2 and Week 3 slides
+  - VU Knowledge Clip Series: Probability Theory, Conditional Distribution and Independence
 tags:
   - conditional expectation
   - regression function
@@ -95,6 +95,14 @@ $$
 E[g(X)\mid X]=g(X).
 $$
 
+### Conditioning on the variable itself
+
+Once $X$ is known, there is no uncertainty left about $X$ itself. Therefore,
+
+$
+E[X\mid X]=X.
+$
+
 ### Independence
 
 If $Y$ is independent of $X$ and the expectation exists, then
@@ -104,6 +112,30 @@ E[Y\mid X]=E[Y].
 $$
 
 The reverse is not generally true. Mean independence is weaker than full independence.
+
+## Independence and products
+
+If $X$ and $Y$ are independent and the expectations exist, then
+
+$
+E[X\mid Y]=E[X].
+$
+
+Using the law of iterated expectations,
+
+$
+E[XY]
+=
+E[E[XY\mid Y]]
+=
+E[Y E[X\mid Y]]
+=
+E[Y E[X]]
+=
+E[X]E[Y].
+$
+
+This is the expectation identity behind the result that independent variables with finite second moments have zero covariance.
 
 ## Law of iterated expectations
 
@@ -330,3 +362,4 @@ The linear expression $\beta_0+\beta_1X$ is not the true conditional mean. Inclu
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Derive the law of iterated expectations without looking |
+| 2026-09-27 | Reviewed conditional means, independence, $E[X\mid X]=X$, LIE and the derivation $E[XY]=E[X]E[Y]$ under independence | Reproduce the product-expectation derivation using LIE |
