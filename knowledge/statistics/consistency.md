@@ -3,15 +3,15 @@ title: Consistency
 subject: statistics
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
-prerequisites:
+updated: 2026-09-27
+last_reviewed: 2026-09-27prerequisites:
   - estimators
   - convergence in probability
   - law of large numbers
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 2 slides
+  - VU Knowledge Clip Series: Statistics, Bias and Consistency of Estimators; Law of Large Numbers and Central Limit Theorem
 tags:
   - consistency
   - probability limits
@@ -81,6 +81,40 @@ E[X_i].
 $$
 
 Therefore, the sample mean is consistent for the population mean.
+
+## A reusable LLN plus CMT pattern
+
+A common consistency proof has two steps.
+
+First, use the Law of Large Numbers to obtain a probability limit for a sample average. Second, use the Continuous Mapping Theorem to transform that limit.
+
+For example, if $X_i$ are iid exponential with parameter $\theta>0$, then
+
+$
+E[X_i]=\frac{1}{\theta}
+$
+
+and the LLN gives
+
+$
+\bar X\overset{p}{\longrightarrow}\frac{1}{\theta}.
+$
+
+Because $h(x)=1/x$ is continuous at the positive limit $1/\theta$,
+
+$
+\frac{1}{\bar X}
+\overset{p}{\longrightarrow}
+\theta.
+$
+
+Thus $1/\bar X$ is consistent for $\theta$. Similarly, squaring the probability limit gives
+
+$
+\bar X^2\overset{p}{\longrightarrow}\frac{1}{\theta^2},
+$
+
+which provides a consistent estimator of the exponential variance in the course parameterization.
 
 ## OLS consistency
 
@@ -264,6 +298,7 @@ This allows consistency to pass through continuous transformations such as addit
 
 ## Connections
 
+- [Convergence in probability](../probability/convergence-in-probability.md)
 - [Unbiasedness](unbiasedness.md)
 - [Asymptotic normality](asymptotic-normality.md)
 - [Law of large numbers](../probability/law-of-large-numbers.md)
@@ -280,3 +315,4 @@ This allows consistency to pass through continuous transformations such as addit
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Explain every assumption in the OLS consistency proof |
+| 2026-09-27 | Reviewed consistency as convergence in probability and practiced LLN plus CMT proofs, including the exponential MLE example | Reproduce the two-step LLN plus CMT consistency argument |
