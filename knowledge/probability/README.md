@@ -11,20 +11,22 @@ For a quick narrative review before the formal notes, read [The Story of Probabi
 Recommended reading order:
 
 1. [Random variables and probability distributions](random-variables-and-distributions.md)
-2. [Joint distributions, independence and iid sampling](joint-distributions-independence-and-iid.md)
-3. [Expectation](expectation.md)
-4. [Conditional expectation](conditional-expectation.md)
-5. [Variance, covariance and moments](variance-covariance-and-moments.md)
-6. [Law of large numbers](law-of-large-numbers.md)
-7. [Central limit theorem](central-limit-theorem.md)
+2. [Expectation](expectation.md)
+3. [Variance, covariance and moments](variance-covariance-and-moments.md)
+4. [Joint distributions, independence and iid sampling](joint-distributions-independence-and-iid.md)
+5. [Conditional expectation](conditional-expectation.md)
+6. [Convergence in probability](convergence-in-probability.md)
+7. [Convergence in distribution](convergence-in-distribution.md)
+8. [Law of large numbers](law-of-large-numbers.md)
+9. [Central limit theorem](central-limit-theorem.md)
 
 ## Main learning chain
 
 ```text
 random variables and distributions
+→ expectation, variance and covariance
 → joint and conditional distributions
-→ expectation and conditional expectation
-→ variance, covariance and moment conditions
+→ convergence in probability and distribution
 → law of large numbers
 → central limit theorem
 ```
