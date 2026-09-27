@@ -8,6 +8,9 @@ Use this checklist before merging the initial knowledge batch.
 - [ ] Reproduce the expectation and conditional expectation definitions.
 - [ ] Explain what iid applies to in cross-sectional regression.
 - [ ] Explain finite first, second and fourth moments.
+- [ ] Explain the difference between convergence in probability and convergence in distribution.
+- [ ] State when to use the Continuous Mapping Theorem and Slutsky's theorem.
+- [ ] Distinguish unbiasedness, consistency and efficiency.
 - [ ] Derive the OLS estimator decomposition.
 - [ ] Explain the distinct roles of exogeneity, homoskedasticity and normality.
 - [ ] Reproduce the OLS consistency argument using the LLN.
