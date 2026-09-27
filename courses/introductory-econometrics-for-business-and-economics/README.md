@@ -214,6 +214,7 @@ rather than duplicate complete explanations.
 ## Source materials
 
 The main source materials for this directory are the six weekly lecture
-slide sets provided for the course.
+slide sets provided for the course, together with the VU Knowledge Clip
+Series materials used to review probability and statistics foundations.
 
 The original PDF files remain stored locally and are excluded from Git.
