@@ -13,8 +13,9 @@ Recommended reading order:
 1. [Parameters, estimators and estimates](parameters-estimators-and-estimates.md)
 2. [Sampling distributions](sampling-distributions.md)
 3. [Unbiasedness](unbiasedness.md)
-4. [Consistency](consistency.md)
-5. [Asymptotic normality](asymptotic-normality.md)
+4. [Efficiency](efficiency.md)
+5. [Consistency](consistency.md)
+6. [Asymptotic normality](asymptotic-normality.md)
 
 ## Main distinctions
 
@@ -32,6 +33,7 @@ estimate
 The main estimator properties are separated deliberately:
 
 - unbiasedness is a finite-sample expectation property;
+- efficiency compares sampling precision among suitable competing estimators;
 - consistency is a large-sample concentration property;
 - asymptotic normality describes the limiting shape and scale of estimation error.
 
