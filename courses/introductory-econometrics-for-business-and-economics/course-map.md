@@ -19,8 +19,11 @@ These notes support the probability and statistics used throughout the course:
 - [Expectation](../../knowledge/probability/expectation.md) **available**
 - [Conditional expectation](../../knowledge/probability/conditional-expectation.md) **available**
 - [Variance, covariance and moments](../../knowledge/probability/variance-covariance-and-moments.md) **available**
+- [Convergence in probability](../../knowledge/probability/convergence-in-probability.md) **available**
+- [Convergence in distribution](../../knowledge/probability/convergence-in-distribution.md) **available**
 - [Parameters, estimators and estimates](../../knowledge/statistics/parameters-estimators-and-estimates.md) **available**
 - [Sampling distributions](../../knowledge/statistics/sampling-distributions.md) **available**
+- [Efficiency](../../knowledge/statistics/efficiency.md) **available**
 
 ## Week 1: Simple linear regression with one regressor, estimation
 
@@ -46,6 +49,8 @@ These notes support the probability and statistics used throughout the course:
 
 - [Joint distributions, independence and iid sampling](../../knowledge/probability/joint-distributions-independence-and-iid.md) **available**
 - [Variance, covariance and moments](../../knowledge/probability/variance-covariance-and-moments.md) **available**
+- [Convergence in probability](../../knowledge/probability/convergence-in-probability.md) **available**
+- [Convergence in distribution](../../knowledge/probability/convergence-in-distribution.md) **available**
 - [Law of large numbers](../../knowledge/probability/law-of-large-numbers.md) **available**
 - [Central limit theorem](../../knowledge/probability/central-limit-theorem.md) **available**
 - [Unbiasedness](../../knowledge/statistics/unbiasedness.md) **available**
@@ -59,8 +64,8 @@ These notes support the probability and statistics used throughout the course:
 - hypothesis testing **planned**
 - confidence intervals **planned**
 - binary regressors **planned**
-- Slutsky's theorem as a separate note **planned**
-- continuous mapping theorem as a separate note **planned**
+- Slutsky's theorem is covered in [Convergence in distribution](../../knowledge/probability/convergence-in-distribution.md) **available**
+- continuous mapping theorem is covered in [Convergence in probability](../../knowledge/probability/convergence-in-probability.md) **available**
 
 ## Week 3: Multiple regression, estimation and assumptions
 
