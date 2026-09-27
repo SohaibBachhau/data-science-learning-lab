@@ -3,14 +3,14 @@ title: Unbiasedness
 subject: statistics
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
-prerequisites:
+updated: 2026-09-27
+last_reviewed: 2026-09-27prerequisites:
   - parameters estimators and estimates
   - expectation
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 2 and Week 3 slides
+  - VU Knowledge Clip Series: Statistics, Bias and Consistency of Estimators
 tags:
   - unbiasedness
   - finite sample
@@ -76,6 +76,42 @@ $$
 Therefore, the sample mean is unbiased for the population mean.
 
 Independence is not needed for this expectation calculation. Identical means and existence of the expectations are enough. Independence becomes important for other properties such as its usual variance formula and large-sample results.
+
+## Nonlinear transformations and Jensen
+
+Unbiasedness generally does not pass through nonlinear transformations. Even if
+
+$
+E[\bar X]=\mu,
+$
+
+we cannot usually conclude that
+
+$
+E[h(\bar X)]=h(\mu).
+$
+
+For positive observations, $h(x)=\sqrt{x}$ is concave. Jensen's inequality gives
+
+$
+E[\sqrt{\bar X}]
+\leq
+\sqrt{E[\bar X]}
+=
+\sqrt{\mu},
+$
+
+so $\sqrt{\bar X}$ is generally biased for $\sqrt{\mu}$.
+
+Likewise, $h(x)=1/x$ is convex on the positive domain, so
+
+$
+E\left[\frac{1}{\bar X}\right]
+\geq
+\frac{1}{E[\bar X]}.
+$
+
+The main lesson is that linearity of expectation does not allow arbitrary nonlinear functions to move through the expectation operator.
 
 ## Conditional unbiasedness of OLS
 
@@ -147,6 +183,20 @@ The relevant expectations must be finite.
 
 Homoskedasticity and normality are not required for the unbiasedness derivation above.
 
+## Unbiased but inefficient examples
+
+If $X_1,\ldots,X_n$ are iid with mean $\mu$, then each of the following can be unbiased for $\mu$:
+
+$
+\bar X,
+\qquad
+X_1,
+\qquad
+\frac{X_1+X_n}{2}.
+$
+
+They are not equally precise. Unbiasedness only checks the center of the sampling distribution, not its spread. This leads to the separate concept of efficiency.
+
 ## Unbiasedness versus consistency
 
 Unbiasedness concerns the expected value at a given sample size:
@@ -212,6 +262,7 @@ The mere presence of an error term does not prevent bias. The relationship betwe
 
 ## Connections
 
+- [Efficiency of estimators](efficiency.md)
 - [Parameters, estimators and estimates](parameters-estimators-and-estimates.md)
 - [Sampling distributions](sampling-distributions.md)
 - [Consistency](consistency.md)
@@ -229,3 +280,4 @@ The mere presence of an error term does not prevent bias. The relationship betwe
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Derive OLS unbiasedness and name each assumption used |
+| 2026-09-27 | Reviewed unbiasedness with several mean estimators and used Jensen's inequality to diagnose bias after nonlinear transformations | Distinguish unbiasedness from efficiency and apply Jensen without notes |
