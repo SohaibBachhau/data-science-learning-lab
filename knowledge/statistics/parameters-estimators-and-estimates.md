@@ -3,14 +3,14 @@ title: Parameters, Estimators and Estimates
 subject: statistics
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
-prerequisites:
+updated: 2026-09-27
+last_reviewed: 2026-09-27prerequisites:
   - random variables
   - sampling
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 1 and Week 2 slides
+  - VU Knowledge Clip Series: Statistics, Statistics
 tags:
   - parameters
   - estimators
@@ -27,6 +27,14 @@ What is the difference between a population parameter, an estimator and the nume
 ## Short answer
 
 A parameter is a fixed but usually unknown feature of a population or model. An estimator is a rule, based on random sample data, for learning about that parameter. An estimate is the numerical value produced by the estimator after a particular sample has been observed.
+
+## Population and sample
+
+The population is the full group or probability distribution we want to learn about. The sample is the set of observations we actually observe.
+
+Before observation, $X_1,\ldots,X_n$ are random variables. After the sample is realized, the corresponding values $x_1,\ldots,x_n$ are fixed observed numbers.
+
+This distinction matters because statistical inference runs from the observed sample back toward unknown population characteristics.
 
 ## Parameter
 
@@ -150,6 +158,7 @@ Important properties include:
 - variance: how dispersed estimates are across samples;
 - mean squared error: expected squared estimation error;
 - consistency: whether $\hat\theta_n$ approaches $\theta$ as $n$ grows;
+- efficiency: how tightly an estimator varies around the target relative to suitable alternatives;
 - asymptotic normality: whether a scaled estimation error approaches a normal distribution.
 
 No single property fully determines whether an estimator is useful.
@@ -174,6 +183,7 @@ No single property fully determines whether an estimator is useful.
 
 ## Connections
 
+- [Efficiency of estimators](efficiency.md)
 - [Sampling distributions](sampling-distributions.md)
 - [Unbiasedness](unbiasedness.md)
 - [Consistency](consistency.md)
@@ -190,3 +200,4 @@ No single property fully determines whether an estimator is useful.
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Give one original example of a parameter, estimator and estimate |
+| 2026-09-27 | Reviewed population versus sample, random variables versus realized observations, and the estimator/estimate distinction using VU KCS material | Explain $X_i$ versus $x_i$ and parameter versus estimator in one example |
