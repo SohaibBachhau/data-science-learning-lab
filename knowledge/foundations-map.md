@@ -2,7 +2,7 @@
 title: Foundations Map
 status: developing
 created: 2026-08-09
-updated: 2026-09-09
+updated: 2026-09-27
 tags:
   - roadmap
   - intuition
@@ -270,6 +270,20 @@ It does not tell us that one particular estimate is close to the truth.
 
 ↓
 
+## [Efficiency](statistics/efficiency.md)
+
+When two estimators are both centered on the same target, they can still differ in precision.
+
+In the course comparison of unbiased estimators, the estimator with the smaller sampling variance is more efficient.
+
+### Intuition
+
+Unbiasedness asks whether the center is correct. Efficiency asks how tightly estimates cluster around that center.
+
+This is why using all observations in $\bar X$ can be preferable to using only $X_1$, even though both can be unbiased for $\mu$.
+
+↓
+
 ## [Consistency](statistics/consistency.md)
 
 An estimator is consistent if
@@ -295,6 +309,32 @@ The law of large numbers.
 ↓
 
 # 5. Why large samples help
+
+## [Convergence in probability](probability/convergence-in-probability.md)
+
+Before using large-sample theorems, we need language for what it means for random quantities to approach a limit.
+
+$
+X_n\xrightarrow{p}X
+$
+
+means that the probability of being farther than any fixed tolerance from $X$ goes to zero.
+
+This is the language of consistency. The Continuous Mapping Theorem lets us carry probability limits through continuous transformations.
+
+↓
+
+## [Convergence in distribution](probability/convergence-in-distribution.md)
+
+Distributional convergence asks whether the entire distribution approaches a limiting distribution.
+
+$
+X_n\xrightarrow{d}X.
+$
+
+Convergence in probability implies convergence in distribution, but not generally the reverse. The CLT is stated using convergence in distribution, while Slutsky's theorem combines distributional limits with consistent quantities.
+
+↓
 
 ## [Law of Large Numbers](probability/law-of-large-numbers.md)
 
@@ -1044,9 +1084,11 @@ At the current stage, the main conceptual chain is:
         |
         +--> [Unbiasedness]
         |
-        +--> [LLN] --> [Consistency]
+        +--> [Efficiency]
         |
-        +--> [CLT] --> [Asymptotic normality]
+        +--> [Convergence in probability] --> [LLN] --> [Consistency]
+        |
+        +--> [Convergence in distribution] --> [CLT] --> [Asymptotic normality]
         |
         v
 [Conditional mean E[Y|X]]
@@ -1141,6 +1183,8 @@ The goal is to turn econometrics into a connected story rather than a collection
 - [Expectation](probability/expectation.md)
 - [Conditional expectation](probability/conditional-expectation.md)
 - [Variance, covariance and moments](probability/variance-covariance-and-moments.md)
+- [Convergence in probability](probability/convergence-in-probability.md)
+- [Convergence in distribution](probability/convergence-in-distribution.md)
 - [Law of Large Numbers](probability/law-of-large-numbers.md)
 - [Central Limit Theorem](probability/central-limit-theorem.md)
 
@@ -1149,6 +1193,7 @@ The goal is to turn econometrics into a connected story rather than a collection
 - [Parameters, estimators and estimates](statistics/parameters-estimators-and-estimates.md)
 - [Sampling distributions](statistics/sampling-distributions.md)
 - [Unbiasedness](statistics/unbiasedness.md)
+- [Efficiency](statistics/efficiency.md)
 - [Consistency](statistics/consistency.md)
 - [Asymptotic normality](statistics/asymptotic-normality.md)
 
@@ -1184,3 +1229,4 @@ The goal is to turn econometrics into a connected story rather than a collection
 | 2026-09-05 | Added the time-series branch through stochastic processes, autocovariance and weak stationarity | Extend toward white noise, random walks and differencing as Week 1 is completed |
 | 2026-09-08 | Added white noise, IID versus uncorrelated noise, random walks and the first differencing link | Extend toward components, sources of non-stationarity and lag-operator differencing |
 | 2026-09-09 | Added trend, seasonality, cycles, level-dependent variability, lag-operator notation and first differencing | Extend toward higher-order differences, seasonal differencing and log differences |
+| 2026-09-27 | Added convergence-in-probability, convergence-in-distribution and estimator-efficiency links after reviewing the VU probability and statistics knowledge clips | Continue into maximum likelihood once the clip is studied |
