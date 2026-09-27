@@ -3,15 +3,15 @@ title: Law of Large Numbers
 subject: probability
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
-prerequisites:
+updated: 2026-09-27
+last_reviewed: 2026-09-27prerequisites:
   - expectation
   - iid sampling
   - convergence in probability
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 2 slides
+  - VU Knowledge Clip Series: Statistics, Law of Large Numbers and Central Limit Theorem
 tags:
   - law of large numbers
   - convergence in probability
@@ -54,6 +54,24 @@ $$
 
 The notation $\overset{p}{\longrightarrow}$ means convergence in probability.
 
+## Course version used in the VU knowledge clip
+
+The course states the LLN in the following sufficient form: if $X_1,\ldots,X_n$ are iid and
+
+$
+\operatorname{Var}(X_i)<\infty,
+$
+
+then
+
+$
+\bar X\overset{p}{\longrightarrow}E[X_i].
+$
+
+The finite-variance condition is stronger than the finite-first-moment condition in the basic iid version above, but it is the version used in the course clip and exercises. Intuitively, finite variance rules out tails so extreme that the usual averaging argument becomes poorly behaved.
+
+The direct statistical implication is that the sample mean is a consistent estimator of the population mean.
+
 ## Convergence in probability
 
 A sequence of random variables $W_n$ converges in probability to a constant $c$ when, for every $\varepsilon>0$,
@@ -79,6 +97,32 @@ It does not say:
 The target $E[Z_i]$ must be a well-defined finite number. If $E[|Z_i|]=\infty$, the standard iid law of large numbers above cannot be applied.
 
 The Cauchy distribution is the standard warning. Its sample mean does not concentrate around a fixed population mean because no finite population mean exists.
+
+## Sample variance consistency pattern
+
+The same logic can be used for the sample variance. A useful identity is
+
+$
+\frac{1}{n}\sum_{i=1}^n(X_i-\bar X)^2
+=
+\frac{1}{n}\sum_{i=1}^n(X_i-\mu)^2-(\bar X-\mu)^2.
+$
+
+Under suitable moment conditions, the LLN gives
+
+$
+\frac{1}{n}\sum_{i=1}^n(X_i-\mu)^2
+\overset{p}{\longrightarrow}
+\sigma^2,
+$
+
+while $\bar X\overset{p}{\longrightarrow}\mu$ and the Continuous Mapping Theorem gives
+
+$
+(\bar X-\mu)^2\overset{p}{\longrightarrow}0.
+$
+
+Therefore the sample variance is consistent for $\sigma^2$. The factor $n/(n-1)$ in the usual $s^2$ also converges to one.
 
 ## Use in OLS consistency
 
@@ -247,6 +291,7 @@ $$
 
 ## Connections
 
+- [Convergence in probability](convergence-in-probability.md)
 - [Expectation](expectation.md)
 - [Joint distributions, independence and iid sampling](joint-distributions-independence-and-iid.md)
 - [Variance, covariance and moments](variance-covariance-and-moments.md)
@@ -264,3 +309,4 @@ $$
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Reproduce the OLS consistency argument from the estimator decomposition |
+| 2026-09-27 | Reviewed the course LLN, finite-variance intuition, sample-mean consistency and sample-variance consistency exercises | State the course LLN and explain why it establishes consistency |
