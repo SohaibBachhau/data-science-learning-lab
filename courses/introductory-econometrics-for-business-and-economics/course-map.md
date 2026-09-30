@@ -60,9 +60,8 @@ These notes support the probability and statistics used throughout the course:
 
 ### Planned permanent knowledge
 
-- standard errors **planned**
-- hypothesis testing **planned**
-- confidence intervals **planned**
+- [standard errors](../../knowledge/statistics/sampling-distributions.md#standard-deviation-and-standard-error) **available**
+- [hypothesis testing and confidence intervals](../../knowledge/statistics/hypothesis-testing-and-confidence-intervals.md) **available**
 - binary regressors **planned**
 - Slutsky's theorem is covered in [Convergence in distribution](../../knowledge/probability/convergence-in-distribution.md) **available**
 - continuous mapping theorem is covered in [Convergence in probability](../../knowledge/probability/convergence-in-probability.md) **available**
