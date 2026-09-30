@@ -2,7 +2,7 @@
 title: Foundations Map
 status: developing
 created: 2026-08-09
-updated: 2026-09-27
+updated: 2026-09-30
 tags:
   - roadmap
   - intuition
@@ -1089,6 +1089,10 @@ At the current stage, the main conceptual chain is:
         +--> [Convergence in probability] --> [LLN] --> [Consistency]
         |
         +--> [Convergence in distribution] --> [CLT] --> [Asymptotic normality]
+        |                                      |
+        |                                      +--> [Standard errors]
+        |                                              |
+        |                                              +--> [Hypothesis tests / p-values / confidence intervals]
         |
         v
 [Conditional mean E[Y|X]]
@@ -1196,6 +1200,7 @@ The goal is to turn econometrics into a connected story rather than a collection
 - [Efficiency](statistics/efficiency.md)
 - [Consistency](statistics/consistency.md)
 - [Asymptotic normality](statistics/asymptotic-normality.md)
+- [Hypothesis testing and confidence intervals](statistics/hypothesis-testing-and-confidence-intervals.md)
 
 ## Econometrics
 
@@ -1230,3 +1235,4 @@ The goal is to turn econometrics into a connected story rather than a collection
 | 2026-09-08 | Added white noise, IID versus uncorrelated noise, random walks and the first differencing link | Extend toward components, sources of non-stationarity and lag-operator differencing |
 | 2026-09-09 | Added trend, seasonality, cycles, level-dependent variability, lag-operator notation and first differencing | Extend toward higher-order differences, seasonal differencing and log differences |
 | 2026-09-27 | Added convergence-in-probability, convergence-in-distribution and estimator-efficiency links after reviewing the VU probability and statistics knowledge clips | Continue into maximum likelihood once the clip is studied |
+| 2026-09-30 | Added the reviewed maximum-likelihood and statistical-inference connections, including standard errors, p-values and confidence intervals | Continue into simple linear regression estimation |
