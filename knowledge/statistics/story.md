@@ -26,6 +26,10 @@ Can we describe the shape of its uncertainty in large samples? That is where asy
 
 Once we know how an estimator behaves, we can quantify uncertainty using standard errors, confidence intervals and hypothesis tests.
 
+A standard error tells us how much an estimator would typically vary across repeated samples. A hypothesis test compares an estimate with a value claimed under a null hypothesis and asks whether the difference is large relative to that sampling uncertainty.
+
+The p-value then describes how extreme the observed test statistic would be under the null. A confidence interval presents the same uncertainty from another angle by giving a range of parameter values compatible with the data at the chosen confidence level.
+
 So the main story is:
 
 ```text
@@ -36,7 +40,8 @@ unknown population quantity
 → bias, variance and efficiency
 → consistency
 → asymptotic normality
-→ standard errors and inference
+→ standard errors
+→ hypothesis tests, p-values and confidence intervals
 ```
 
 ## The three objects that should never be mixed up
@@ -68,3 +73,4 @@ Use this page to recover the logic first. Then open the detailed notes for the e
 - [Efficiency](efficiency.md)
 - [Consistency](consistency.md)
 - [Asymptotic normality](asymptotic-normality.md)
+- [Hypothesis testing and confidence intervals](hypothesis-testing-and-confidence-intervals.md)
