@@ -16,6 +16,7 @@ Recommended reading order:
 4. [Efficiency](efficiency.md)
 5. [Consistency](consistency.md)
 6. [Asymptotic normality](asymptotic-normality.md)
+7. [Hypothesis testing and confidence intervals](hypothesis-testing-and-confidence-intervals.md)
 
 ## Main distinctions
 
@@ -50,7 +51,8 @@ sampling process
 → finite-sample properties
 → probability limit
 → asymptotic distribution
-→ standard errors and inference
+→ standard errors
+→ hypothesis tests, p-values and confidence intervals
 ```
 
 ## Status
