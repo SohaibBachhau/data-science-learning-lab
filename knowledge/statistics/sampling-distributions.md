@@ -3,14 +3,16 @@ title: Sampling Distributions
 subject: statistics
 status: developing
 created: 2026-07-23
-updated: 2026-09-27
-last_reviewed: 2026-09-27prerequisites:
+updated: 2026-09-30
+last_reviewed: 2026-09-30
+prerequisites:
   - parameters estimators and estimates
   - probability distributions
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 2 and Week 3 slides
   - VU Knowledge Clip Series: Statistics, Statistics; Bias and Consistency of Estimators
+  - VU Knowledge Clip Series: Statistics, Hypothesis Testing, p-Value, and Confidence Intervals
 tags:
   - sampling distributions
   - sampling uncertainty
@@ -175,6 +177,16 @@ $$
 
 A small standard error indicates that the estimator would vary relatively little across repeated samples under the model and assumptions.
 
+For the iid sample mean, the course uses the sample standard deviation $s$ to estimate the unknown population standard deviation $\sigma$:
+
+$
+SE(\bar X)
+=
+\frac{s}{\sqrt n}.
+$
+
+This estimated sampling uncertainty is what scales the difference between $\bar X$ and a hypothesized population mean in the t-statistic.
+
 ## Sampling distribution of OLS
 
 The OLS estimator depends on every observation in the sample. Therefore, different samples produce different values of $\hat\beta$.
@@ -234,11 +246,13 @@ The simulation does not prove a theorem, but it can reveal bias, variance, appro
 - [Asymptotic normality](asymptotic-normality.md)
 - [Central limit theorem](../probability/central-limit-theorem.md)
 - [Sampling distribution of OLS](../econometrics/linear-regression/sampling-distribution-of-ols.md)
+- [Hypothesis testing and confidence intervals](hypothesis-testing-and-confidence-intervals.md)
 
 ## Sources
 
 - Francisco Blasques, *Advanced Econometric Methods*, Chapter 1.
 - *Introductory Econometrics for Business and Economics*, Week 2 and Week 3 slides.
+- VU Knowledge Clip Series: Statistics, *Hypothesis Testing, p-Value, and Confidence Intervals*.
 
 ## Review log
 
@@ -246,3 +260,4 @@ The simulation does not prove a theorem, but it can reveal bias, variance, appro
 |---|---|---|
 | 2026-07-23 | Initial note created | Describe a repeated-sampling experiment for the OLS slope |
 | 2026-09-27 | Reviewed the sample mean's sampling mean and variance and connected sampling variance to estimator efficiency | Compare the sampling variances of $\bar X$, $X_1$ and $(X_1+X_n)/2$ |
+| 2026-09-30 | Connected the sample mean standard error $s/\sqrt n$ to the t-statistic used in the hypothesis-testing clip | Reuse standard errors when inference for OLS coefficients is studied |
