@@ -16,6 +16,13 @@ Use this checklist before merging the initial knowledge batch.
 - [ ] Reproduce the OLS consistency argument using the LLN.
 - [ ] Reproduce the OLS asymptotic normality argument using the CLT, LLN and Slutsky's theorem.
 - [ ] Derive the normal-regression log-likelihood and its equivalence to OLS.
+- [ ] Derive the exponential MLE $\hat\theta=1/\bar X$ from the likelihood and log-likelihood.
+- [ ] Derive the Pareto MLE $\hat\theta=n/\sum_i\ln X_i$.
+- [ ] Explain why maximizing the log-likelihood gives the same maximizer as maximizing the likelihood.
+- [ ] Explain the t-statistic as a difference measured in standard errors.
+- [ ] State the 5% two-sided critical-value rule and interpret a p-value under $H_0$.
+- [ ] Explain the repeated-sampling interpretation of a 95% confidence interval.
+- [ ] Reproduce the CLT plus consistency plus Slutsky argument for $t\overset{d}{\to}N(0,1)$.
 
 ## Repository quality
 
