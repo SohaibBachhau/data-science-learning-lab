@@ -3,7 +3,7 @@ title: Maximum Likelihood
 subject: econometrics
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
+updated: 2026-09-30
 last_reviewed:
 prerequisites:
   - probability distributions
@@ -12,6 +12,7 @@ prerequisites:
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 1 slides
+  - VU Knowledge Clip Series: Statistics, Maximum Likelihood Estimation
 tags:
   - maximum likelihood
   - likelihood
@@ -332,11 +333,154 @@ $$
 
 Thus, the sample proportion is the maximum-likelihood estimator of the Bernoulli success probability.
 
+## Course example: exponential distribution
+
+For an iid sample from an exponential distribution,
+
+$
+f(x\mid\theta)=\theta e^{-\theta x},
+\qquad x\geq0,\;\theta>0,
+$
+
+the likelihood is
+
+$
+L(\theta\mid X_1,\ldots,X_n)
+=
+\prod_{i=1}^n
+\theta e^{-\theta X_i}.
+$
+
+Using the product rules,
+
+$
+L(\theta)
+=
+\theta^n
+e^{-\theta\sum_{i=1}^nX_i}.
+$
+
+Taking logs gives
+
+$
+\ell(\theta)
+=
+n\ln(\theta)
+-
+\theta\sum_{i=1}^nX_i.
+$
+
+The first-order condition is
+
+$
+\frac{d\ell}{d\theta}
+=
+\frac{n}{\theta}
+-
+\sum_{i=1}^nX_i
+=
+0.
+$
+
+Therefore,
+
+$
+\hat\theta_{MLE}
+=
+\frac{n}{\sum_{i=1}^nX_i}
+=
+\frac{1}{\bar X}.
+$
+
+The second derivative is
+
+$
+\frac{d^2\ell}{d\theta^2}
+=
+-\frac{n}{\theta^2}<0,
+$
+
+so the interior solution is a maximum.
+
+For the reviewed sample
+
+$
+1,\;2,\;1,\;\frac32,\;3,\;\frac32,
+$
+
+the sample mean is $5/3$, giving
+
+$
+\hat\theta_{MLE}=\frac35=0.6.
+$
+
+## Course example: Pareto distribution
+
+For the Pareto density used in the exercise,
+
+$
+f(x\mid\theta)
+=
+\theta x^{-(\theta+1)},
+\qquad x\geq1,\;\theta>0,
+$
+
+the likelihood is
+
+$
+L(\theta)
+=
+\prod_{i=1}^n
+\theta X_i^{-(\theta+1)}.
+$
+
+The log-likelihood becomes
+
+$
+\ell(\theta)
+=
+n\ln(\theta)
+-
+(\theta+1)
+\sum_{i=1}^n\ln X_i.
+$
+
+When differentiating with respect to $\theta$, the observed $X_i$ values are fixed, so the sum $\sum_i\ln X_i$ is a constant. Therefore,
+
+$
+\frac{d\ell}{d\theta}
+=
+\frac{n}{\theta}
+-
+\sum_{i=1}^n\ln X_i.
+$
+
+Setting the derivative equal to zero gives
+
+$
+\hat\theta_{MLE}
+=
+\frac{n}{\sum_{i=1}^n\ln X_i}.
+$
+
+These two exercises illustrate the reusable course workflow:
+
+```text
+PDF
+→ likelihood
+→ log-likelihood
+→ differentiate
+→ set the derivative equal to zero
+→ solve for the parameter
+→ check that the solution is a maximum
+```
+
 ## Common mistakes
 
 - Treating likelihood as a probability distribution over the parameter.
 - Forgetting that independence is what turns a joint likelihood into a product.
 - Saying the log transformation changes the maximizer.
+- Confusing a maximization problem with minimizing the same untransformed likelihood. Minimizing a negative log-likelihood is equivalent, but minimizing $L(\theta)$ itself is not the MLE rule.
 - Assuming a zero score always identifies a global maximum.
 - Believing normality is required to calculate OLS rather than to derive OLS from a normal likelihood and obtain exact distribution theory.
 - Assuming a correct conditional mean implies a correctly specified likelihood.
@@ -352,6 +496,8 @@ Thus, the sample proportion is the maximum-likelihood estimator of the Bernoulli
 5. Derive why normal regression ML and OLS give the same coefficient estimates.
 6. Why do the ML and corrected OLS variance estimators use different denominators?
 7. What changes under likelihood misspecification?
+8. Derive the exponential MLE $\hat\theta=1/\bar X$ from its PDF.
+9. Why is $\sum_i\ln X_i$ treated as a constant when differentiating the Pareto log-likelihood with respect to $\theta$?
 
 ## Connections
 
@@ -365,9 +511,12 @@ Thus, the sample proportion is the maximum-likelihood estimator of the Bernoulli
 
 - Francisco Blasques, *Advanced Econometric Methods*, Chapter 1, sections on maximum likelihood.
 - *Introductory Econometrics for Business and Economics*, Week 1 slides.
+- VU Knowledge Clip Series: Statistics, *Maximum Likelihood Estimation*.
+- VU Knowledge Clip Series: Statistics exercises, Sections 4.1 and 4.2.
 
 ## Review log
 
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Derive the normal regression log-likelihood and its OLS equivalence |
+| 2026-09-30 | Reviewed the VU MLE clip and derived the exponential and Pareto MLEs by hand | Reuse the likelihood workflow in later econometric models |
