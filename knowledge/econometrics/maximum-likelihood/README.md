@@ -15,6 +15,7 @@ The note covers:
 - probability models and likelihood functions;
 - iid likelihood factorization;
 - log-likelihoods;
+- hand derivations for the exponential and Pareto MLEs used in the VU knowledge clips;
 - scores, Hessians and information;
 - normal regression maximum likelihood;
 - the equivalence between normal-regression ML coefficient estimates and OLS;
