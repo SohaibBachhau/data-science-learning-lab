@@ -3,8 +3,8 @@ title: Ordinary Least Squares
 subject: econometrics
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
+updated: 2026-10-01
+last_reviewed: 2026-10-01
 prerequisites:
   - linear regression model
   - differentiation
@@ -12,6 +12,7 @@ prerequisites:
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 1 and Week 3 slides
+  - VU Introductory Econometrics for Business and Economics, Week 2 slides
 tags:
   - ordinary least squares
   - OLS
@@ -119,6 +120,128 @@ $$
 $$
 
 The slope is sample covariance divided by sample variation in $X$, using the same unnormalized sums in numerator and denominator.
+
+An intuitive reading is
+
+$
+\hat\beta_1
+=
+\frac{\text{sample comovement of }X\text{ and }Y}
+{\text{sample variation in }X}.
+$
+
+If observations with $X_i>\bar X$ also tend to have $Y_i>\bar Y$, the numerator tends to be positive and the estimated slope tends to be positive. If high values of $X$ tend to occur with low values of $Y$, the numerator tends to be negative.
+
+### Algebraic bridge to the slope formula
+
+The first-order condition for $b_0$ is
+
+$
+-2
+\sum_{i=1}^n
+(Y_i-b_0-b_1X_i)
+=
+0.
+$
+
+Dividing by $-2$ and expanding the sum gives
+
+$
+\sum_{i=1}^nY_i
+-
+nb_0
+-
+b_1\sum_{i=1}^nX_i
+=
+0.
+$
+
+Using
+
+$
+\sum_{i=1}^nY_i=n\bar Y
+$
+
+and
+
+$
+\sum_{i=1}^nX_i=n\bar X,
+$
+
+we obtain
+
+$
+b_0
+=
+\bar Y-b_1\bar X.
+$
+
+The first-order condition for $b_1$ is
+
+$
+-2
+\sum_{i=1}^n
+X_i(Y_i-b_0-b_1X_i)
+=
+0.
+$
+
+After dividing by $-2$ and distributing $X_i$,
+
+$
+\sum_{i=1}^nX_iY_i
+-
+b_0\sum_{i=1}^nX_i
+-
+b_1\sum_{i=1}^nX_i^2
+=
+0.
+$
+
+Substituting $b_0=\bar Y-b_1\bar X$ and rearranging gives
+
+$
+b_1
+\left(
+\sum_{i=1}^nX_i^2
+-
+n\bar X^2
+\right)
+=
+\sum_{i=1}^nX_iY_i
+-
+n\bar X\bar Y.
+$
+
+The two useful identities are
+
+$
+\sum_{i=1}^n
+(X_i-\bar X)(Y_i-\bar Y)
+=
+\sum_{i=1}^nX_iY_i
+-
+n\bar X\bar Y
+$
+
+and
+
+$
+\sum_{i=1}^n
+(X_i-\bar X)^2
+=
+\sum_{i=1}^nX_i^2
+-
+n\bar X^2.
+$
+
+Substituting these identities produces the familiar OLS slope formula.
+
+The intercept formula also shows that the fitted line passes through
+
+$
+(\bar X,\bar Y).
+$
 
 The denominator must be positive:
 
@@ -296,6 +419,17 @@ Geometrically, the residual vector is orthogonal to every column of $X$.
 
 ## Why least squares?
 
+Squaring avoids cancellation between positive and negative residuals and gives larger residuals more weight.
+
+Additional context: minimizing absolute residuals,
+
+$
+\sum_{i=1}^n|Y_i-b_0-b_1X_i|,
+$
+
+would also prevent positive and negative errors from canceling, but it defines a different estimator, least absolute deviations rather than OLS. The Week 2 course material uses squared residuals and therefore OLS.
+
+
 OLS is attractive because:
 
 - it often has a closed-form solution;
@@ -307,6 +441,8 @@ OLS is attractive because:
 These advantages do not make squared loss universally appropriate. Outliers can have large influence, and different objectives may be preferable for different targets or distributions.
 
 ## Sample fit
+
+A detailed treatment is in [Measures of fit in simple linear regression](measures-of-fit.md).
 
 The total sum of squares is
 
@@ -320,23 +456,25 @@ $$
 ESS=\sum_{i=1}^n(\hat Y_i-\bar Y)^2.
 $$
 
-The residual sum of squares is
+The course denotes the residual sum of squares by
 
-$$
-SSR=\sum_{i=1}^n\hat u_i^2.
-$$
+$
+RSS=\sum_{i=1}^n\hat u_i^2.
+$
+
+Some texts use the label $SSR$ for the same object, so notation should be checked before interpreting an abbreviation.
 
 With an intercept,
 
-$$
-TSS=ESS+SSR.
-$$
+$
+TSS=ESS+RSS.
+$
 
 The coefficient of determination is
 
-$$
-R^2=1-\frac{SSR}{TSS}.
-$$
+$
+R^2=1-\frac{RSS}{TSS}.
+$
 
 A high $R^2$ indicates strong in-sample fit relative to a mean-only benchmark. It does not establish causality, correct specification or out-of-sample performance.
 
@@ -365,6 +503,7 @@ A high $R^2$ indicates strong in-sample fit relative to a mean-only benchmark. I
 - [Linear regression model](linear-regression-model.md)
 - [Exogeneity](exogeneity.md)
 - [Correct specification](correct-specification.md)
+- [Measures of fit in simple linear regression](measures-of-fit.md)
 - [Sampling distribution of OLS](sampling-distribution-of-ols.md)
 - [Unbiasedness](../../statistics/unbiasedness.md)
 - [Consistency](../../statistics/consistency.md)
@@ -374,9 +513,11 @@ A high $R^2$ indicates strong in-sample fit relative to a mean-only benchmark. I
 
 - Francisco Blasques, *Advanced Econometric Methods*, Chapter 1, section on the least-squares estimator.
 - *Introductory Econometrics for Business and Economics*, Week 1 and Week 3 slides.
+- VU *Introductory Econometrics for Business and Economics*, Week 2 slides.
 
 ## Review log
 
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Derive simple and matrix OLS without copying formulas |
+| 2026-10-01 | Re-derived the simple-regression OLS formulas step by step, reviewed fitted values and residuals, and connected OLS to the Week 2 fit measures | Apply the same logic when moving to inference for $\hat\beta_0$ and $\hat\beta_1$ |
