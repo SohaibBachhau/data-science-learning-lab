@@ -3,14 +3,15 @@ title: Linear Regression Model
 subject: econometrics
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
+updated: 2026-10-01
+last_reviewed: 2026-10-01
 prerequisites:
   - random variables
   - conditional expectation
 sources:
   - Blasques, Advanced Econometric Methods
   - IEBE Week 1 and Week 3 slides
+  - VU Introductory Econometrics for Business and Economics, Week 2 slides
 tags:
   - linear regression
   - conditional mean
@@ -191,6 +192,8 @@ $$
 
 The population error $u_i$ and sample residual $\hat u_i$ are not the same object. The residual depends on estimated coefficients and is observable after estimation. The population error depends on unknown parameters and is generally unobservable.
 
+The hat on $\hat u_i$ remains important even though the residual can be calculated numerically. It signals that the residual is an estimated counterpart of the unknown population error.
+
 ## Predictive versus causal interpretation
 
 A conditional mean relationship is predictive. It tells us how outcomes differ on average across observed values of $X$.
@@ -236,15 +239,18 @@ The error includes other determinants of test scores, such as language backgroun
 - [Exogeneity](exogeneity.md)
 - [Correct specification](correct-specification.md)
 - [Ordinary least squares](ordinary-least-squares.md)
+- [Measures of fit in simple linear regression](measures-of-fit.md)
 - [Sampling distribution of OLS](sampling-distribution-of-ols.md)
 
 ## Sources
 
 - Francisco Blasques, *Advanced Econometric Methods*, Chapter 1, section on the linear regression model.
 - *Introductory Econometrics for Business and Economics*, Week 1 and Week 3 slides.
+- VU *Introductory Econometrics for Business and Economics*, Week 2 slides.
 
 ## Review log
 
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Explain why the equation and the conditional mean claim are different |
+| 2026-10-01 | Reviewed the error term, fitted values, residuals, coefficient interpretation and the distinction between association and causation | Reuse the model notation in Week 3 inference |
