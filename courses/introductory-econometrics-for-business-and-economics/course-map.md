@@ -40,7 +40,7 @@ These notes support the probability and statistics used throughout the course:
 - California test-score example **course-specific**
 - interpretation of estimated intercepts and slopes **course-specific**
 - fitted values and residual calculations **course-specific**
-- $R^2$ and standard error of the regression **planned**
+- [measures of fit: $R^2$, SER and RMSE](../../knowledge/econometrics/linear-regression/measures-of-fit.md) **available**
 - classical regression assumptions as presented in the slides **course-specific**
 
 ## Week 2: Simple linear regression with one regressor, inference
