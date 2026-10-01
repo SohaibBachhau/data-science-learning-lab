@@ -2,7 +2,7 @@
 title: Foundations Map
 status: developing
 created: 2026-08-09
-updated: 2026-09-30
+updated: 2026-10-01
 tags:
   - roadmap
   - intuition
@@ -1114,7 +1114,10 @@ At the current stage, the main conceptual chain is:
         |       +--> homoskedasticity / heteroskedasticity
         |       +--> test statistics and confidence intervals
         |
-        +--> [R-squared]
+        +--> [Fitted values / residuals]
+        |       |
+        |       +--> [R-squared]
+        |       +--> [SER / RMSE]
         |
         +--> normality branch
                 |
@@ -1210,6 +1213,7 @@ The goal is to turn econometrics into a connected story rather than a collection
 - [Correct specification](econometrics/linear-regression/correct-specification.md)
 - [Exogeneity](econometrics/linear-regression/exogeneity.md)
 - [Ordinary Least Squares](econometrics/linear-regression/ordinary-least-squares.md)
+- [Measures of fit in simple linear regression](econometrics/linear-regression/measures-of-fit.md)
 - [Sampling distribution of OLS](econometrics/linear-regression/sampling-distribution-of-ols.md)
 - [Maximum likelihood index](econometrics/maximum-likelihood/README.md)
 - [Maximum likelihood](econometrics/maximum-likelihood/maximum-likelihood.md)
@@ -1236,3 +1240,4 @@ The goal is to turn econometrics into a connected story rather than a collection
 | 2026-09-09 | Added trend, seasonality, cycles, level-dependent variability, lag-operator notation and first differencing | Extend toward higher-order differences, seasonal differencing and log differences |
 | 2026-09-27 | Added convergence-in-probability, convergence-in-distribution and estimator-efficiency links after reviewing the VU probability and statistics knowledge clips | Continue into maximum likelihood once the clip is studied |
 | 2026-09-30 | Added the reviewed maximum-likelihood and statistical-inference connections, including standard errors, p-values and confidence intervals | Continue into simple linear regression estimation |
+| 2026-10-01 | Re-derived simple OLS and added fitted values, residuals, $R^2$, SER, RMSE and degrees-of-freedom links | Continue into simple-regression inference |
