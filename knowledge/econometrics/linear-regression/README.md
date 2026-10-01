@@ -12,7 +12,8 @@ Recommended reading order:
 2. [Exogeneity](exogeneity.md)
 3. [Correct specification](correct-specification.md)
 4. [Ordinary least squares](ordinary-least-squares.md)
-5. [Sampling distribution of OLS](sampling-distribution-of-ols.md)
+5. [Measures of fit in simple linear regression](measures-of-fit.md)
+6. [Sampling distribution of OLS](sampling-distribution-of-ols.md)
 
 The logical separation is important:
 
@@ -20,6 +21,8 @@ The logical separation is important:
 regression equation
 → conditional mean restriction
 → estimation criterion
+→ fitted values and residuals
+→ measures of fit
 → estimator decomposition
 → statistical properties
 ```
