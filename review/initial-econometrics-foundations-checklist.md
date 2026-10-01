@@ -11,6 +11,12 @@ Use this checklist before merging the initial knowledge batch.
 - [ ] Explain the difference between convergence in probability and convergence in distribution.
 - [ ] State when to use the Continuous Mapping Theorem and Slutsky's theorem.
 - [ ] Distinguish unbiasedness, consistency and efficiency.
+- [ ] Derive the simple-regression OLS slope and intercept from the two first-order conditions.
+- [ ] Explain why $\sum_i b_0=nb_0$ but $\sum_i b_1X_i=b_1\sum_iX_i$.
+- [ ] Reproduce the identities $\sum_i(X_i-\bar X)(Y_i-\bar Y)=\sum_iX_iY_i-n\bar X\bar Y$ and $\sum_i(X_i-\bar X)^2=\sum_iX_i^2-n\bar X^2$.
+- [ ] Distinguish the population error $u_i$ from the fitted residual $\hat u_i$.
+- [ ] Explain why OLS residuals sum to zero when an intercept is included.
+- [ ] Interpret $R^2$, SER and RMSE and explain the $n-2$ denominator in the simple-regression SER.
 - [ ] Derive the OLS estimator decomposition.
 - [ ] Explain the distinct roles of exogeneity, homoskedasticity and normality.
 - [ ] Reproduce the OLS consistency argument using the LLN.
