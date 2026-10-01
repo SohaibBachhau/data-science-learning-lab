@@ -16,6 +16,10 @@ Exogeneity is central because it says that the remaining error has no systematic
 
 OLS then estimates the coefficients by choosing the values that minimize the sum of squared residuals.
 
+Once the line is fitted, each observation can be split into a fitted value and a residual. The residual is the observed outcome minus the fitted outcome. With an intercept, the residuals sum to zero and the fitted line passes through the sample means.
+
+We can then ask how well the line fits the sample. $R^2$ describes the fraction of sample variation in $Y$ explained by the regression, while SER and RMSE describe the typical size of the residual in the units of $Y$.
+
 That minimization can be done algebraically without assuming normality or homoskedasticity. Those assumptions enter later when we ask statistical questions such as whether OLS is unbiased, how variable it is, or how to construct standard errors.
 
 This creates the basic chain:
@@ -26,6 +30,8 @@ population relationship
 → error term
 → exogeneity
 → OLS minimization
+→ fitted values and residuals
+→ R-squared / SER / RMSE
 → estimator
 → sampling properties
 → standard errors and inference
@@ -54,4 +60,5 @@ More data can reduce sampling uncertainty, but it does not fix a fundamentally w
 - [Correct specification](correct-specification.md)
 - [Exogeneity](exogeneity.md)
 - [Ordinary least squares](ordinary-least-squares.md)
+- [Measures of fit in simple linear regression](measures-of-fit.md)
 - [Sampling distribution of OLS](sampling-distribution-of-ols.md)
