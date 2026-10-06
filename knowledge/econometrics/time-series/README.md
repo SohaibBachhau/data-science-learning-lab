@@ -17,16 +17,25 @@ For definitions you should be able to explain in ordinary words, use the [Time-S
 5. [Lag operator and differencing](lag-operator-and-differencing.md)
 6. [Higher-order and seasonal differencing](higher-order-and-seasonal-differencing.md)
 7. [Log differences, growth rates and returns](log-differences-growth-and-returns.md)
-8. [AR, MA and ARMA models](arma-models.md)
-9. [Statistical properties of stationary ARMA models](statistical-properties.md)
-10. [Invertibility of MA models](invertibility.md)
-11. [Parameter estimation for stationary ARMA models](parameter-estimation.md)
-12. [ACF, PACF and lag-order selection](acf-pacf-and-lag-order-selection.md)
-13. [Non-stationarity, unit roots and integration](nonstationarity-unit-roots-and-integration.md)
-14. [Unit-root testing: ADF and KPSS](unit-root-testing.md)
-15. [ARIMA models](arima-models.md)
-16. [Seasonal ARIMA models](seasonal-arima-models.md)
-17. [Week 3 full review](week-3-review.md)
+8. [Week 1 exam consolidation](week-1-exam-consolidation.md)
+9. [AR, MA and ARMA models](arma-models.md)
+10. [Statistical properties of stationary ARMA models](statistical-properties.md)
+11. [Invertibility of MA models](invertibility.md)
+12. [Parameter estimation for stationary ARMA models](parameter-estimation.md)
+13. [ACF, PACF and lag-order selection](acf-pacf-and-lag-order-selection.md)
+14. [Non-stationarity, unit roots and integration](nonstationarity-unit-roots-and-integration.md)
+15. [Unit-root testing: ADF and KPSS](unit-root-testing.md)
+16. [ARIMA models](arima-models.md)
+17. [Seasonal ARIMA models](seasonal-arima-models.md)
+18. [Week 3 full review](week-3-review.md)
+
+## Exam-prep emphasis
+
+The 2026 preparation exam is weighted approximately 60% open-ended derivation/computation, 25% yes/no with explanation, and 15% single-choice. The study notes should therefore be used to **derive, compute and explain**, not only to recognize definitions.
+
+For Week 1, the stopping standard is: identify weak stationarity from the moments, derive simple autocovariances and ACF values, distinguish white noise from a random walk, and manipulate `L`, `Delta`, second differences and seasonal differences without help.
+
+Use [Week 1 exam consolidation](week-1-exam-consolidation.md) as the short retrieval-and-practice checkpoint before moving on.
 
 ## Week 2 map
 
