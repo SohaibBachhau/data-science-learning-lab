@@ -230,6 +230,46 @@ $$
 
 Do not treat `L` as an ordinary number. It is an operator acting on a time-indexed variable.
 
+## Extra operator manipulations
+
+The general shift rule is
+
+$
+L^kX_t=X_{t-k}.
+$
+
+This also makes sense for a negative power:
+
+$
+L^{-1}X_t=X_{t+1}.
+$
+
+For combined ordinary and seasonal differencing,
+
+$
+(1-L)(1-L^s)
+=
+1-L-L^s+L^{s+1}.
+$
+
+Hence,
+
+$
+(1-L)(1-L^s)X_t
+=
+X_t-X_{t-1}-X_{t-s}+X_{t-s-1}.
+$
+
+For quarterly data, where `s=4`,
+
+$
+(1-L)(1-L^4)X_t
+=
+X_t-X_{t-1}-X_{t-4}+X_{t-5}.
+$
+
+A useful algebra check is to treat the lag-polynomial brackets like ordinary brackets first, and only then let each power of `L` shift the time index.
+
 ## Why differencing matters
 
 Differencing changes the object we model.
