@@ -19,3 +19,18 @@ A random walk is a standard example of non-stationarity because shocks accumulat
 ## One-sentence answer
 
 Stationarity means that a time series can move around, but its underlying statistical behavior remains stable over time.
+
+
+## Memory rule
+
+A compact way to remember weak stationarity is:
+
+> Same center, same spread, same dependence structure.
+
+"Same center" means the unconditional mean does not change with time.
+
+"Same spread" means the unconditional variance does not change with time.
+
+"Same dependence structure" means that the relationship between observations depends on how far apart they are, not on which calendar dates we chose.
+
+A useful exam trap is the random walk. Its mean can be constant, but its variance grows over time. So a constant mean alone is never enough to conclude stationarity.
