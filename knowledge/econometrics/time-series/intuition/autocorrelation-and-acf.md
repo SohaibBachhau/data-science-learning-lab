@@ -29,3 +29,26 @@ Oscillation means that the autocorrelations can move from positive to negative a
 **ACF:** the pattern of autocorrelation across many lags.
 
 **Oscillating ACF:** an ACF that moves above and below zero while its overall size tends to die out.
+
+
+## The shared-shock shortcut
+
+When a model is written in white-noise shocks, autocovariance can often be understood without memorizing a long derivation.
+
+Write the two dates you are comparing and ask:
+
+> Which shocks appear in both expressions?
+
+Different white-noise dates have zero covariance. A shock that appears in both expressions contributes because it is being paired with itself.
+
+For an MA(1), today's value and yesterday's value share exactly one shock, so lag-1 autocovariance can be nonzero. Today's value and the value two periods ago share no shocks, so the theoretical autocovariance is zero from lag 2 onward.
+
+This is the intuition behind the MA cutoff in the ACF.
+
+## White noise versus random walk in the ACF
+
+Do not swap these two.
+
+White noise has no theoretical autocorrelation at nonzero lags.
+
+A random walk is non-stationary. In data, its sample ACF is usually highly persistent and falls only slowly because shocks remain embedded in future levels.
