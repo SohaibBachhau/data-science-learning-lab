@@ -189,6 +189,73 @@ $$
 
 The growing level is replaced by a constant increment.
 
+## Week 1 exam checkpoint
+
+The Week 1 material can be compressed into one story.
+
+Weak stationarity means **same center, same spread, same dependence structure** through time. Formally, the mean is constant and the autocovariance depends only on the lag. Constant variance follows because variance is the lag-zero autocovariance.
+
+When a process is written in white-noise shocks, autocovariance calculations become much easier if we ask which shocks the two dates have in common. Different white-noise dates contribute zero covariance; the same shock paired with itself contributes its variance.
+
+For an MA(1),
+
+$
+X_t=\varepsilon_t+\theta\varepsilon_{t-1},
+$
+
+we obtain
+
+$
+\gamma(0)=(1+\theta^2)\sigma^2,
+\qquad
+\gamma(1)=\theta\sigma^2,
+\qquad
+\gamma(h)=0 \text{ for } h>1.
+$
+
+So an MA ACF cuts off, while an AR ACF usually decays. White noise has no nonzero-lag autocorrelation. A random walk is different: shocks accumulate in the level, its variance grows with time, and its sample ACF is typically very persistent rather than immediately zero.
+
+Differencing gives a small transformation toolkit:
+
+```text
+linear trend -> first difference Delta
+quadratic trend -> second difference Delta^2
+seasonality of period s -> seasonal difference Delta_s
+trend + seasonality -> Delta_s Delta
+```
+
+Using lag notation,
+
+$
+\Delta=1-L,
+\qquad
+\Delta_s=1-L^s.
+$
+
+For quarterly data,
+
+$
+(1-L)(1-L^4)X_t
+=
+X_t-X_{t-1}-X_{t-4}+X_{t-5}.
+$
+
+Finally, the ordinary percentage growth rate is exact,
+
+$
+100\frac{X_t-X_{t-1}}{X_{t-1}},
+$
+
+while
+
+$
+100\Delta\log X_t
+$
+
+is a close approximation when growth is small.
+
+The exam goal is not just to recognize these formulas, but to reproduce the reasoning behind them without prompts.
+
 ## Week 2 begins: modeling stationary dynamics
 
 Once a series is stationary, the next question is not just whether it is stable, but how values depend on the past.
