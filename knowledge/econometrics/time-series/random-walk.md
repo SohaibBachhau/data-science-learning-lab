@@ -182,6 +182,31 @@ $$
 
 Once the current level is known, the only new uncertainty for the next period is the new shock.
 
+## ACF intuition and an important caution
+
+White noise and a random walk should not be confused.
+
+White noise has theoretical autocorrelation zero at every nonzero lag.
+
+A random walk is non-stationary, so the stationary formula
+
+$
+\rho(h)=\frac{\gamma(h)}{\gamma(0)}
+$
+
+is not used as a time-invariant theoretical ACF in the same way. In observed random-walk data, however, the **sample ACF is typically very persistent**: correlations stay high and decline slowly across lags.
+
+So the visual memory rule is:
+
+```text
+white noise -> sample ACF near zero after lag 0
+stationary AR -> ACF decays toward zero
+MA(q) -> ACF cuts off after q
+random walk / strong unit-root behavior -> sample ACF stays high and decays slowly
+```
+
+The reason is the same shock-persistence story: a random-walk shock remains embedded in all future levels.
+
 ## First differencing
 
 Subtract `X_{t-1}` from both sides:
