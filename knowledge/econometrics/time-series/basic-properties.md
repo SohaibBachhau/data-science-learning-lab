@@ -82,6 +82,92 @@ $$
 \gamma_X(t,t).
 $$
 
+## Autocovariance calculation recipe
+
+For exam calculations, it is often faster to use covariance rules than to start from the expectation formula.
+
+Suppose
+
+$
+X_t=\varepsilon_t+\theta\varepsilon_{t-1},
+\qquad
+\varepsilon_t\sim WN(0,\sigma^2).
+$
+
+To find lag-1 autocovariance, first write both dates:
+
+$
+X_t=\varepsilon_t+\theta\varepsilon_{t-1},
+$
+
+$
+X_{t-1}=\varepsilon_{t-1}+\theta\varepsilon_{t-2}.
+$
+
+Then expand every pairing:
+
+$
+\begin{aligned}
+\gamma(1)
+={}&\operatorname{Cov}(\varepsilon_t,\varepsilon_{t-1})
++\theta\operatorname{Cov}(\varepsilon_t,\varepsilon_{t-2})\\
+&+\theta\operatorname{Cov}(\varepsilon_{t-1},\varepsilon_{t-1})
++\theta^2\operatorname{Cov}(\varepsilon_{t-1},\varepsilon_{t-2}).
+\end{aligned}
+$
+
+White-noise shocks at different dates are uncorrelated, so only the shared shock survives:
+
+$
+\gamma(1)=\theta\sigma^2.
+$
+
+The practical shortcut is:
+
+> Write both variables out and look for shocks they share.
+
+At lag zero,
+
+$
+\gamma(0)=\operatorname{Var}(X_t)=(1+\theta^2)\sigma^2.
+$
+
+Therefore,
+
+$
+\rho(1)
+=
+\frac{\gamma(1)}{\gamma(0)}
+=
+\frac{\theta}{1+\theta^2}.
+$
+
+For an MA(1), there are no shared shocks beyond lag 1, so
+
+$
+\gamma(h)=\rho(h)=0
+\qquad
+\text{for }h>1.
+$
+
+### Two sign rules worth checking
+
+For variance,
+
+$
+\operatorname{Var}(aX)=a^2\operatorname{Var}(X),
+$
+
+so a negative coefficient loses its sign after squaring.
+
+For covariance,
+
+$
+\operatorname{Cov}(aX,bY)=ab\operatorname{Cov}(X,Y),
+$
+
+so a negative sign can remain in the autocovariance. This is why a negative MA coefficient can produce negative lag-1 autocorrelation.
+
 ## Weak stationarity
 
 A process `{X_t}` with finite second moments is weakly stationary, or covariance stationary, if:
