@@ -78,6 +78,50 @@ So a quadratic deterministic trend can be removed by second differencing.
 
 The general idea is that repeated differencing can reduce the order of a polynomial trend.
 
+## Quadratic-trend shortcut
+
+For a deterministic quadratic term
+
+$
+X_t=at^2,
+$
+
+the first difference is
+
+$
+\Delta X_t
+=
+at^2-a(t-1)^2
+=
+2at-a.
+$
+
+This is linear in `t`. Differencing once more gives
+
+$
+\Delta^2X_t=2a.
+$
+
+So the useful pattern is
+
+$
+at^2
+\xrightarrow{\Delta}
+\text{linear in }t
+\xrightarrow{\Delta}
+2a.
+$
+
+The most common algebra error is losing a sign when subtracting the lagged expression. Write the brackets explicitly:
+
+$
+X_t-X_{t-1}
+=
+X_t-(\text{entire lagged expression}),
+$
+
+and distribute the minus sign only after the lagged expression has been written out.
+
 ## Seasonal differencing
 
 For a seasonal period `s`, define
