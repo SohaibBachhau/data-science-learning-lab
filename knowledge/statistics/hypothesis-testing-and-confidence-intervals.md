@@ -3,8 +3,8 @@ title: Hypothesis Testing and Confidence Intervals
 subject: statistics
 status: developing
 created: 2026-09-30
-updated: 2026-09-30
-last_reviewed: 2026-09-30
+updated: 2026-10-09
+last_reviewed: 2026-10-09
 prerequisites:
   - sampling distributions
   - standard errors
@@ -65,6 +65,41 @@ H_1:\mu\neq\mu_0.
 $$
 
 The null hypothesis is the claim we start with. The alternative is what we test against.
+
+## One-sided alternatives
+
+A one-sided test is used when the alternative has a direction.
+
+For a lower-tail test,
+
+$
+H_0:\theta\geq\theta_0
+$
+
+against
+
+$
+H_1:\theta<\theta_0,
+$
+
+the evidence against the null is in the left tail. Under the large-sample standard Normal approximation, the 5 percent critical value is approximately $-1.645$.
+
+For an upper-tail test,
+
+$
+H_0:\theta\leq\theta_0
+$
+
+against
+
+$
+H_1:\theta>\theta_0,
+$
+
+the evidence against the null is in the right tail, with 5 percent critical value approximately $1.645$.
+
+The sign of the statistic matters. Do not take an absolute value in a one-sided test.
+
 
 ## Standard error of the sample mean
 
@@ -192,6 +227,9 @@ $$
 
 The p-value is calculated under the null hypothesis. It is not the probability that the null hypothesis is true.
 
+For a two-sided test, probability is counted in both tails. For a lower-tail one-sided test, only the left tail is relevant. For an upper-tail one-sided test, only the right tail is relevant.
+
+
 ## Confidence interval
 
 The course gives the large-sample 95% confidence interval for a mean as
@@ -228,6 +266,42 @@ For the corresponding two-sided 5% test and 95% confidence interval:
 - if $\mu_0$ lies inside the confidence interval, fail to reject $H_0$.
 
 These are two ways of expressing the same large-sample inference decision.
+
+## Application to regression coefficients
+
+The same logic applies to an OLS coefficient. To test
+
+$
+H_0:\beta_j=\beta_{j,0},
+$
+
+use
+
+$
+t
+=
+\frac{\hat\beta_j-\beta_{j,0}}
+{SE(\hat\beta_j)}.
+$
+
+The most useful interpretation is:
+
+> The t-statistic tells us how many standard errors the estimated coefficient lies above or below the value assumed under the null hypothesis.
+
+For example, $t=-3.5$ means the estimated coefficient lies 3.5 standard errors below the null value.
+
+When heteroskedasticity-robust inference is requested, the robust standard error is used in the denominator. This changes the estimated uncertainty and therefore can change the t-statistic, p-value and confidence interval, while leaving the OLS coefficient estimate itself unchanged.
+
+For a large-sample 95 percent confidence interval,
+
+$
+\hat\beta_j
+\pm
+1.96SE(\hat\beta_j).
+$
+
+The corresponding two-sided 5 percent test rejects $H_0:\beta_j=\beta_{j,0}$ exactly when $\beta_{j,0}$ lies outside that interval.
+
 
 ## Exact t distribution under Normal sampling
 
@@ -287,6 +361,8 @@ The sign shows the direction of the difference, while the absolute value determi
 
 - Looking only at $\bar X-\mu_0$ and ignoring the standard error.
 - Forgetting the sign of the test statistic.
+- Using $|t|$ for a one-sided test instead of respecting the direction of the alternative.
+- Reversing the numerator instead of keeping it as estimate minus null value.
 - Saying that failing to reject $H_0$ proves $H_0$ is true.
 - Interpreting the p-value as the probability that $H_0$ is true.
 - Saying that a realized 95% confidence interval contains the fixed parameter with 95% probability.
@@ -304,6 +380,9 @@ The sign shows the direction of the difference, while the absolute value determi
 7. How are a two-sided 5% test and a 95% confidence interval connected?
 8. How do the CLT, consistency of $s$, and Slutsky's theorem justify the large-sample t-statistic?
 9. When does the course use the exact $t_{n-1}$ distribution?
+10. Why is $|t|$ used for a two-sided test but not a one-sided test?
+11. What does $t=-3.5$ mean for a regression coefficient?
+12. Why can robust standard errors change inference without changing the OLS coefficient?
 
 ## Connections
 
@@ -323,3 +402,4 @@ The sign shows the direction of the difference, while the absolute value determi
 | Date | Result | Next action |
 |---|---|---|
 | 2026-09-30 | Reviewed null and alternative hypotheses, t-statistics, p-values, critical values, confidence intervals, and the CLT plus Slutsky derivation | Reuse these ideas when testing regression coefficients |
+| 2026-10-09 | Applied the testing framework to OLS coefficients, including one-sided tests, robust SEs and CI-test equivalence | Practice mixed regression-output questions with nonzero null values |
