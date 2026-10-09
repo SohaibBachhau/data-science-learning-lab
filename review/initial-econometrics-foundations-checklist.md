@@ -26,6 +26,11 @@ Use this checklist before merging the initial knowledge batch.
 - [ ] Derive the Pareto MLE $\hat\theta=n/\sum_i\ln X_i$.
 - [ ] Explain why maximizing the log-likelihood gives the same maximizer as maximizing the likelihood.
 - [ ] Explain the t-statistic as a difference measured in standard errors.
+- [ ] Distinguish the true sampling variance, estimated variance and standard error of an OLS coefficient.
+- [ ] Explain why heteroskedasticity-robust standard errors can change inference without changing the OLS coefficient.
+- [ ] Calculate a t-statistic when the null value is not zero and preserve the sign of $\hat\beta-\beta_0$.
+- [ ] Distinguish two-sided, lower-tail and upper-tail tests and use the correct 5% critical value.
+- [ ] Use a 95% confidence interval to reproduce the decision from a two-sided 5% test.
 - [ ] State the 5% two-sided critical-value rule and interpret a p-value under $H_0$.
 - [ ] Explain the repeated-sampling interpretation of a 95% confidence interval.
 - [ ] Reproduce the CLT plus consistency plus Slutsky argument for $t\overset{d}{\to}N(0,1)$.
