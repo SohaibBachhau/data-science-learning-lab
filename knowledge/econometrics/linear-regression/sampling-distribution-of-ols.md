@@ -3,8 +3,8 @@ title: Sampling Distribution of OLS
 subject: econometrics
 status: developing
 created: 2026-07-23
-updated: 2026-07-23
-last_reviewed:
+updated: 2026-10-09
+last_reviewed: 2026-10-09
 prerequisites:
   - ordinary least squares
   - conditional expectation
@@ -177,6 +177,10 @@ Under zero conditional mean and suitable sampling assumptions, heteroskedasticit
 
 Heteroskedasticity-robust standard errors estimate the general sandwich variance rather than imposing $\Omega=\sigma^2I_n$.
 
+Using a robust standard error does not re-estimate the OLS coefficient. The point estimate $\hat\beta$ stays the same; what changes is the estimated sampling uncertainty used in t-statistics, p-values and confidence intervals.
+
+A robust standard error is also not guaranteed to be larger than a homoskedasticity-only standard error in every sample. "Robust" refers to validity under heteroskedasticity, not to a mechanical upward adjustment.
+
 ## Simple regression variance intuition
 
 For a simple regression with an intercept and homoskedastic errors,
@@ -279,6 +283,42 @@ $$
 
 Its diagonal elements are estimated coefficient variances. Their square roots are standard errors.
 
+## Sampling variance, estimated variance and standard error
+
+Three related quantities should be kept separate.
+
+The true sampling variance is
+
+$
+\operatorname{Var}(\hat\beta_j)
+=
+\sigma_{\hat\beta_j}^2.
+$
+
+It is a population property of the estimator and is generally unknown.
+
+The estimated sampling variance is
+
+$
+\widehat{\operatorname{Var}}(\hat\beta_j)
+=
+\hat\sigma_{\hat\beta_j}^2.
+$
+
+It is computed from the observed sample.
+
+The standard error is the square root of that estimated variance:
+
+$
+SE(\hat\beta_j)
+=
+\sqrt{\hat\sigma_{\hat\beta_j}^2}.
+$
+
+The most useful verbal interpretation is that the standard error estimates how much the coefficient estimator would typically vary across repeated samples.
+
+A smaller standard error means a more precise estimate. A larger standard error means a less precise estimate.
+
 ## Standardized statistics
 
 For coefficient $j$, a large-sample statistic for testing
@@ -359,3 +399,4 @@ These claims should not be mixed.
 | Date | Result | Next action |
 |---|---|---|
 | 2026-07-23 | Initial note created | Derive the conditional variance matrix and explain every matrix dimension |
+| 2026-10-09 | Reviewed sampling-distribution intuition, variance versus estimated variance versus SE, robust inference, t-statistics and confidence intervals | Reuse these distinctions in mixed exam-style inference questions |
