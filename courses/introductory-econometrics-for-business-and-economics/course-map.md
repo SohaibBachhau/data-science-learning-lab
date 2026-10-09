@@ -10,7 +10,7 @@ Status labels used below:
 - **planned**: the course covers the topic, but the permanent note will be created when the topic is studied;
 - **course-specific**: the material should first be developed in the weekly course notes before deciding whether it needs a separate permanent note.
 
-## Foundation before Week 1
+## Week 1: Knowledge clip series foundations
 
 These notes support the probability and statistics used throughout the course:
 
@@ -25,7 +25,7 @@ These notes support the probability and statistics used throughout the course:
 - [Sampling distributions](../../knowledge/statistics/sampling-distributions.md) **available**
 - [Efficiency](../../knowledge/statistics/efficiency.md) **available**
 
-## Week 1: Simple linear regression with one regressor, estimation
+## Week 2: Simple linear regression with one regressor, estimation
 
 ### Permanent knowledge
 
@@ -43,7 +43,9 @@ These notes support the probability and statistics used throughout the course:
 - [measures of fit: $R^2$, SER and RMSE](../../knowledge/econometrics/linear-regression/measures-of-fit.md) **available**
 - classical regression assumptions as presented in the slides **course-specific**
 
-## Week 2: Simple linear regression with one regressor, inference
+## Week 3: Simple linear regression with one regressor, inference
+
+Course-specific review: [Week 3: Simple Linear Regression Inference](course-notes/week-3-simple-linear-regression-inference.md).
 
 ### Permanent knowledge
 
@@ -66,7 +68,7 @@ These notes support the probability and statistics used throughout the course:
 - Slutsky's theorem is covered in [Convergence in distribution](../../knowledge/probability/convergence-in-distribution.md) **available**
 - continuous mapping theorem is covered in [Convergence in probability](../../knowledge/probability/convergence-in-probability.md) **available**
 
-## Week 3: Multiple regression, estimation and assumptions
+## Week 4: Multiple regression, estimation and assumptions
 
 ### Existing foundations
 
@@ -86,7 +88,7 @@ These notes support the probability and statistics used throughout the course:
 - dummy-variable trap **planned**
 - adjusted $R^2$ **planned**
 
-## Week 4: Multiple regression, testing and restricted estimation
+## Week 5: Multiple regression, testing and restricted estimation
 
 ### Existing foundations
 
@@ -106,7 +108,7 @@ These notes support the probability and statistics used throughout the course:
 - Lagrange-multiplier test **planned**
 - control variables and specification choices **planned**
 
-## Week 5: Nonlinear regression functions
+## Week 6: Nonlinear regression functions
 
 ### Existing foundations
 
@@ -125,27 +127,6 @@ These notes support the probability and statistics used throughout the course:
 - elasticities and semi-elasticities **planned**
 - interaction terms **planned**
 - marginal effects **planned**
-
-## Week 6: Introduction to panel data analysis
-
-### Existing foundations
-
-- [Joint distributions, independence and iid sampling](../../knowledge/probability/joint-distributions-independence-and-iid.md) **available**
-- [Exogeneity](../../knowledge/econometrics/linear-regression/exogeneity.md) **available**
-- [Correct specification](../../knowledge/econometrics/linear-regression/correct-specification.md) **available**
-
-### Planned permanent knowledge
-
-- panel-data structure **planned**
-- first-difference estimator **planned**
-- entity fixed effects **planned**
-- time fixed effects **planned**
-- two-way fixed effects **planned**
-- least-squares dummy-variable estimation **planned**
-- within or entity-demeaned estimator **planned**
-- strict exogeneity in panel data **planned**
-- clustered and panel-appropriate standard errors **planned**
-- random effects and the Hausman comparison **planned**
 
 ## Development rule
 
