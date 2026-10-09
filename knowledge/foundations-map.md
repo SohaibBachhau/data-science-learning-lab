@@ -2,7 +2,7 @@
 title: Foundations Map
 status: developing
 created: 2026-08-09
-updated: 2026-10-01
+updated: 2026-10-09
 tags:
   - roadmap
   - intuition
@@ -620,6 +620,23 @@ t=
 $$
 
 Larger uncertainty means a smaller absolute test statistic, holding the estimated distance from the null fixed.
+
+The t-statistic has a direct interpretation: it tells us how many standard errors the estimate lies above or below the null value.
+
+From there, inference branches into three equivalent views of the same sampling uncertainty:
+
+```text
+estimate + SE
+    |
+    +--> t-statistic --> critical-value decision
+    |
+    +--> p-value --> how unusual the statistic is under H0
+    |
+    +--> confidence interval --> parameter values compatible with the data
+```
+
+For a two-sided 5 percent test, the large-sample critical value is $1.96$ in absolute value. For a one-sided 5 percent test, the relevant critical value is approximately $1.645$ in the direction specified by the alternative.
+
 
 ---
 
@@ -1241,3 +1258,4 @@ The goal is to turn econometrics into a connected story rather than a collection
 | 2026-09-27 | Added convergence-in-probability, convergence-in-distribution and estimator-efficiency links after reviewing the VU probability and statistics knowledge clips | Continue into maximum likelihood once the clip is studied |
 | 2026-09-30 | Added the reviewed maximum-likelihood and statistical-inference connections, including standard errors, p-values and confidence intervals | Continue into simple linear regression estimation |
 | 2026-10-01 | Re-derived simple OLS and added fitted values, residuals, $R^2$, SER, RMSE and degrees-of-freedom links | Continue into simple-regression inference |
+| 2026-10-09 | Connected OLS sampling uncertainty to robust standard errors, t-statistics, one-sided and two-sided tests, p-values and confidence intervals | Continue into multiple-regression estimation and assumptions |
