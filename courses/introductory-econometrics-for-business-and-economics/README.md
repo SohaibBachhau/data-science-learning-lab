@@ -22,11 +22,25 @@ It develops the tools needed to:
 - construct confidence intervals;
 - estimate and interpret multiple regression models;
 - work with nonlinear regression functions;
-- introduce panel-data and fixed-effects methods.
 
 ## Course outline
 
-### Week 1: Simple linear regression with one regressor
+### Week 1: Knowledge clip series
+
+Topics:
+
+- random variables and probability distributions;
+- expectation, variance and moments;
+- normal distributions;
+- conditional distributions and independence;
+- covariance and correlation;
+- convergence of random variables;
+- bias and consistency of estimators;
+- the law of large numbers and central limit theorem;
+- maximum likelihood estimation;
+- hypothesis testing, p-values and confidence intervals.
+
+### Week 2: Simple linear regression with one regressor, estimation
 
 Topics:
 
@@ -41,7 +55,7 @@ Topics:
 - classical regression assumptions;
 - maximum likelihood estimation.
 
-### Week 2: Simple linear regression inference
+### Week 3: Simple linear regression with one regressor, inference
 
 Topics:
 
@@ -52,17 +66,18 @@ Topics:
 - estimators as random variables;
 - unbiasedness of OLS;
 - consistency of OLS;
+- sampling distributions;
 - large-sample normality;
-- the law of large numbers;
-- the central limit theorem;
-- Slutsky's theorem;
-- the continuous mapping theorem;
-- standard errors;
-- hypothesis testing;
-- confidence intervals;
-- regressions with binary regressors.
+- variance, estimated variance and standard errors;
+- heteroskedasticity-robust standard errors;
+- t-statistics;
+- one-sided and two-sided hypothesis tests;
+- p-values;
+- confidence intervals.
 
-### Week 3: Multiple regression estimation and assumptions
+See [Week 3: Simple Linear Regression Inference](course-notes/week-3-simple-linear-regression-inference.md).
+
+### Week 4: Multiple regression estimation and assumptions
 
 Topics:
 
@@ -81,7 +96,7 @@ Topics:
 - conditional expectation of the OLS estimator;
 - conditional variance of the OLS estimator.
 
-### Week 4: Multiple regression testing and restricted estimation
+### Week 5: Multiple regression testing and restricted estimation
 
 Topics:
 
@@ -100,7 +115,7 @@ Topics:
 - regression specification;
 - control variables.
 
-### Week 5: Nonlinear regression functions
+### Week 6: Nonlinear regression functions
 
 Topics:
 
@@ -119,22 +134,6 @@ Topics:
 - interactions between binary variables;
 - interactions between binary and continuous variables;
 - interactions between continuous variables.
-
-### Week 6: Introduction to panel data analysis
-
-Topics:
-
-- the structure of panel data;
-- balanced and unbalanced panels;
-- panel data with two time periods;
-- first-difference estimation;
-- entity-specific fixed effects;
-- time fixed effects;
-- two-way fixed effects;
-- least-squares dummy-variable estimation;
-- entity-demeaned estimation;
-- panel-data assumptions;
-- standard errors appropriate for panel data.
 
 ## Directory structure
 
