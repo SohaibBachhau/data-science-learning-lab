@@ -45,6 +45,38 @@ The slope is easier to estimate when there is useful variation in the regressor 
 
 In multiple regression, what matters is not just variation in a regressor, but variation that is not already explained by the other regressors.
 
+## From an estimate to inference
+
+After OLS produces a coefficient estimate, the next question is not only "what is the estimate?" but also "how uncertain is it?"
+
+Across repeated samples, $\hat\beta$ would change. Its sampling distribution describes that variation. The standard error estimates the typical size of those sample-to-sample changes.
+
+Inference then compares the observed estimate with a population value proposed by a null hypothesis:
+
+$
+t
+=
+\frac{\hat\beta_j-\beta_{j,0}}
+{SE(\hat\beta_j)}.
+$
+
+The t-statistic is therefore a distance measured in units of sampling uncertainty. A value such as $t=-3.5$ means that the estimate lies 3.5 standard errors below the value assumed under the null.
+
+From there:
+
+```text
+coefficient estimate
+-> standard error
+-> distance from the null in SE units
+-> t-statistic
+-> p-value / test decision
+-> confidence interval
+```
+
+A two-sided test asks whether the estimate is unusually far from the null in either direction. A one-sided test cares about only the direction stated in the alternative, so the sign of the t-statistic matters.
+
+If heteroskedasticity is possible, a heteroskedasticity-robust standard error can be used. This changes the estimated uncertainty and therefore can change the t-statistic, p-value and confidence interval, but it does not change the OLS coefficient itself.
+
 ## What to remember
 
 The regression equation is not the same as the assumption that the conditional mean is correctly specified.
