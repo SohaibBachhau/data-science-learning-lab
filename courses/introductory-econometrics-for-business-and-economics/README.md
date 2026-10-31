@@ -79,6 +79,8 @@ See [Week 3: Simple Linear Regression Inference](course-notes/week-3-simple-line
 
 ### Week 4: Multiple regression estimation and assumptions
 
+Completed study notes: [Week 4: Multiple Regression, Matrix OLS and Assumptions](course-notes/week-4-multiple-regression.md).
+
 Topics:
 
 - omitted variable bias;
@@ -97,6 +99,8 @@ Topics:
 - conditional variance of the OLS estimator.
 
 ### Week 5: Multiple regression testing and restricted estimation
+
+Study progress: [Week 5: Joint Testing (Started)](course-notes/week-5-joint-testing-start.md). This records the joint-testing material covered so far; the remaining techniques are not yet marked complete.
 
 Topics:
 

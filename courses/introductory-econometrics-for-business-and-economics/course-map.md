@@ -70,43 +70,38 @@ Course-specific review: [Week 3: Simple Linear Regression Inference](course-note
 
 ## Week 4: Multiple regression, estimation and assumptions
 
-### Existing foundations
+Completed course review: [Week 4: Multiple Regression, Matrix OLS and Assumptions](course-notes/week-4-multiple-regression.md) (October 19 study session).
 
-- [Linear regression model](../../knowledge/econometrics/linear-regression/linear-regression-model.md) **available**
+### Permanent knowledge now available
+
+- [Omitted-variable bias](../../knowledge/econometrics/linear-regression/omitted-variable-bias.md) **available**
+- [Multiple regression and adjusted fit](../../knowledge/econometrics/linear-regression/multiple-regression.md) **available**
+- [Matrix OLS, projection matrices, residual orthogonality and covariance](../../knowledge/econometrics/linear-regression/matrix-ols-and-projections.md) **available**
+- [Multicollinearity, binary regressors and the dummy-variable trap](../../knowledge/econometrics/linear-regression/multicollinearity-and-dummies.md) **available**
+
+### Existing connected foundations
+
 - [Exogeneity](../../knowledge/econometrics/linear-regression/exogeneity.md) **available**
 - [Correct specification](../../knowledge/econometrics/linear-regression/correct-specification.md) **available**
-- [Ordinary least squares](../../knowledge/econometrics/linear-regression/ordinary-least-squares.md) **available**
 - [Sampling distribution of OLS](../../knowledge/econometrics/linear-regression/sampling-distribution-of-ols.md) **available**
-
-### Planned permanent knowledge
-
-- omitted variable bias **planned**
-- multiple regression and ceteris paribus interpretation **planned**
-- matrix notation for regression **planned**
-- matrix differentiation **planned**
-- perfect and imperfect multicollinearity **planned**
-- dummy-variable trap **planned**
-- adjusted $R^2$ **planned**
 
 ## Week 5: Multiple regression, testing and restricted estimation
 
-### Existing foundations
+Covered so far: [Week 5: Joint Testing (Started)](course-notes/week-5-joint-testing-start.md).
 
-- [Sampling distributions](../../knowledge/statistics/sampling-distributions.md) **available**
-- [Asymptotic normality](../../knowledge/statistics/asymptotic-normality.md) **available**
+### Permanent knowledge now available
+
+- [Joint testing: restrictions, restricted and unrestricted models, and the first homoskedastic F-test](../../knowledge/econometrics/linear-regression/joint-hypothesis-tests.md) **available**
+- [Hypothesis testing and confidence intervals for an individual coefficient](../../knowledge/statistics/hypothesis-testing-and-confidence-intervals.md) **available**
 - [Maximum likelihood](../../knowledge/econometrics/maximum-likelihood/maximum-likelihood.md) **available**
 
-### Planned permanent knowledge
+### Not yet recorded as completed
 
-- tests for individual coefficients **planned**
-- joint hypothesis tests and the $F$ statistic **planned**
-- general linear restrictions **planned**
-- restricted least squares **planned**
-- Lagrange multipliers **planned**
-- Wald test **planned**
-- likelihood-ratio test **planned**
-- Lagrange-multiplier test **planned**
-- control variables and specification choices **planned**
+- full general linear-restriction calculations $R\beta=r$ **planned**
+- robust Wald / F / chi-squared tests **planned**
+- restricted least squares and Lagrange multipliers **planned**
+- likelihood-ratio and Lagrange-multiplier tests **planned**
+- control-variable choice and specification sensitivity checks **planned**
 
 ## Week 6: Nonlinear regression functions
 

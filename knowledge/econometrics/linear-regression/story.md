@@ -77,6 +77,19 @@ A two-sided test asks whether the estimate is unusually far from the null in eit
 
 If heteroskedasticity is possible, a heteroskedasticity-robust standard error can be used. This changes the estimated uncertainty and therefore can change the t-statistic, p-value and confidence interval, but it does not change the OLS coefficient itself.
 
+
+## The next chapter: holding other variables constant
+
+In the first version of our story, there is only one regressor. But a relationship we see in data may mix several different influences. If language background affects test scores and is correlated with class size, a class-size-only regression can accidentally attribute part of the language-background pattern to class size. This is the intuition behind [omitted-variable bias](omitted-variable-bias.md).
+
+[Multiple regression](multiple-regression.md) lets us compare outcomes at the same values of other included regressors. The meaning of a slope becomes “one regressor changes while the others are held fixed.” This gives a partial association; it is not automatic proof of a causal effect.
+
+The larger regression becomes easier to handle with [matrix notation](matrix-ols-and-projections.md). OLS still minimizes squared residuals, but now it projects the entire outcome vector onto the space spanned by the regressors. The fitted part lies in that space, while the residual points in a perpendicular direction. That is why sample residuals are orthogonal to every regressor, even if the population exogeneity assumption is false.
+
+This geometry also explains two problems that initially sound similar. With **perfect** [multicollinearity](multicollinearity-and-dummies.md), one regressor column adds no new direction and the coefficient vector is not uniquely identified. With **imperfect** multicollinearity, there is a new direction, but so little independent variation that the estimate can be imprecise. Including every category dummy together with an intercept is a classic perfect-dependence mistake.
+
+After estimating more than one slope, we often want to test them **together**. Two individual 5% tests do not normally form a valid 5% joint test. A first [joint F-test](joint-hypothesis-tests.md) compares how much fit is lost when a group of coefficients is restricted. The homoskedastic R-squared version is only the beginning; robust and general matrix forms still require separate study.
+
 ## What to remember
 
 The regression equation is not the same as the assumption that the conditional mean is correctly specified.

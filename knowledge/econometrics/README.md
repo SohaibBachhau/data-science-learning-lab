@@ -16,6 +16,11 @@ For a quick narrative review of how the major branches connect, read [The Story 
 4. [Correct specification](linear-regression/correct-specification.md)
 5. [Ordinary least squares](linear-regression/ordinary-least-squares.md)
 6. [Sampling distribution of OLS](linear-regression/sampling-distribution-of-ols.md)
+7. [Omitted-variable bias](linear-regression/omitted-variable-bias.md)
+8. [Multiple regression and adjusted fit](linear-regression/multiple-regression.md)
+9. [Matrix OLS and projection matrices](linear-regression/matrix-ols-and-projections.md)
+10. [Multicollinearity and dummy variables](linear-regression/multicollinearity-and-dummies.md)
+11. [Joint hypothesis tests (introductory F-test)](linear-regression/joint-hypothesis-tests.md)
 
 ### Maximum likelihood
 
@@ -55,4 +60,4 @@ The probability notes explain random variables, conditional expectations, moment
 
 ## Status
 
-The linear-regression, maximum-likelihood and time-series sections are currently `developing`. Future additions should extend this foundation toward multiple regression, testing, nonlinear regression, panel data and dynamic models without duplicating existing explanations.
+The linear-regression, maximum-likelihood and time-series sections are currently `developing`. The foundation now includes Week 4 multiple regression and the opening Week 5 joint-test material. General robust joint tests, nonlinear regression, panel data and other advanced methods remain future work; avoid duplicating existing explanations.
