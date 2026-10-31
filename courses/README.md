@@ -15,3 +15,9 @@ Course directories may contain:
 
 General concepts should be developed in the knowledge directory rather
 than duplicated here.
+
+## Course index
+
+- [Introductory Econometrics for Business and Economics](introductory-econometrics-for-business-and-economics/README.md)
+- [Empirical Finance](empirical-finance/README.md): Week 1 lecture studied; R tutorial next.
+- [Empirical Economics](empirical-economics/README.md): starter folder, course not yet begun.
