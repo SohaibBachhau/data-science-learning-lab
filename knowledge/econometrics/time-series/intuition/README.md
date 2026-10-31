@@ -32,6 +32,8 @@ The goal is to understand what a concept is doing, why it matters, and how you w
 10. [Non-stationarity and unit roots](nonstationarity-and-unit-roots.md)
 11. [ADF and KPSS](adf-and-kpss.md)
 12. [ARIMA and Seasonal ARIMA](arima-and-sarima.md)
+13. [Forecasting, impulse responses and model checking](forecasting-and-model-checking.md)
+14. [Cointegration and error correction](cointegration-and-error-correction.md)
 
 ## How to use this folder
 
@@ -62,4 +64,6 @@ ARMA needs stationary data
 
 If you can explain a term clearly in ordinary words, that is a strong sign that the mathematics has a conceptual foundation rather than being memorized mechanically.
 
-For derivations, assumptions, notation and exam calculations, return to the permanent notes in the parent `time-series` folder.
+For Weeks 4–6, use the forecasting/model-checking story to remember the difference between conditional forecasts, impulse responses, information criteria, residual tests and out-of-sample accuracy. Use the cointegration/ECM story to understand why non-stationary series can be spuriously related, how a stable spread changes the problem, and how error correction works.
+
+For derivations, assumptions, notation and exam calculations, return to the permanent notes in the parent `time-series` folder. For fast retrieval across all weeks, see the [glossary](../glossary.md).

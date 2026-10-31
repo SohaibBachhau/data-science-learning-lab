@@ -28,6 +28,14 @@ For definitions you should be able to explain in ordinary words, use the [Time-S
 16. [ARIMA models](arima-models.md)
 17. [Seasonal ARIMA models](seasonal-arima-models.md)
 18. [Week 3 full review](week-3-review.md)
+19. [Forecasting and prediction intervals (Week 4)](forecasting-and-prediction-intervals.md)
+20. [Impulse responses (Week 4)](impulse-response-analysis.md)
+21. [Model selection and residual diagnostics (Week 5)](model-selection-and-diagnostics.md)
+22. [Forecast evaluation and time-series cross-validation (Week 5)](forecast-evaluation-and-cross-validation.md)
+23. [Spurious regression and cointegration (Week 6)](spurious-regression-and-cointegration.md)
+24. [Error-correction models and Granger causality (Week 6)](error-correction-and-granger-causality.md)
+25. [Weeks 4–6 integrated exam consolidation](week-4-to-6-exam-consolidation.md)
+26. [Time-series glossary](glossary.md)
 
 ## Exam-prep emphasis
 
@@ -144,6 +152,28 @@ $$
 
 Keep this notation when working through Week 3 problems so the notes match the lecture slides.
 
+## Weeks 4–6 map
+
+The second half of the course turns models into practical forecasts, checks their credibility, and extends analysis to long-run relationships between multiple series.
+
+| Week | Question | Main notes |
+|---|---|---|
+| **4: Forecasting and IRFs** | What should we forecast, how uncertain is it, and what does a shock do over time? | [Forecasting/intervals](forecasting-and-prediction-intervals.md), [Impulse responses](impulse-response-analysis.md) |
+| **5: Selection and evaluation** | Is the model too simple or complex, do residuals behave well, and does it forecast unseen data? | [Selection/diagnostics](model-selection-and-diagnostics.md), [Forecast evaluation/CV](forecast-evaluation-and-cross-validation.md) |
+| **6: Multiple series** | Are trending series spuriously related, or do they share a long-run equilibrium? | [Cointegration](spurious-regression-and-cointegration.md), [ECM/Granger](error-correction-and-granger-causality.md) |
+
+The main sequence is:
+
+1. Derive the conditional-mean forecast under squared-error loss.
+2. Forecast recursively from a fitted ARMA/ARIMA model; construct forecast-error variances and intervals.
+3. Track how one innovation propagates using an impulse response function.
+4. Select a candidate model with information criteria while checking residual ACF, Ljung–Box and Jarque–Bera.
+5. Evaluate predictions chronologically with MAE/RMSE and compare models with Diebold–Mariano when appropriate.
+6. Recognize spurious regressions, test for cointegration and model a stationary long-run error through an ECM.
+7. Distinguish Granger predictive relationships from structural cause and effect.
+
+For low-math orientation, open the [forecasting/model-checking story](intuition/forecasting-and-model-checking.md) and the [cointegration/ECM story](intuition/cointegration-and-error-correction.md). For testing yourself, use the [Weeks 4–6 exam checkpoint](week-4-to-6-exam-consolidation.md) and the [glossary](glossary.md).
+
 ## Mathematical foundations
 
 General mathematics is kept in `knowledge/mathematics/` rather than duplicated here.
@@ -167,7 +197,11 @@ The `intuition/` folder is a second layer of notes for verbal understanding. It 
 - ADF and KPSS;
 - ARIMA;
 - seasonal ARIMA;
-- the airline model and seasonal cutoff intuition.
+- the airline model and seasonal cutoff intuition;
+- forecasting, prediction intervals and impulse responses;
+- overfitting, information criteria and residual diagnostics;
+- chronological cross-validation and forecast comparison;
+- spurious regression, cointegration, error correction and Granger causality.
 
 Use these pages when you want to answer a conceptual question without immediately reaching for equations. The goal is not just to know the formal rule, but to understand the problem each concept is solving.
 
@@ -189,7 +223,9 @@ The time-series branch will develop around:
 - ARIMA and seasonal ARIMA models;
 - forecasting and impulse responses;
 - model selection and diagnostic checking;
-- spurious regression and cointegration.
+- spurious regression and cointegration;
+- error-correction models and Granger causality;
+- forecast comparisons and time-series cross-validation.
 
 ## Learning approach
 

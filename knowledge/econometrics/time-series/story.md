@@ -1016,6 +1016,44 @@ The level is non-stationary, while its first-difference-type return transformati
 
 This example reinforces an important point: a visible trend alone does not tell us whether the process is trend-stationary or unit-root non-stationary. The tests help distinguish the two cases.
 
+## Week 4: learning to look forward
+
+Up to Week 3, the central challenge was to explain how a series behaves. Once we have a model, the natural next question is practical: **What might happen tomorrow or several months from now?** This is the starting point of forecasting.
+
+First, we must decide what makes a forecast good. If big errors are particularly costly, squared-error loss is sensible. Under that rule the optimal forecast is the **conditional expectation** of the future observation using only information we possess today. The important word is *conditional*: a forecast takes account of what has already happened. In a stationary AR(1), a recent high observation influences the near future, but that influence fades as the horizon increases. The long-run forecast settles toward the unconditional mean.
+
+The mechanics are intuitive once we translate them back into time. Keep historical observations and previously inferred shocks, because they are already known. For values that have not happened yet, use the forecasts computed one step earlier in the recursion. The best prediction of a future zero-mean innovation is zero, but that does **not** mean the realized shock will be zero. This is precisely why there is forecast uncertainty.
+
+A **prediction interval** answers a different question from a point forecast: not simply "what is our best guess?" but "how much could reality differ from that guess?" Forecasts many periods into the future usually accumulate more unknown shocks. A random walk accumulates these errors forever, so its intervals continue to widen; a stable mean-reverting AR(1) eventually reaches a finite forecast-error variance under its standard assumptions.
+
+There is another use for the fitted model. Economists often want to know what happens **because of an unexpected shock**, rather than what would happen on average without one. An **impulse response function** traces the additional effect of a one-time innovation. In a stationary AR(1), that effect shrinks geometrically. In an MA(1), it stops after one subsequent period. In a random-walk level it persists indefinitely. It is crucial to distinguish an impulse response from the total forecast and from proof of an actual economic policy effect.
+
+For the detailed mathematics, see [forecasting and prediction intervals](forecasting-and-prediction-intervals.md) and [impulse responses](impulse-response-analysis.md). For a low-math explanation, see [forecasting intuition](intuition/forecasting-and-model-checking.md).
+
+## Week 5: asking whether our fitted model deserves trust
+
+A model can describe old observations beautifully and still be useless when asked to predict new ones. Increasing the number of lags may improve historical fit simply because the model now has more adjustable parameters. This is **overfitting**. Using too few lags can be just as bad because important dynamics remain unexplained. Week 5 teaches us to compare models with an explicit tradeoff between goodness of fit and complexity.
+
+Information criteria such as **AIC** and **BIC** do this by starting from model likelihood and adding a penalty for the number of parameters. The lower score wins within a valid comparison. BIC generally becomes more punitive about added parameters as the sample grows. Neither score tells us that the residuals are well behaved, so model selection is only part of the procedure.
+
+Residuals are our model's unexplained leftovers. If we have described the dependence adequately, the residuals should not retain the linear autocorrelation that our model was supposed to explain. The **Ljung–Box** test checks joint residual autocorrelation. The **Jarque–Bera** test asks an entirely different question: whether skewness and kurtosis look compatible with a normal distribution. Large p-values are not proof that all assumptions are true; they just mean the data do not provide sufficient evidence against the respective null under the test.
+
+Once a model survives these checks, we still want to know whether it predicts unseen observations. We pretend we are at an earlier date, fit only the past, make a forecast, and then see what happened. **Time-series cross-validation** repeats this chronologically. It is inappropriate to randomly shuffle future observations into the past. We summarize errors with criteria such as MAE and RMSE and compare against a simple baseline. If two models' scores differ, the **Diebold–Mariano** test can help assess whether there is statistical evidence of unequal expected forecast accuracy.
+
+See [model selection and diagnostics](model-selection-and-diagnostics.md) and [forecast evaluation](forecast-evaluation-and-cross-validation.md).
+
+## Week 6: when two wandering series appear to travel together
+
+So far, most models describe one series using its own past. Week 6 asks what happens when we regress one economic series on another. The trap is that two unrelated, non-stationary series can both wander upward for a long period. A conventional regression in levels may show a striking coefficient and small p-value even when the paths are completely independent. This is a **spurious regression**, and it reminds us that a result can look statistically impressive for the wrong reason.
+
+One response is to study first differences, which are often stationary for $I(1)$ series. But differencing alone can erase information about an economically meaningful *long-run* relation. Imagine two related oil prices that each drift over time. They need not return to one fixed price, yet the price **spread** between them might remain stable. **Cointegration** formalizes this idea: non-stationary variables have some weighted combination that is stationary. The long-run link is in that combination, not in either level by itself.
+
+The **Engle–Granger** approach estimates a candidate long-run relation and asks whether its residual spread has a unit root. Because the spread uses fitted coefficients, ordinary ADF critical values are not suitable. If evidence supports cointegration, an **error-correction model** joins short-run changes to last period's deviation from the long-run relation. When the measured level is too high, a restoring adjustment coefficient can nudge it back. The sign only makes sense after defining which direction is "above equilibrium."
+
+Finally, **Granger causality** asks whether knowing one variable's past improves forecasts of another beyond the information already included. It is about predictive content, not a randomized intervention. This is different again from the "causal" representation of an ARMA model, which merely uses current and past innovations rather than future shocks.
+
+See [spurious regressions and cointegration](spurious-regression-and-cointegration.md), [ECM and Granger causality](error-correction-and-granger-causality.md), and the [plain-language analogy](intuition/cointegration-and-error-correction.md).
+
 ## The story in one chain
 
 ```text
@@ -1080,15 +1118,26 @@ observations through time
 -> maximum-likelihood parameter estimation
 -> NVIDIA unit-root example
 -> Week 3 exercises
+-> conditional expectation under squared loss
+-> recursive ARMA/ARIMA forecasts
+-> forecast-error variance and prediction intervals
+-> impulse responses and shock persistence
+-> information criteria and model complexity
+-> residual diagnostics: Ljung-Box versus Jarque-Bera
+-> out-of-sample errors, chronological cross-validation
+-> Diebold-Mariano forecast comparison
+-> spurious regressions among integrated series
+-> cointegration and stationary spreads
+-> Engle-Granger residual test
+-> error-correction mechanisms
+-> Granger causality versus genuine causation
 ```
 
 ## What comes next
 
-Week 3 theory is now complete in these notes.
+This story now connects the entire six-week course. Weeks 1–3 explain and estimate dynamic models; Week 4 uses them to forecast and trace shocks; Week 5 checks whether they are credible and predict out of sample; Week 6 handles relationships among multiple persistent series.
 
-The chapter now covers non-stationarity, ordinary and seasonal differencing, order of integration, unit roots, overdifferencing, Dickey-Fuller and ADF logic, KPSS, ARIMA, seasonal ARIMA, seasonal ACF/PACF patterns, the airline model, the NVIDIA example, and maximum-likelihood estimation.
-
-The next step is retrieval and problem solving: work through the Week 3 exercise-book questions, identify which ideas do not yet come out automatically, and then return to the detailed notes for targeted reinforcement.
+For active recall, work through the [Weeks 4–6 integrated exam checkpoint](week-4-to-6-exam-consolidation.md). Use the [glossary](glossary.md) for short verbal definitions and the permanent chapter links for derivations. A note being written does not mean you have mastered every question: derive the results yourself and mark any remaining weaknesses.
 
 ## What to remember right now
 
@@ -1142,6 +1191,32 @@ PACF isolates direct lag relationships and is especially useful for identifying 
 
 ACF cutoffs suggest MA order; PACF cutoffs suggest AR order.
 
+Forecasting under squared loss uses the conditional mean, not the unconditional average in every situation.
+
+Future innovations have a conditional forecast of zero, but their realized values remain uncertain.
+
+For stationary AR(1) models, long-horizon point forecasts approach the process mean; for a random walk they do not.
+
+Prediction intervals describe uncertainty around future observations; they are not the same as point forecasts.
+
+Impulse responses track the incremental effect of a one-time shock, not the total forecast level.
+
+Information criteria balance likelihood fit and model complexity, but residual diagnostics still matter.
+
+Ljung–Box tests joint autocorrelation; Jarque–Bera tests normality.
+
+Time-series evaluation must respect chronology and avoid future-information leakage.
+
+Diebold–Mariano compares expected forecasting losses of paired methods.
+
+Independent unit-root processes can produce spurious significance in level regressions.
+
+Cointegration means a weighted combination of non-stationary levels is stationary.
+
+Error-correction models relate short-run changes to a lagged long-run equilibrium error.
+
+Granger causality means predictive information from past values, not proven structural causation.
+
 ## When you forget the mathematics
 
 Start with this page. Once the story is back in your head, use the detailed notes:
@@ -1161,6 +1236,14 @@ Start with this page. Once the story is back in your head, use the detailed note
 - [ARIMA models](arima-models.md)
 - [Seasonal ARIMA models](seasonal-arima-models.md)
 - [Week 3 full review](week-3-review.md)
+- [Week 4 forecasting and intervals](forecasting-and-prediction-intervals.md)
+- [Week 4 impulse responses](impulse-response-analysis.md)
+- [Week 5 model selection and diagnostics](model-selection-and-diagnostics.md)
+- [Week 5 forecast evaluation](forecast-evaluation-and-cross-validation.md)
+- [Week 6 cointegration](spurious-regression-and-cointegration.md)
+- [Week 6 ECM and Granger causality](error-correction-and-granger-causality.md)
+- [Weeks 4–6 exam checkpoint](week-4-to-6-exam-consolidation.md)
+- [Glossary](glossary.md)
 - [Plain-language time-series intuition](intuition/README.md)
 - [Complex numbers, polynomials and roots](../../mathematics/complex-numbers-and-polynomials.md)
 - [Geometric series](../../mathematics/geometric-series.md)
@@ -1174,3 +1257,6 @@ Start with this page. Once the story is back in your head, use the detailed note
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 2 exercise book.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 3, parts 1-4.
 - VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 3 exercise book.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 4, parts 1–4 and lecture.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 5, parts 1–4 and lecture.
+- VU Amsterdam, *Fundamentals of Time Series Econometrics*, Week 6, parts 1–4.
